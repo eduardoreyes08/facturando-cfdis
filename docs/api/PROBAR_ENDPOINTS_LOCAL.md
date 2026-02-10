@@ -53,3 +53,19 @@ Para ver la descripción y ejemplo de **cada endpoint** usa:
 Para migrar de mock a real:
 
 - `docs/api/GUIA_MOCK_A_REAL.md`
+
+## 5) Cambiar entre Mock y Real sin romper compilación
+
+1. Abre `src/Edl.Api/appsettings.Development.json`.
+2. Cambia `EdlApi.UseMockMode`:
+   - `true` = Mock
+   - `false` = Real (`EdlRealService`)
+3. Ejecuta:
+```bash
+dotnet restore Edl.Api.sln
+dotnet build Edl.Api.sln -c Debug
+dotnet run --project src/Edl.Api/Edl.Api.csproj
+```
+
+Si aparece el error CS0246 de `EdlRealService`, verifica que exista:
+- `src/Edl.Api/Services/EdlRealService.cs`
