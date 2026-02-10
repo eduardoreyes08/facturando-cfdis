@@ -1,0 +1,1 @@
+{"environment":"test","useHttps":true,"certificate":{"cerBase64":"Q0VSLU1PQ0s=","keyBase64":"S0VZLU1PQ0s=","keyPassword":"12345678a"},"retentions":{"version":"2.0","emisorRfc":"EKU9003173C9","receptorRfc":"AAAD770905441","montoOperacion":1000.00}}
