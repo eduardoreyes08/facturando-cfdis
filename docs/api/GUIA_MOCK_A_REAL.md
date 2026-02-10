@@ -126,3 +126,18 @@ Configuración nueva (`EdlApi`):
 
 - `RequireLicenseLoaded` (bool, default `true`)
 - `StoragePath` (ruta opcional para estado local; vacío => `./data` bajo binario)
+
+
+## Qué se agregó en bloque 4
+
+Se añadió operación orientada a producción para trazabilidad de salida XML:
+
+- Persistencia opcional de XML/acuse/retenciones en disco.
+- Configuración de ruta de artefactos XML por `EdlApi:XmlOutputPath`.
+- Activación/desactivación por `EdlApi:PersistXmlArtifacts`.
+
+Artefactos generados cuando está activo:
+
+- `cfdi_<UUID>.xml`
+- `acuse_cancelacion_<UUID>.xml`
+- `retenciones_<UUID>.xml`

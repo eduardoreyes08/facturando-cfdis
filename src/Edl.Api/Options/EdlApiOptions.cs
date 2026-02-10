@@ -9,4 +9,8 @@ public sealed class EdlApiOptions
   // Bloque real 3
   public bool RequireLicenseLoaded { get; set; } = true;
   public string StoragePath { get; set; } = string.Empty;
+
+  // Bloque real 4
+  public bool PersistXmlArtifacts { get; set; } = true;
+  public string XmlOutputPath { get; set; } = string.Empty;
 }

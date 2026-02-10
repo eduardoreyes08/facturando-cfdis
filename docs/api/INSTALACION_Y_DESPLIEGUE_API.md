@@ -33,6 +33,8 @@
 - `EDL_CERT_PROVIDER=vault|filesystem`
 - `EdlApi:RequireLicenseLoaded=true|false`
 - `EdlApi:StoragePath=/ruta/estado/local`
+- `EdlApi:PersistXmlArtifacts=true|false`
+- `EdlApi:XmlOutputPath=/ruta/xml/salida`
 
 ---
 

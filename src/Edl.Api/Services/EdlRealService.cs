@@ -29,6 +29,7 @@ public sealed class EdlRealService : IEdlService
   private readonly ILicenseStore _licenseStore;
   private readonly EdlApiOptions _options;
   private readonly string _stateFile;
+  private readonly string _xmlOutputPath;
   private readonly object _stateLock = new();
 
   public EdlRealService(ILogger<EdlRealService> logger, ILicenseStore licenseStore, IOptions<EdlApiOptions> options)
@@ -43,6 +44,11 @@ public sealed class EdlRealService : IEdlService
 
     Directory.CreateDirectory(basePath);
     _stateFile = Path.Combine(basePath, "edl-real-state.json");
+
+    _xmlOutputPath = string.IsNullOrWhiteSpace(_options.XmlOutputPath)
+      ? Path.Combine(basePath, "xml")
+      : _options.XmlOutputPath;
+    Directory.CreateDirectory(_xmlOutputPath);
 
     LoadState();
   }
@@ -125,6 +131,7 @@ public sealed class EdlRealService : IEdlService
       _stamped[uuid] = stored;
       _idempotency[idempotencyKey] = uuid;
       SaveState();
+      PersistXmlArtifact($"cfdi_{uuid}.xml", xmlString);
 
       string tx = Guid.NewGuid().ToString("N");
       _logger.LogInformation("CFDI timbrado (bloque real 3). UUID={Uuid} RFC={RfcEmisor} TX={Tx}", uuid, rfcEmisor, tx);
@@ -187,6 +194,7 @@ public sealed class EdlRealService : IEdlService
     };
 
     SaveState();
+    PersistXmlArtifact($"acuse_cancelacion_{stored.Uuid}.xml", receiptXml);
 
     return Task.FromResult(new OperationResponse(true, "Cancelación procesada en bloque real 3.", Guid.NewGuid().ToString("N")));
   }
@@ -242,6 +250,8 @@ public sealed class EdlRealService : IEdlService
         new XAttribute("rfcReceptor", rfcReceptor),
         new XAttribute("montoOperacion", montoOperacion)
       ).ToString(SaveOptions.DisableFormatting);
+
+      PersistXmlArtifact($"retenciones_{uuid}.xml", xml);
 
       return Task.FromResult(new StampResponse
       {
@@ -488,6 +498,24 @@ public sealed class EdlRealService : IEdlService
 
   public Task<AccountingXmlResponse> GenerateAccountingAuxFoliosAsync(AccountingRequest request, CancellationToken ct)
     => Task.FromResult(CreateAccounting(request, "auxiliar_folios.xml", "auxiliar_folios"));
+
+
+  private void PersistXmlArtifact(string fileName, string xmlContent)
+  {
+    if (_options.PersistXmlArtifacts == false)
+      return;
+
+    try
+    {
+      string safe = string.Concat(fileName.Select(ch => Path.GetInvalidFileNameChars().Contains(ch) ? '_' : ch));
+      string fullPath = Path.Combine(_xmlOutputPath, safe);
+      File.WriteAllText(fullPath, xmlContent, Encoding.UTF8);
+    }
+    catch (Exception ex)
+    {
+      _logger.LogWarning(ex, "No se pudo persistir artefacto XML {FileName}", fileName);
+    }
+  }
 
   private bool RequireLicense()
     => _options.RequireLicenseLoaded == false || _licenseStore.IsLoaded();
