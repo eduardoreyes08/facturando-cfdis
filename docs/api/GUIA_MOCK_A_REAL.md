@@ -98,3 +98,16 @@ Con `UseMockMode=false`, actualmente ejecuta lógica real interna en:
 - `GET /api/v1/sat/cfdi-status`
 
 Importante: este bloque no timbra ante PAC/SAT externo todavía; usa almacenamiento local en memoria para pruebas funcionales end-to-end.
+
+## Qué se agregó en bloque 2
+
+Además del bloque 1, ahora `EdlRealService` incorpora lógica real interna adicional en:
+
+- `POST /api/v1/retentions/stamp` (validación de campos + XML de retenciones)
+- `POST /api/v1/xml/validate/retentions` (valida base64 + XML + raíz `retenciones`)
+- `POST /api/v1/certificates/validate-csd` (lee `.cer` real desde base64 y extrae serie/vigencia)
+- `GET /api/v1/pac/account-status` (disponibilidad de timbres calculada con emitidos locales)
+- `POST /api/v1/accounting/*` (genera XML con rfc/año/mes/hash de payload)
+- `POST /api/v1/cfdi/complements/{type}` y `POST /api/v1/cfdi/addendas/{type}` (aplicación validada + hash trazable)
+
+Importante: sigue siendo implementación local interna (no PAC/SAT fiscal oficial todavía).

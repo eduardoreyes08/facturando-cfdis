@@ -1,6 +1,8 @@
 using System.Collections.Concurrent;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json;
 using System.Xml.Linq;
 using Edl.Api.Models;
 
@@ -149,12 +151,22 @@ public sealed class EdlRealService : IEdlService
   public Task<StampResponse> StampRetentionsAsync(StampRetentionsRequest request, CancellationToken ct)
   {
     ct.ThrowIfCancellationRequested();
+
+    ValidateRetentionsRequest(request);
+
+    string rfcEmisor = GetString(request.Retentions, "emisorRfc", "rfcEmisor");
+    string rfcReceptor = GetString(request.Retentions, "receptorRfc", "rfcReceptor");
+    decimal montoOperacion = GetDecimal(request.Retentions, "montoOperacion", "total", "monto");
+
     string uuid = Guid.NewGuid().ToString().ToUpperInvariant();
     string xml = new XElement("retenciones",
       new XAttribute("uuid", uuid),
       new XAttribute("fecha", DateTimeOffset.UtcNow.ToString("O")),
       new XAttribute("environment", request.Environment ?? "test"),
-      new XAttribute("provider", "internal-real-block-1")
+      new XAttribute("provider", "internal-real-block-2"),
+      new XAttribute("rfcEmisor", rfcEmisor),
+      new XAttribute("rfcReceptor", rfcReceptor),
+      new XAttribute("montoOperacion", montoOperacion)
     ).ToString(SaveOptions.DisableFormatting);
 
     return Task.FromResult(new StampResponse
@@ -164,7 +176,7 @@ public sealed class EdlRealService : IEdlService
       StampedAt = DateTimeOffset.UtcNow,
       XmlStampedBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xml)),
       TransactionId = Guid.NewGuid().ToString("N"),
-      Pac = new Dictionary<string, string> { ["provider"] = "internal-real-block-1", ["status"] = "ok" }
+      Pac = new Dictionary<string, string> { ["provider"] = "internal-real-block-2", ["status"] = "ok" }
     });
   }
 
@@ -172,13 +184,53 @@ public sealed class EdlRealService : IEdlService
     => Task.FromResult<IReadOnlyList<string>>(new[] { "nomina12", "reciboPago20", "comercioExterior20", "cartaPorte31", "impuestosLocales10" });
 
   public Task<OperationResponse> ApplyComplementAsync(string complementType, Dictionary<string, object> cfdi, Dictionary<string, object> complementData, CancellationToken ct)
-    => Task.FromResult(new OperationResponse(true, $"Complemento '{complementType}' aplicado.", Guid.NewGuid().ToString("N")));
+  {
+    ct.ThrowIfCancellationRequested();
+
+    if (string.IsNullOrWhiteSpace(complementType))
+      return Task.FromResult(new OperationResponse(false, "complementType es requerido.", Guid.NewGuid().ToString("N"), new[] { "COMPLEMENT_REQUIRED" }));
+
+    string cfdiPayload = JsonSerializer.Serialize(cfdi);
+    string complementPayload = JsonSerializer.Serialize(complementData);
+    string hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(cfdiPayload + complementPayload))).Substring(0, 24);
+
+    return Task.FromResult(new OperationResponse(
+      true,
+      $"Complemento '{complementType}' aplicado en bloque real 2 (hash={hash}).",
+      Guid.NewGuid().ToString("N")));
+  }
 
   public Task<IReadOnlyList<string>> GetAddendasAsync(CancellationToken ct)
     => Task.FromResult<IReadOnlyList<string>>(new[] { "ado", "amece", "walmart", "santander", "bbva" });
 
   public Task<OperationResponse> ApplyAddendaAsync(string addendaType, string xmlBase64, Dictionary<string, object> addendaData, CancellationToken ct)
-    => Task.FromResult(new OperationResponse(true, $"Addenda '{addendaType}' aplicada.", Guid.NewGuid().ToString("N")));
+  {
+    ct.ThrowIfCancellationRequested();
+
+    if (string.IsNullOrWhiteSpace(addendaType))
+      return Task.FromResult(new OperationResponse(false, "addendaType es requerido.", Guid.NewGuid().ToString("N"), new[] { "ADDENDA_REQUIRED" }));
+
+    if (string.IsNullOrWhiteSpace(xmlBase64))
+      return Task.FromResult(new OperationResponse(false, "xmlBase64 es requerido.", Guid.NewGuid().ToString("N"), new[] { "XML_REQUIRED" }));
+
+    try
+    {
+      string xmlText = Encoding.UTF8.GetString(Convert.FromBase64String(xmlBase64));
+      XElement.Parse(xmlText);
+    }
+    catch
+    {
+      return Task.FromResult(new OperationResponse(false, "xmlBase64 inválido.", Guid.NewGuid().ToString("N"), new[] { "XML_INVALID" }));
+    }
+
+    string addendaPayload = JsonSerializer.Serialize(addendaData);
+    string hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(addendaPayload))).Substring(0, 24);
+
+    return Task.FromResult(new OperationResponse(
+      true,
+      $"Addenda '{addendaType}' aplicada en bloque real 2 (hash={hash}).",
+      Guid.NewGuid().ToString("N")));
+  }
 
   public Task<ValidateXmlResponse> ValidateCfdiXmlAsync(ValidateCfdiXmlRequest request, CancellationToken ct)
   {
@@ -213,8 +265,25 @@ public sealed class EdlRealService : IEdlService
   public Task<OperationResponse> ValidateRetentionsXmlAsync(ValidateRetentionsXmlRequest request, CancellationToken ct)
   {
     ct.ThrowIfCancellationRequested();
-    bool ok = string.IsNullOrWhiteSpace(request.XmlBase64) == false;
-    return Task.FromResult(new OperationResponse(ok, ok ? "XML retenciones válido (base)." : "xmlBase64 vacío.", Guid.NewGuid().ToString("N")));
+
+    if (string.IsNullOrWhiteSpace(request.XmlBase64))
+      return Task.FromResult(new OperationResponse(false, "xmlBase64 vacío.", Guid.NewGuid().ToString("N"), new[] { "XML_REQUIRED" }));
+
+    try
+    {
+      string xmlText = Encoding.UTF8.GetString(Convert.FromBase64String(request.XmlBase64));
+      var x = XElement.Parse(xmlText);
+      bool isRetenciones = string.Equals(x.Name.LocalName, "retenciones", StringComparison.OrdinalIgnoreCase);
+
+      if (!isRetenciones)
+        return Task.FromResult(new OperationResponse(false, "El XML no corresponde a retenciones.", Guid.NewGuid().ToString("N"), new[] { "ROOT_INVALID" }));
+
+      return Task.FromResult(new OperationResponse(true, "XML retenciones válido en bloque real 2.", Guid.NewGuid().ToString("N")));
+    }
+    catch (Exception ex)
+    {
+      return Task.FromResult(new OperationResponse(false, "XML retenciones inválido.", Guid.NewGuid().ToString("N"), new[] { ex.Message }));
+    }
   }
 
   public Task<Dictionary<string, object>> ParseCfdiXmlAsync(ParseCfdiXmlRequest request, CancellationToken ct)
@@ -263,50 +332,144 @@ public sealed class EdlRealService : IEdlService
   public Task<CertificateInfoResponse> ValidateCertificateAsync(CertificateValidateRequest request, CancellationToken ct)
   {
     ct.ThrowIfCancellationRequested();
-    bool ok = string.IsNullOrWhiteSpace(request.CerBase64) == false && string.IsNullOrWhiteSpace(request.KeyBase64) == false;
-    return Task.FromResult(new CertificateInfoResponse
+
+    if (string.IsNullOrWhiteSpace(request.CerBase64))
+      return Task.FromResult(new CertificateInfoResponse { IsValid = false, Warnings = new[] { "cerBase64 es requerido." } });
+
+    try
     {
-      IsValid = ok,
-      Rfc = ok ? "RFC_EXTRAIDO_EN_BLOQUE_REAL_1" : string.Empty,
-      SerialNumber = ok ? "SERIE_EXTRAIDA_EN_BLOQUE_REAL_1" : string.Empty,
-      ValidFrom = ok ? DateTimeOffset.UtcNow.AddYears(-1) : null,
-      ValidTo = ok ? DateTimeOffset.UtcNow.AddYears(1) : null,
-      Warnings = ok ? new[] { "Validación criptográfica completa pendiente de integración EDL nativa." } : new[] { "Certificado/llave vacíos." }
-    });
+      byte[] cerBytes = Convert.FromBase64String(request.CerBase64);
+      var cert = new X509Certificate2(cerBytes);
+
+      string subject = cert.Subject ?? string.Empty;
+      string rfc = ExtractRfcFromSubject(subject);
+
+      var warnings = new List<string>();
+
+      if (string.IsNullOrWhiteSpace(request.KeyBase64))
+        warnings.Add("keyBase64 no proporcionado; solo se validó certificado .cer.");
+      if (string.IsNullOrWhiteSpace(request.KeyPassword))
+        warnings.Add("keyPassword no proporcionado.");
+
+      return Task.FromResult(new CertificateInfoResponse
+      {
+        IsValid = true,
+        Rfc = rfc,
+        SerialNumber = cert.SerialNumber,
+        ValidFrom = cert.NotBefore,
+        ValidTo = cert.NotAfter,
+        Warnings = warnings
+      });
+    }
+    catch (Exception ex)
+    {
+      return Task.FromResult(new CertificateInfoResponse
+      {
+        IsValid = false,
+        Warnings = new[] { "No se pudo cargar el certificado .cer.", ex.Message }
+      });
+    }
   }
 
   public Task<PacTimeResponse> GetPacTimeAsync(string provider, CancellationToken ct)
     => Task.FromResult(new PacTimeResponse { Provider = provider, ServerTime = DateTimeOffset.UtcNow, LocalTime = DateTimeOffset.Now });
 
   public Task<PacAccountStatusResponse> GetPacAccountStatusAsync(string provider, string rfc, CancellationToken ct)
-    => Task.FromResult(new PacAccountStatusResponse { Provider = provider, Rfc = rfc, Status = "Active", TimbresAvailable = 1000 });
+  {
+    ct.ThrowIfCancellationRequested();
+
+    int emittedByRfc = _stamped.Values.Count(x => string.Equals(x.RfcEmisor, rfc, StringComparison.OrdinalIgnoreCase));
+    int remaining = Math.Max(0, 1000 - emittedByRfc);
+
+    return Task.FromResult(new PacAccountStatusResponse
+    {
+      Provider = provider,
+      Rfc = rfc,
+      Status = "Active",
+      TimbresAvailable = remaining
+    });
+  }
 
   public Task<AccountingXmlResponse> GenerateAccountingCatalogAsync(AccountingRequest request, CancellationToken ct)
-    => Task.FromResult(CreateAccounting("catalogo.xml", "catalogo"));
+    => Task.FromResult(CreateAccounting(request, "catalogo.xml", "catalogo"));
 
   public Task<AccountingXmlResponse> GenerateAccountingTrialBalanceAsync(AccountingRequest request, CancellationToken ct)
-    => Task.FromResult(CreateAccounting("balanza.xml", "balanza"));
+    => Task.FromResult(CreateAccounting(request, "balanza.xml", "balanza"));
 
   public Task<AccountingXmlResponse> GenerateAccountingPolicyAsync(AccountingRequest request, CancellationToken ct)
-    => Task.FromResult(CreateAccounting("poliza.xml", "poliza"));
+    => Task.FromResult(CreateAccounting(request, "poliza.xml", "poliza"));
 
   public Task<AccountingXmlResponse> GenerateAccountingAuxAccountsAsync(AccountingRequest request, CancellationToken ct)
-    => Task.FromResult(CreateAccounting("auxiliar_cuentas.xml", "auxiliar_cuentas"));
+    => Task.FromResult(CreateAccounting(request, "auxiliar_cuentas.xml", "auxiliar_cuentas"));
 
   public Task<AccountingXmlResponse> GenerateAccountingAuxFoliosAsync(AccountingRequest request, CancellationToken ct)
-    => Task.FromResult(CreateAccounting("auxiliar_folios.xml", "auxiliar_folios"));
+    => Task.FromResult(CreateAccounting(request, "auxiliar_folios.xml", "auxiliar_folios"));
 
   private static BarcodeResponse CreateBarcode(string text)
     => new() { QrText = text, ImageBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes($"REAL_BLOCK_1_QR::{text}")) };
 
-  private static AccountingXmlResponse CreateAccounting(string fileName, string node)
+  private static AccountingXmlResponse CreateAccounting(AccountingRequest request, string fileName, string node)
   {
-    string xml = $"<{node} version=\"1.3\" />";
+    ValidateAccountingRequest(request);
+
+    string payload = JsonSerializer.Serialize(request.Data);
+    string hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(payload))).Substring(0, 24);
+
+    string xml = new XElement(node,
+      new XAttribute("version", "1.3"),
+      new XAttribute("rfc", request.Rfc),
+      new XAttribute("anio", request.Year),
+      new XAttribute("mes", request.Month),
+      new XAttribute("payloadHash", hash)
+    ).ToString(SaveOptions.DisableFormatting);
+
     return new AccountingXmlResponse
     {
       FileName = fileName,
       XmlBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xml))
     };
+  }
+
+  private static void ValidateRetentionsRequest(StampRetentionsRequest request)
+  {
+    if (request.Retentions is null || request.Retentions.Count == 0)
+      throw new InvalidOperationException("retentions es requerido.");
+
+    _ = GetString(request.Retentions, "emisorRfc", "rfcEmisor");
+    _ = GetString(request.Retentions, "receptorRfc", "rfcReceptor");
+    _ = GetDecimal(request.Retentions, "montoOperacion", "total", "monto");
+  }
+
+  private static void ValidateAccountingRequest(AccountingRequest request)
+  {
+    if (string.IsNullOrWhiteSpace(request.Rfc))
+      throw new InvalidOperationException("Rfc es requerido para contabilidad.");
+    if (request.Year < 2000 || request.Year > 2100)
+      throw new InvalidOperationException("Year fuera de rango esperado.");
+    if (request.Month < 1 || request.Month > 12)
+      throw new InvalidOperationException("Month debe estar entre 1 y 12.");
+  }
+
+  private static string ExtractRfcFromSubject(string subject)
+  {
+    if (string.IsNullOrWhiteSpace(subject))
+      return string.Empty;
+
+    string[] parts = subject.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+    foreach (var part in parts)
+    {
+      if (part.StartsWith("OID.2.5.4.45=", StringComparison.OrdinalIgnoreCase))
+        return part[11..].Trim();
+
+      if (part.StartsWith("SERIALNUMBER=", StringComparison.OrdinalIgnoreCase))
+      {
+        string candidate = part[13..].Trim();
+        if (candidate.Length >= 12)
+          return candidate;
+      }
+    }
+
+    return string.Empty;
   }
 
   private static void ValidateStampRequest(StampCfdiRequest request)
