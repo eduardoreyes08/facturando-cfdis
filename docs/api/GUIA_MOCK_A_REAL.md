@@ -46,11 +46,13 @@ dotnet run --project src/Edl.Api/Edl.Api.csproj
 
 - Arranca la API.
 - Llama `GET /api/v1/health`.
-- En modo real base, verás logs de advertencia en operaciones como `cfdi/stamp` indicando delegación temporal.
+- En bloque real 1, `cfdi/stamp` ya ejecuta lógica interna real de timbrado local (sin delegar al mock).
 
 ## 4) Migrar real endpoint por endpoint
 
-`EdlRealService` ya compila y corre; el siguiente paso es reemplazar cada delegación al mock por integración real EDL.
+`EdlRealService` ya compila y corre.
+En este bloque, `cfdi/stamp`, `cfdi/cancel`, `cfdi/cancel-receipt`, `cfdi/{uuid}/xml`, `xml/validate/cfdi`, `xml/parse/cfdi` y `sat/cfdi-status` ya no delegan al mock.
+Siguiente paso: conectar PAC/SAT/EDL nativos para timbrado fiscal oficial.
 
 Orden sugerido:
 
@@ -67,7 +69,7 @@ Orden sugerido:
 - **CS0246 EdlRealService**: verificar que exista `src/Edl.Api/Services/EdlRealService.cs` y namespace `Edl.Api.Services`.
 - **DI/arranque falla**: confirmar que `Program.cs` registre `MockEdlService`, `EdlRealService` y `IEdlService` por factory.
 - **No cambia de modo**: revisar `EdlApi:UseMockMode` en el archivo de configuración activo (`Development` vs `Production`).
-- **Compila pero no timbra real**: normal por ahora; `EdlRealService` base delega al mock hasta completar integración EDL/PAC.
+- **Timbra pero no aparece en PAC/SAT**: en bloque real 1 el timbrado es local interno; para timbrado fiscal oficial debes conectar PAC/EDL nativo.
 
 ## Referencia de implementación real por demos
 
@@ -82,3 +84,17 @@ Orden sugerido:
 - Carta porte: `Demos/CSharp/15. Carta Porte/MainForm.cs`
 - Status SAT: `Demos/CSharp/16. Status CFDI/Main Form.cs`
 - Licencia: `Demos/CSharp/17. Licencia/Main Form.cs`
+
+## Qué ya está en lógica real (bloque 1)
+
+Con `UseMockMode=false`, actualmente ejecuta lógica real interna en:
+
+- `POST /api/v1/cfdi/stamp`
+- `POST /api/v1/cfdi/cancel`
+- `GET /api/v1/cfdi/cancel-receipt`
+- `GET /api/v1/cfdi/{uuid}/xml`
+- `POST /api/v1/xml/validate/cfdi`
+- `POST /api/v1/xml/parse/cfdi`
+- `GET /api/v1/sat/cfdi-status`
+
+Importante: este bloque no timbra ante PAC/SAT externo todavía; usa almacenamiento local en memoria para pruebas funcionales end-to-end.

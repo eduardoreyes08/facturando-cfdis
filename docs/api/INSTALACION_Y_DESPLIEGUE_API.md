@@ -84,3 +84,23 @@ Documentación clave adicional:
 
 - `docs/api/ENDPOINTS_DESCRIPCION_Y_EJEMPLOS.md`
 - `docs/api/GUIA_MOCK_A_REAL.md`
+
+---
+
+## 8) Qué necesitas para pasar de bloque real local a timbrado fiscal oficial
+
+Además de activar `UseMockMode=false`, para timbrado oficial PAC/SAT debes tener:
+
+1. Credenciales PAC reales (usuario/password/token, URL y ambiente).
+2. CSD del emisor real (`.cer`, `.key`, password).
+3. Licencia EDL vigente.
+4. Conectividad de red al PAC/SAT (TLS/puertos permitidos).
+5. Integración de EDL nativa dentro de `EdlRealService` (reemplazar bloque local interno).
+
+Ubicación recomendada de archivos sensibles en servidor:
+
+- `app/config/secrets/` (si usas filesystem)
+  - `license.bin`
+  - `csd/<RFC>.cer`
+  - `csd/<RFC>.key`
+- o usar vault/KMS y no almacenar en disco.
