@@ -4,96 +4,163 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
+using Edl.Api.Infrastructure;
 using Edl.Api.Models;
+using Edl.Api.Options;
+using Microsoft.Extensions.Options;
 
 namespace Edl.Api.Services;
 
 /// <summary>
-/// Implementación REAL (bloque 1):
-/// - Timbrado interno de CFDI (XML + UUID + almacenamiento en memoria)
-/// - Cancelación + acuse + descarga XML
-/// - Validación/parseo XML
-/// - Status SAT interno con base en documentos emitidos por esta API
+/// Implementación REAL por bloques:
+/// - Bloque 1: CFDI local (timbrado/cancelación/status/xml/parse/validate)
+/// - Bloque 2: Retenciones, certificados, contabilidad, validaciones extendidas
+/// - Bloque 3: Persistencia en disco + idempotencia + validación de licencia
 ///
-/// Nota: en siguiente bloque se sustituye por integración PAC/SAT real.
+/// Nota: aún no conecta PAC/SAT fiscal oficial.
 /// </summary>
 public sealed class EdlRealService : IEdlService
 {
   private readonly ConcurrentDictionary<string, StoredCfdi> _stamped = new(StringComparer.OrdinalIgnoreCase);
   private readonly ConcurrentDictionary<string, StoredCancelReceipt> _cancelReceipts = new(StringComparer.OrdinalIgnoreCase);
-  private readonly ILogger<EdlRealService> _logger;
+  private readonly ConcurrentDictionary<string, string> _idempotency = new(StringComparer.OrdinalIgnoreCase);
 
-  public EdlRealService(ILogger<EdlRealService> logger)
+  private readonly ILogger<EdlRealService> _logger;
+  private readonly ILicenseStore _licenseStore;
+  private readonly EdlApiOptions _options;
+  private readonly string _stateFile;
+  private readonly object _stateLock = new();
+
+  public EdlRealService(ILogger<EdlRealService> logger, ILicenseStore licenseStore, IOptions<EdlApiOptions> options)
   {
     _logger = logger;
+    _licenseStore = licenseStore;
+    _options = options.Value;
+
+    string basePath = string.IsNullOrWhiteSpace(_options.StoragePath)
+      ? Path.Combine(AppContext.BaseDirectory, "data")
+      : _options.StoragePath;
+
+    Directory.CreateDirectory(basePath);
+    _stateFile = Path.Combine(basePath, "edl-real-state.json");
+
+    LoadState();
   }
 
   public Task<StampResponse> StampCfdiAsync(StampCfdiRequest request, CancellationToken ct)
   {
     ct.ThrowIfCancellationRequested();
 
-    ValidateStampRequest(request);
-
-    string rfcEmisor = GetString(request.Cfdi, "emisorRfc", "rfcEmisor");
-    string rfcReceptor = GetString(request.Cfdi, "receptorRfc", "rfcReceptor");
-    string folio = GetString(request.Cfdi, "folio");
-    string serie = GetString(request.Cfdi, "serie");
-    string version = GetString(request.Cfdi, "version");
-    decimal total = GetDecimal(request.Cfdi, "total");
-
-    string uuid = BuildUuid(rfcEmisor, rfcReceptor, serie, folio, total, DateTimeOffset.UtcNow);
-
-    var xml = new XElement("cfdi",
-      new XAttribute("version", string.IsNullOrWhiteSpace(version) ? "4.0" : version),
-      new XAttribute("serie", serie),
-      new XAttribute("folio", folio),
-      new XAttribute("uuid", uuid),
-      new XAttribute("fecha", DateTimeOffset.UtcNow.ToString("O")),
-      new XAttribute("rfcEmisor", rfcEmisor),
-      new XAttribute("rfcReceptor", rfcReceptor),
-      new XAttribute("total", total),
-      new XAttribute("environment", request.Environment ?? "test"),
-      new XAttribute("provider", request.Pac is { Count: > 0 } && request.Pac.TryGetValue("provider", out var p) ? p : "internal-real-block-1")
-    );
-
-    string xmlString = xml.ToString(SaveOptions.DisableFormatting);
-    string xmlBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlString));
-
-    var stored = new StoredCfdi
+    if (RequireLicense() == false)
     {
-      Uuid = uuid,
-      RfcEmisor = rfcEmisor,
-      RfcReceptor = rfcReceptor,
-      Total = total,
-      Status = "Vigente",
-      XmlBase64 = xmlBase64,
-      StampedAt = DateTimeOffset.UtcNow
-    };
-
-    _stamped[uuid] = stored;
-
-    string tx = Guid.NewGuid().ToString("N");
-    _logger.LogInformation("CFDI timbrado (bloque real 1). UUID={Uuid} RFC={RfcEmisor} TX={Tx}", uuid, rfcEmisor, tx);
-
-    return Task.FromResult(new StampResponse
-    {
-      Success = true,
-      Uuid = uuid,
-      StampedAt = stored.StampedAt,
-      XmlStampedBase64 = xmlBase64,
-      TransactionId = tx,
-      Pac = new Dictionary<string, string>
+      return Task.FromResult(new StampResponse
       {
-        ["provider"] = "internal-real-block-1",
-        ["status"] = "ok",
-        ["note"] = "Implementación local real sin PAC externo"
+        Success = false,
+        TransactionId = Guid.NewGuid().ToString("N"),
+        Errors = new[] { "Licencia EDL no cargada. Usa POST /api/v1/license/load" }
+      });
+    }
+
+    try
+    {
+      ValidateStampRequest(request);
+
+      string rfcEmisor = GetString(request.Cfdi, "emisorRfc", "rfcEmisor");
+      string rfcReceptor = GetString(request.Cfdi, "receptorRfc", "rfcReceptor");
+      string folio = GetString(request.Cfdi, "folio");
+      string serie = GetString(request.Cfdi, "serie");
+      string version = GetString(request.Cfdi, "version");
+      decimal total = GetDecimal(request.Cfdi, "total");
+
+      string idempotencyKey = $"{rfcEmisor}|{rfcReceptor}|{serie}|{folio}|{total:0.######}";
+      if (_idempotency.TryGetValue(idempotencyKey, out string? existingUuid) && _stamped.TryGetValue(existingUuid, out var existing))
+      {
+        _logger.LogInformation("Timbrado idempotente detectado. Reutilizando UUID={Uuid}", existingUuid);
+        return Task.FromResult(new StampResponse
+        {
+          Success = true,
+          Uuid = existing.Uuid,
+          StampedAt = existing.StampedAt,
+          XmlStampedBase64 = existing.XmlBase64,
+          TransactionId = Guid.NewGuid().ToString("N"),
+          Pac = new Dictionary<string, string>
+          {
+            ["provider"] = "internal-real-block-3",
+            ["status"] = "ok",
+            ["idempotent"] = "true"
+          }
+        });
       }
-    });
+
+      string uuid = BuildUuid(rfcEmisor, rfcReceptor, serie, folio, total, DateTimeOffset.UtcNow);
+
+      var xml = new XElement("cfdi",
+        new XAttribute("version", string.IsNullOrWhiteSpace(version) ? "4.0" : version),
+        new XAttribute("serie", serie),
+        new XAttribute("folio", folio),
+        new XAttribute("uuid", uuid),
+        new XAttribute("fecha", DateTimeOffset.UtcNow.ToString("O")),
+        new XAttribute("rfcEmisor", rfcEmisor),
+        new XAttribute("rfcReceptor", rfcReceptor),
+        new XAttribute("total", total),
+        new XAttribute("environment", request.Environment ?? _options.EnvironmentDefault ?? "test"),
+        new XAttribute("provider", request.Pac is { Count: > 0 } && request.Pac.TryGetValue("provider", out var p) ? p : "internal-real-block-3")
+      );
+
+      string xmlString = xml.ToString(SaveOptions.DisableFormatting);
+      string xmlBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlString));
+
+      var stored = new StoredCfdi
+      {
+        Uuid = uuid,
+        RfcEmisor = rfcEmisor,
+        RfcReceptor = rfcReceptor,
+        Total = total,
+        Status = "Vigente",
+        XmlBase64 = xmlBase64,
+        StampedAt = DateTimeOffset.UtcNow,
+        IdempotencyKey = idempotencyKey
+      };
+
+      _stamped[uuid] = stored;
+      _idempotency[idempotencyKey] = uuid;
+      SaveState();
+
+      string tx = Guid.NewGuid().ToString("N");
+      _logger.LogInformation("CFDI timbrado (bloque real 3). UUID={Uuid} RFC={RfcEmisor} TX={Tx}", uuid, rfcEmisor, tx);
+
+      return Task.FromResult(new StampResponse
+      {
+        Success = true,
+        Uuid = uuid,
+        StampedAt = stored.StampedAt,
+        XmlStampedBase64 = xmlBase64,
+        TransactionId = tx,
+        Pac = new Dictionary<string, string>
+        {
+          ["provider"] = "internal-real-block-3",
+          ["status"] = "ok",
+          ["note"] = "Implementación local real sin PAC externo"
+        }
+      });
+    }
+    catch (Exception ex)
+    {
+      return Task.FromResult(new StampResponse
+      {
+        Success = false,
+        TransactionId = Guid.NewGuid().ToString("N"),
+        Errors = new[] { ex.Message }
+      });
+    }
   }
 
   public Task<OperationResponse> CancelCfdiAsync(CancelCfdiRequest request, CancellationToken ct)
   {
     ct.ThrowIfCancellationRequested();
+
+    if (RequireLicense() == false)
+      return Task.FromResult(new OperationResponse(false, "Licencia EDL no cargada.", Guid.NewGuid().ToString("N"), new[] { "LICENSE_REQUIRED" }));
 
     if (_stamped.TryGetValue(request.Uuid, out var stored) == false)
       return Task.FromResult(new OperationResponse(false, "UUID no encontrado en almacenamiento local.", Guid.NewGuid().ToString("N"), new[] { "UUID_NOT_FOUND" }));
@@ -119,7 +186,9 @@ public sealed class EdlRealService : IEdlService
       Status = "Aceptada"
     };
 
-    return Task.FromResult(new OperationResponse(true, "Cancelación procesada en bloque real 1.", Guid.NewGuid().ToString("N")));
+    SaveState();
+
+    return Task.FromResult(new OperationResponse(true, "Cancelación procesada en bloque real 3.", Guid.NewGuid().ToString("N")));
   }
 
   public Task<CancelReceiptResponse> GetCancelReceiptAsync(string rfcEmisor, string uuid, CancellationToken ct)
@@ -152,32 +221,47 @@ public sealed class EdlRealService : IEdlService
   {
     ct.ThrowIfCancellationRequested();
 
-    ValidateRetentionsRequest(request);
+    if (RequireLicense() == false)
+      return Task.FromResult(new StampResponse { Success = false, TransactionId = Guid.NewGuid().ToString("N"), Errors = new[] { "Licencia EDL no cargada." } });
 
-    string rfcEmisor = GetString(request.Retentions, "emisorRfc", "rfcEmisor");
-    string rfcReceptor = GetString(request.Retentions, "receptorRfc", "rfcReceptor");
-    decimal montoOperacion = GetDecimal(request.Retentions, "montoOperacion", "total", "monto");
-
-    string uuid = Guid.NewGuid().ToString().ToUpperInvariant();
-    string xml = new XElement("retenciones",
-      new XAttribute("uuid", uuid),
-      new XAttribute("fecha", DateTimeOffset.UtcNow.ToString("O")),
-      new XAttribute("environment", request.Environment ?? "test"),
-      new XAttribute("provider", "internal-real-block-2"),
-      new XAttribute("rfcEmisor", rfcEmisor),
-      new XAttribute("rfcReceptor", rfcReceptor),
-      new XAttribute("montoOperacion", montoOperacion)
-    ).ToString(SaveOptions.DisableFormatting);
-
-    return Task.FromResult(new StampResponse
+    try
     {
-      Success = true,
-      Uuid = uuid,
-      StampedAt = DateTimeOffset.UtcNow,
-      XmlStampedBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xml)),
-      TransactionId = Guid.NewGuid().ToString("N"),
-      Pac = new Dictionary<string, string> { ["provider"] = "internal-real-block-2", ["status"] = "ok" }
-    });
+      ValidateRetentionsRequest(request);
+
+      string rfcEmisor = GetString(request.Retentions, "emisorRfc", "rfcEmisor");
+      string rfcReceptor = GetString(request.Retentions, "receptorRfc", "rfcReceptor");
+      decimal montoOperacion = GetDecimal(request.Retentions, "montoOperacion", "total", "monto");
+
+      string uuid = Guid.NewGuid().ToString().ToUpperInvariant();
+      string xml = new XElement("retenciones",
+        new XAttribute("uuid", uuid),
+        new XAttribute("fecha", DateTimeOffset.UtcNow.ToString("O")),
+        new XAttribute("environment", request.Environment ?? _options.EnvironmentDefault ?? "test"),
+        new XAttribute("provider", "internal-real-block-3"),
+        new XAttribute("rfcEmisor", rfcEmisor),
+        new XAttribute("rfcReceptor", rfcReceptor),
+        new XAttribute("montoOperacion", montoOperacion)
+      ).ToString(SaveOptions.DisableFormatting);
+
+      return Task.FromResult(new StampResponse
+      {
+        Success = true,
+        Uuid = uuid,
+        StampedAt = DateTimeOffset.UtcNow,
+        XmlStampedBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xml)),
+        TransactionId = Guid.NewGuid().ToString("N"),
+        Pac = new Dictionary<string, string> { ["provider"] = "internal-real-block-3", ["status"] = "ok" }
+      });
+    }
+    catch (Exception ex)
+    {
+      return Task.FromResult(new StampResponse
+      {
+        Success = false,
+        TransactionId = Guid.NewGuid().ToString("N"),
+        Errors = new[] { ex.Message }
+      });
+    }
   }
 
   public Task<IReadOnlyList<string>> GetComplementsAsync(CancellationToken ct)
@@ -196,7 +280,7 @@ public sealed class EdlRealService : IEdlService
 
     return Task.FromResult(new OperationResponse(
       true,
-      $"Complemento '{complementType}' aplicado en bloque real 2 (hash={hash}).",
+      $"Complemento '{complementType}' aplicado en bloque real 3 (hash={hash}).",
       Guid.NewGuid().ToString("N")));
   }
 
@@ -228,7 +312,7 @@ public sealed class EdlRealService : IEdlService
 
     return Task.FromResult(new OperationResponse(
       true,
-      $"Addenda '{addendaType}' aplicada en bloque real 2 (hash={hash}).",
+      $"Addenda '{addendaType}' aplicada en bloque real 3 (hash={hash}).",
       Guid.NewGuid().ToString("N")));
   }
 
@@ -278,7 +362,7 @@ public sealed class EdlRealService : IEdlService
       if (!isRetenciones)
         return Task.FromResult(new OperationResponse(false, "El XML no corresponde a retenciones.", Guid.NewGuid().ToString("N"), new[] { "ROOT_INVALID" }));
 
-      return Task.FromResult(new OperationResponse(true, "XML retenciones válido en bloque real 2.", Guid.NewGuid().ToString("N")));
+      return Task.FromResult(new OperationResponse(true, "XML retenciones válido en bloque real 3.", Guid.NewGuid().ToString("N")));
     }
     catch (Exception ex)
     {
@@ -296,7 +380,7 @@ public sealed class EdlRealService : IEdlService
     {
       ["root"] = x.Name.LocalName,
       ["attributes"] = x.Attributes().ToDictionary(a => a.Name.LocalName, a => (object)a.Value),
-      ["source"] = "internal-real-block-1"
+      ["source"] = "internal-real-block-3"
     });
   }
 
@@ -405,8 +489,65 @@ public sealed class EdlRealService : IEdlService
   public Task<AccountingXmlResponse> GenerateAccountingAuxFoliosAsync(AccountingRequest request, CancellationToken ct)
     => Task.FromResult(CreateAccounting(request, "auxiliar_folios.xml", "auxiliar_folios"));
 
+  private bool RequireLicense()
+    => _options.RequireLicenseLoaded == false || _licenseStore.IsLoaded();
+
+  private void SaveState()
+  {
+    try
+    {
+      lock (_stateLock)
+      {
+        var state = new PersistedState
+        {
+          Stamped = _stamped.Values.ToList(),
+          CancelReceipts = _cancelReceipts.Values.ToList(),
+          Idempotency = _idempotency.ToDictionary(k => k.Key, v => v.Value, StringComparer.OrdinalIgnoreCase)
+        };
+
+        string json = JsonSerializer.Serialize(state, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(_stateFile, json, Encoding.UTF8);
+      }
+    }
+    catch (Exception ex)
+    {
+      _logger.LogWarning(ex, "No se pudo guardar estado persistente en {StateFile}", _stateFile);
+    }
+  }
+
+  private void LoadState()
+  {
+    try
+    {
+      if (!File.Exists(_stateFile))
+        return;
+
+      string json = File.ReadAllText(_stateFile, Encoding.UTF8);
+      var state = JsonSerializer.Deserialize<PersistedState>(json);
+      if (state is null)
+        return;
+
+      _stamped.Clear();
+      _cancelReceipts.Clear();
+      _idempotency.Clear();
+
+      foreach (var item in state.Stamped)
+        _stamped[item.Uuid] = item;
+      foreach (var item in state.CancelReceipts)
+        _cancelReceipts[item.Uuid] = item;
+      foreach (var item in state.Idempotency)
+        _idempotency[item.Key] = item.Value;
+
+      _logger.LogInformation("Estado real cargado desde disco. CFDI={CountCfdi}, Acuses={CountAcuses}", _stamped.Count, _cancelReceipts.Count);
+    }
+    catch (Exception ex)
+    {
+      _logger.LogWarning(ex, "No se pudo cargar estado persistente desde {StateFile}", _stateFile);
+    }
+  }
+
   private static BarcodeResponse CreateBarcode(string text)
-    => new() { QrText = text, ImageBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes($"REAL_BLOCK_1_QR::{text}")) };
+    => new() { QrText = text, ImageBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes($"REAL_BLOCK_3_QR::{text}")) };
 
   private static AccountingXmlResponse CreateAccounting(AccountingRequest request, string fileName, string node)
   {
@@ -495,7 +636,7 @@ public sealed class EdlRealService : IEdlService
       }
     }
 
-    throw new InvalidOperationException($"Falta campo requerido en cfdi: {string.Join("|", keys)}");
+    throw new InvalidOperationException($"Falta campo requerido: {string.Join("|", keys)}");
   }
 
   private static decimal GetDecimal(Dictionary<string, object> data, params string[] keys)
@@ -525,6 +666,7 @@ public sealed class EdlRealService : IEdlService
     public string Status { get; set; } = "Vigente";
     public string XmlBase64 { get; init; } = string.Empty;
     public DateTimeOffset StampedAt { get; init; }
+    public string IdempotencyKey { get; init; } = string.Empty;
   }
 
   private sealed class StoredCancelReceipt
@@ -533,5 +675,12 @@ public sealed class EdlRealService : IEdlService
     public string RfcEmisor { get; init; } = string.Empty;
     public string XmlBase64 { get; init; } = string.Empty;
     public string Status { get; init; } = string.Empty;
+  }
+
+  private sealed class PersistedState
+  {
+    public List<StoredCfdi> Stamped { get; init; } = new();
+    public List<StoredCancelReceipt> CancelReceipts { get; init; } = new();
+    public Dictionary<string, string> Idempotency { get; init; } = new(StringComparer.OrdinalIgnoreCase);
   }
 }

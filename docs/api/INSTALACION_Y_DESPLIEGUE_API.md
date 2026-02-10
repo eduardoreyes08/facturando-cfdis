@@ -31,6 +31,8 @@
 - `EDL_STORAGE_XML_PATH=...`
 - `EDL_LICENSE_PATH=...` o `EDL_LICENSE_BASE64`
 - `EDL_CERT_PROVIDER=vault|filesystem`
+- `EdlApi:RequireLicenseLoaded=true|false`
+- `EdlApi:StoragePath=/ruta/estado/local`
 
 ---
 

@@ -111,3 +111,18 @@ Además del bloque 1, ahora `EdlRealService` incorpora lógica real interna adic
 - `POST /api/v1/cfdi/complements/{type}` y `POST /api/v1/cfdi/addendas/{type}` (aplicación validada + hash trazable)
 
 Importante: sigue siendo implementación local interna (no PAC/SAT fiscal oficial todavía).
+
+
+## Qué se agregó en bloque 3
+
+Además de bloques 1 y 2, ahora se agregó comportamiento operativo de producción base:
+
+- Persistencia local en disco del estado de CFDI/acuse/idempotencia (`edl-real-state.json`).
+- Idempotencia para `cfdi/stamp` (mismos datos clave -> mismo UUID, evita duplicados).
+- Requisito de licencia para operaciones críticas cuando `RequireLicenseLoaded=true`.
+- `cfdi/cancel` y estado SAT usan datos persistidos entre reinicios del servicio.
+
+Configuración nueva (`EdlApi`):
+
+- `RequireLicenseLoaded` (bool, default `true`)
+- `StoragePath` (ruta opcional para estado local; vacío => `./data` bajo binario)
