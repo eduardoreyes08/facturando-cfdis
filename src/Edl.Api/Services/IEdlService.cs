@@ -20,4 +20,13 @@ public interface IEdlService
   Task<BarcodeResponse> GenerateCfdiBarcodeAsync(BarcodeCfdiRequest request, CancellationToken ct);
   Task<BarcodeResponse> GenerateRetentionsBarcodeAsync(BarcodeRetentionsRequest request, CancellationToken ct);
   Task<BarcodeResponse> GenerateCartaPorteBarcodeAsync(BarcodeCartaPorteRequest request, CancellationToken ct);
+
+  Task<CertificateInfoResponse> ValidateCertificateAsync(CertificateValidateRequest request, CancellationToken ct);
+  Task<PacTimeResponse> GetPacTimeAsync(string provider, CancellationToken ct);
+  Task<PacAccountStatusResponse> GetPacAccountStatusAsync(string provider, string rfc, CancellationToken ct);
+  Task<AccountingXmlResponse> GenerateAccountingCatalogAsync(AccountingRequest request, CancellationToken ct);
+  Task<AccountingXmlResponse> GenerateAccountingTrialBalanceAsync(AccountingRequest request, CancellationToken ct);
+  Task<AccountingXmlResponse> GenerateAccountingPolicyAsync(AccountingRequest request, CancellationToken ct);
+  Task<AccountingXmlResponse> GenerateAccountingAuxAccountsAsync(AccountingRequest request, CancellationToken ct);
+  Task<AccountingXmlResponse> GenerateAccountingAuxFoliosAsync(AccountingRequest request, CancellationToken ct);
 }

@@ -98,4 +98,48 @@ public sealed class MockEdlService : IEdlService
 
   private static BarcodeResponse CreateBarcode(string text)
     => new() { QrText = text, ImageBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes($"MOCK_QR::{text}")) };
+
+
+  public Task<CertificateInfoResponse> ValidateCertificateAsync(CertificateValidateRequest request, CancellationToken ct)
+    => Task.FromResult(new CertificateInfoResponse
+    {
+      IsValid = true,
+      Rfc = "EKU9003173C9",
+      SerialNumber = "30001000000500003416",
+      ValidFrom = DateTimeOffset.UtcNow.AddYears(-1),
+      ValidTo = DateTimeOffset.UtcNow.AddYears(1),
+      Warnings = new[] { "Resultado MOCK: validar contra SAT/PAC en implementación real." }
+    });
+
+  public Task<PacTimeResponse> GetPacTimeAsync(string provider, CancellationToken ct)
+    => Task.FromResult(new PacTimeResponse { Provider = provider, ServerTime = DateTimeOffset.UtcNow, LocalTime = DateTimeOffset.Now });
+
+  public Task<PacAccountStatusResponse> GetPacAccountStatusAsync(string provider, string rfc, CancellationToken ct)
+    => Task.FromResult(new PacAccountStatusResponse { Provider = provider, Rfc = rfc, Status = "Active", TimbresAvailable = 1000 });
+
+  public Task<AccountingXmlResponse> GenerateAccountingCatalogAsync(AccountingRequest request, CancellationToken ct)
+    => Task.FromResult(CreateAccounting("catalogo.xml", "catalogo"));
+
+  public Task<AccountingXmlResponse> GenerateAccountingTrialBalanceAsync(AccountingRequest request, CancellationToken ct)
+    => Task.FromResult(CreateAccounting("balanza.xml", "balanza"));
+
+  public Task<AccountingXmlResponse> GenerateAccountingPolicyAsync(AccountingRequest request, CancellationToken ct)
+    => Task.FromResult(CreateAccounting("poliza.xml", "poliza"));
+
+  public Task<AccountingXmlResponse> GenerateAccountingAuxAccountsAsync(AccountingRequest request, CancellationToken ct)
+    => Task.FromResult(CreateAccounting("auxiliar_cuentas.xml", "auxiliar_cuentas"));
+
+  public Task<AccountingXmlResponse> GenerateAccountingAuxFoliosAsync(AccountingRequest request, CancellationToken ct)
+    => Task.FromResult(CreateAccounting("auxiliar_folios.xml", "auxiliar_folios"));
+
+  private static AccountingXmlResponse CreateAccounting(string fileName, string node)
+  {
+    string xml = $"<{node} version=\"1.3\" />";
+    return new AccountingXmlResponse
+    {
+      FileName = fileName,
+      XmlBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(xml))
+    };
+  }
+
 }

@@ -218,3 +218,29 @@ Incluye:
 Siguiente paso para producción real:
 
 - Sustituir `MockEdlService` por implementación real EDL/PAC reutilizando la lógica de `Demos/`.
+
+---
+
+## 11. Cobertura contra demos (17 carpetas)
+
+Cobertura API respecto a `Demos/CSharp`:
+
+1. ECodex -> `cfdi/*`, `retentions/stamp`, `pac/*`
+2. Pax -> `cfdi/*` (mismo contrato, cambiando provider)
+3. CFDI 4.0 -> `cfdi/stamp`
+4. CFDI 3.3 -> `cfdi/stamp` (payload versión 3.3)
+5. Validación -> `xml/validate/*`, `xml/parse/cfdi`
+6. Certificado -> `certificates/validate-csd`
+7. Código de barras -> `barcode/*`
+8. (demo interno no distribuido en este paquete)
+9. Addendas -> `addendas`, `cfdi/addendas/{type}`
+10. Complementos -> `complements`, `cfdi/complements/{type}`
+11. Recibo nómina -> `cfdi/complements/nomina12`
+12. Contabilidad electrónica -> `accounting/*`
+13. Constancia retenciones -> `retentions/stamp`
+14. Recibo de pago -> `cfdi/complements/reciboPago20`
+15. Carta porte -> `cfdi/complements/cartaPorte31`, `barcode/carta-porte`
+16. Status CFDI SAT -> `sat/cfdi-status`
+17. Licencia -> `license/*`
+
+Con esto queda documentado y expuesto el catálogo completo de funcionalidades del paquete demo.

@@ -79,3 +79,8 @@ Para pruebas rápidas de endpoints:
 
 - `docs/api/PROBAR_ENDPOINTS_LOCAL.md`
 - `tests/http/stamp-cfdi.json`
+
+Documentación clave adicional:
+
+- `docs/api/ENDPOINTS_DESCRIPCION_Y_EJEMPLOS.md`
+- `docs/api/GUIA_MOCK_A_REAL.md`

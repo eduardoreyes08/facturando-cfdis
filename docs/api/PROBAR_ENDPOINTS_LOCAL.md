@@ -42,3 +42,14 @@ curl -s "http://localhost:5071/api/v1/sat/cfdi-status?rfcEmisor=EKU9003173C9&rfc
 
 Actualmente el servicio está en **modo mock** (`UseMockMode=true`) para que puedas validar todos los endpoints inmediatamente.
 Luego puedes reemplazar `MockEdlService` por implementación real EDL/PAC en `Services`.
+
+## 4) Catálogo completo
+
+Para ver la descripción y ejemplo de **cada endpoint** usa:
+
+- `docs/api/ENDPOINTS_DESCRIPCION_Y_EJEMPLOS.md`
+- `tests/http/endpoints/*.json`
+
+Para migrar de mock a real:
+
+- `docs/api/GUIA_MOCK_A_REAL.md`

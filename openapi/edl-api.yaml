@@ -433,6 +433,118 @@ paths:
                   imageBase64: { type: string }
                   qrText: { type: string }
 
+
+  /pac/time:
+    get:
+      summary: Obtener fecha/hora del PAC
+      parameters:
+        - in: query
+          name: provider
+          required: false
+          schema: { type: string, example: ecodex }
+      responses:
+        '200':
+          description: Hora PAC
+
+  /pac/account-status:
+    get:
+      summary: Obtener estado de cuenta PAC
+      parameters:
+        - in: query
+          name: provider
+          required: true
+          schema: { type: string }
+        - in: query
+          name: rfc
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Estado de cuenta
+
+  /certificates/validate-csd:
+    post:
+      summary: Validar certificado CSD (.cer/.key)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cerBase64, keyBase64, keyPassword]
+              properties:
+                cerBase64: { type: string }
+                keyBase64: { type: string }
+                keyPassword: { type: string }
+      responses:
+        '200':
+          description: Información del CSD
+
+  /accounting/catalog:
+    post:
+      summary: Generar catálogo de cuentas XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/trial-balance:
+    post:
+      summary: Generar balanza XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/policy:
+    post:
+      summary: Generar póliza XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/aux-accounts:
+    post:
+      summary: Generar auxiliar de cuentas XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/aux-folios:
+    post:
+      summary: Generar auxiliar de folios XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
 components:
   schemas:
     HealthResponse:
@@ -509,6 +621,17 @@ components:
         errors:
           type: array
           items: { type: string }
+
+    AccountingRequest:
+      type: object
+      required: [rfc, year, month, data]
+      properties:
+        rfc: { type: string }
+        year: { type: integer }
+        month: { type: integer }
+        data:
+          type: object
+          additionalProperties: true
 
     CancelCfdiRequest:
       type: object
