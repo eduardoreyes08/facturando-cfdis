@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PLZ:Polizas xsi:schemaLocation="http://www.sat.gob.mx/esquemas/ContabilidadE/1_3/PolizasPeriodo http://www.sat.gob.mx/esquemas/ContabilidadE/1_3/PolizasPeriodo/PolizasPeriodo_1_3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.3" RFC="LAN7008173R5" Mes="01" Anio="2015" TipoSolicitud="DE" NumOrden="ABC4567890/23" NumTramite="AB123456789012" Sello="ELKYiF5cu5FYvLHPxPAzCV4CoSBUuNgwz/vykEO4KNxRsgMv+FfMiCj4MNdQa1kXK31zx/7bhw8wP6W3hcKUnosmFlhtyNOM1MLMMvnxRjKP2MpaWh4ADJ7bn6kfgwuG6xK71rQnkJqOGivE4+FS+RGQzd43bKrejUGcjr/LpE+JO135tlxZpwW+tNY6ZPwygakU2cAmk041HyoJc6DwqB5AmuPAqAKTdrNNyn+IUXMN1gcD+HaxlOVioBsJh5L+EBfkmsC6MHObYj717bEBI037xgZlQjrC0KXAgnQJ5GwT6IlTkkSkr65Q6Nb8Z+ImTHfLyOGh8kh3z+Gmzc/b8g==" noCertificado="20001000000300022815" Certificado="MIIFxTCCA62gAwIBAgIUMjAwMDEwMDAwMDAzMDAwMjI4MTUwDQYJKoZIhvcNAQELBQAwggFmMSAwHgYDVQQDDBdBLkMuIDIgZGUgcHJ1ZWJhcyg0MDk2KTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSkwJwYJKoZIhvcNAQkBFhphc2lzbmV0QHBydWViYXMuc2F0LmdvYi5teDEmMCQGA1UECQwdQXYuIEhpZGFsZ28gNzcsIENvbC4gR3VlcnJlcm8xDjAMBgNVBBEMBTA2MzAwMQswCQYDVQQGEwJNWDEZMBcGA1UECAwQRGlzdHJpdG8gRmVkZXJhbDESMBAGA1UEBwwJQ295b2Fjw6FuMRUwEwYDVQQtEwxTQVQ5NzA3MDFOTjMxITAfBgkqhkiG9w0BCQIMElJlc3BvbnNhYmxlOiBBQ0RNQTAeFw0xNjEwMjUyMTUyMTFaFw0yMDEwMjUyMTUyMTFaMIGxMRowGAYDVQQDExFDSU5ERU1FWCBTQSBERSBDVjEaMBgGA1UEKRMRQ0lOREVNRVggU0EgREUgQ1YxGjAYBgNVBAoTEUNJTkRFTUVYIFNBIERFIENWMSUwIwYDVQQtExxMQU43MDA4MTczUjUgLyBGVUFCNzcwMTE3QlhBMR4wHAYDVQQFExUgLyBGVUFCNzcwMTE3TURGUk5OMDkxFDASBgNVBAsUC1BydWViYV9DRkRJMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgvvCiCFDFVaYX7xdVRhp/38ULWto/LKDSZy1yrXKpaqFXqERJWF78YHKf3N5GBoXgzwFPuDX+5kvY5wtYNxx/Owu2shNZqFFh6EKsysQMeP5rz6kE1gFYenaPEUP9zj+h0bL3xR5aqoTsqGF24mKBLoiaK44pXBzGzgsxZishVJVM6XbzNJVonEUNbI25DhgWAd86f2aU3BmOH2K1RZx41dtTT56UsszJls4tPFODr/caWuZEuUvLp1M3nj7Dyu88mhD2f+1fA/g7kzcU/1tcpFXF/rIy93APvkU72jwvkrnprzs+SnG81+/F16ahuGsb2EZ88dKHwqxEkwzhMyTbQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAJ/xkL8I+fpilZP+9aO8n93+20XxVomLJjeSL+Ng2ErL2GgatpLuN5JknFBkZAhxVIgMaTS23zzk1RLtRaYvH83lBH5E+M+kEjFGp14Fne1iV2Pm3vL4jeLmzHgY1Kf5HmeVrrp4PU7WQg16VpyHaJ/eonPNiEBUjcyQ1iFfkzJmnSJvDGtfQK2TiEolDJApYv0OWdm4is9Bsfi9j6lI9/T6MNZ+/LM2L/t72Vau4r7m94JDEzaO3A0wHAtQ97fjBfBiO5M8AEISAV7eZidIl3iaJJHkQbBYiiW2gikreUZKPUX0HmlnIqqQcBJhWKRu6Nqk6aZBTETLLpGrvF9OArV1JSsbdw/ZH+P88RAt5em5/gjwwtFlNHyiKG5w+UFpaZOK3gZP0su0sa6dlPeQ9EL4JlFkGqQCgSQ+NOsXqaOavgoP5VLykLwuGnwIUnuhBTVeDbzpgrg9LuF5dYp/zs+Y9ScJqe5VMAagLSYTShNtN8luV7LvxF9pgWwZdcM7lUwqJmUddCiZqdngg3vzTactMToG16gZA4CWnMgbU4E+r541+FNMpgAZNvs2CiW/eApfaaQojsZEAHDsDv4L5n3M1CC7fYjE/d61aSng1LaO6T1mh+dEfPvLzp7zyzz+UgWMhi5Cs4pcXx1eic5r7uxPoBwcCTt3YI1jKVVnV7/w=" xmlns:PLZ="http://www.sat.gob.mx/esquemas/ContabilidadE/1_3/PolizasPeriodo">
+  <PLZ:Poliza NumUnIdenPol="1" Fecha="2017-10-07" Concepto="Póliza de ingresos">
+    <PLZ:Transaccion NumCta="00030001" DesCta="Ventas" Concepto="Venta de mercancía" Debe="1000.00" Haber="0.00">
+      <PLZ:CompNal UUID_CFDI="711D0509-8F74-41F2-A0F9-C03884832897" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNal UUID_CFDI="711D0509-8F74-41F2-A0F9-C03884832890" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNalOtr CFD_CBB_Serie="F" CFD_CBB_NumFol="1" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNalOtr CFD_CBB_Serie="F" CFD_CBB_NumFol="2" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompExt NumFactExt="1" TaxID="1" MontoTotal="100.00" Moneda="USD" TipCamb="1.00" />
+      <PLZ:CompExt NumFactExt="2" TaxID="2" MontoTotal="100.00" Moneda="USD" TipCamb="1.00" />
+      <PLZ:Cheque Num="1" BanEmisNal="021" CtaOri="1234567890" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Cheque Num="2" BanEmisNal="021" CtaOri="1234567890" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Transferencia CtaOri="1234567890" BancoOriNal="021" CtaDest="0987654321" BancoDestNal="106" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Transferencia CtaOri="1234567890" BancoOriNal="021" CtaDest="0987654321" BancoDestNal="106" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:OtrMetodoPago MetPagoPol="01" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="100.00" />
+      <PLZ:OtrMetodoPago MetPagoPol="01" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="100.00" />
+    </PLZ:Transaccion>
+  </PLZ:Poliza>
+  <PLZ:Poliza NumUnIdenPol="2" Fecha="2017-10-07" Concepto="Póliza de ingresos">
+    <PLZ:Transaccion NumCta="00030001" DesCta="Ventas" Concepto="Venta de mercancía" Debe="1000.00" Haber="0.00">
+      <PLZ:CompNal UUID_CFDI="711D0509-8F74-41F2-A0F9-C03884832897" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNal UUID_CFDI="711D0509-8F74-41F2-A0F9-C03884832890" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNalOtr CFD_CBB_Serie="F" CFD_CBB_NumFol="1" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompNalOtr CFD_CBB_Serie="F" CFD_CBB_NumFol="2" RFC="AAA010101AAA" MontoTotal="200.00" Moneda="MXN" TipCamb="1.00" />
+      <PLZ:CompExt NumFactExt="1" TaxID="1" MontoTotal="100.00" Moneda="USD" TipCamb="1.00" />
+      <PLZ:CompExt NumFactExt="2" TaxID="2" MontoTotal="100.00" Moneda="USD" TipCamb="1.00" />
+      <PLZ:Cheque Num="1" BanEmisNal="021" CtaOri="1234567890" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Cheque Num="2" BanEmisNal="021" CtaOri="1234567890" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Transferencia CtaOri="1234567890" BancoOriNal="021" CtaDest="0987654321" BancoDestNal="106" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:Transferencia CtaOri="1234567890" BancoOriNal="021" CtaDest="0987654321" BancoDestNal="106" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="200.00" />
+      <PLZ:OtrMetodoPago MetPagoPol="01" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="100.00" />
+      <PLZ:OtrMetodoPago MetPagoPol="01" Fecha="2017-10-07" Benef="Empresa de prueba" RFC="AAA010101AAA" Monto="100.00" />
+    </PLZ:Transaccion>
+  </PLZ:Poliza>
+</PLZ:Polizas>

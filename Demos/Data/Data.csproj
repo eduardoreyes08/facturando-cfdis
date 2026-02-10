@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CC7BD78-CC9B-4259-9C7B-CBACBC27EC0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HyperSoft.Ejemplo.Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HyperSoft.BarCodeLibrary">
+      <HintPath>..\..\Assembly\HyperSoft.BarCodeLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.Base">
+      <HintPath>..\..\Assembly\HyperSoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary">
+      <HintPath>..\..\Assembly\HyperSoft.ElectronicDocumentLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.ECodex">
+      <HintPath>..\..\Assembly\Ecodex\HyperSoft.ElectronicDocumentLibrary.ECodex.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Pax">
+      <HintPath>..\..\Assembly\Pax\HyperSoft.ElectronicDocumentLibrary.Pax.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.Resource">
+      <HintPath>..\..\Assembly\HyperSoft.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.Shared">
+      <HintPath>..\..\Assembly\HyperSoft.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Complemento\Carta Porte\Autotransporte.cs" />
+    <Compile Include="Complemento\Carta Porte\Completo.cs" />
+    <Compile Include="Complemento\Carta Porte\Listas.cs" />
+    <Compile Include="Complemento\Carta Porte\Minimo.cs" />
+    <Compile Include="Complemento\Carta Porte\TransporteAereo.cs" />
+    <Compile Include="Complemento\Carta Porte\TransporteFerroviario.cs" />
+    <Compile Include="Complemento\Carta Porte\TransporteMaritimo.cs" />
+    <Compile Include="Cfd22.cs" />
+    <Compile Include="Cfdi32.cs" />
+    <Compile Include="Complemento\AcreditamientoIeps10.cs" />
+    <Compile Include="Complemento\Aerolineas10.cs" />
+    <Compile Include="Complemento\CertificadoDestruccion10.cs" />
+    <Compile Include="Complemento\Comercio exterior\ComercioExterior10.cs" />
+    <Compile Include="Complemento\Comercio exterior\ComercioExterior20.cs" />
+    <Compile Include="Complemento\Comercio exterior\ComercioExterior11.cs" />
+    <Compile Include="Complemento\Base.cs" />
+    <Compile Include="Complemento\Consumo combustibles\ConsumoCombustibles10.cs" />
+    <Compile Include="Complemento\Consumo combustibles\ConsumoCombustibles11.cs" />
+    <Compile Include="Complemento\Divisas10.cs" />
+    <Compile Include="Complemento\Donatarias10.cs" />
+    <Compile Include="Complemento\ObrasArtesAntiguedades10.cs" />
+    <Compile Include="Complemento\HidrocarburosIngresos10.cs" />
+    <Compile Include="Complemento\HidrocarburosGastos10.cs" />
+    <Compile Include="Complemento\Donatarias11.cs" />
+    <Compile Include="Complemento\EmisionPorCuentaDeTerceros10.cs" />
+    <Compile Include="Complemento\EmisionPorCuentaDeTerceros11.cs" />
+    <Compile Include="Complemento\EstadoDeCuentaBancario10.cs" />
+    <Compile Include="Complemento\EstadoDeCuentaDeCombustible10.cs" />
+    <Compile Include="Complemento\EstadoDeCuentaDeCombustible11.cs" />
+    <Compile Include="Complemento\EstadoDeCuentaDeCombustible12.cs" />
+    <Compile Include="Complemento\ImpuestosLocales10.cs" />
+    <Compile Include="Complemento\Ine10.cs" />
+    <Compile Include="Complemento\Ine11.cs" />
+    <Compile Include="Complemento\InstitucionesEducativas10.cs" />
+    <Compile Include="Complemento\LeyendasFiscales10.cs" />
+    <Compile Include="Complemento\Nomina12.cs" />
+    <Compile Include="Complemento\NotariosPublicos10.cs" />
+    <Compile Include="Complemento\PagoEnEspecie10.cs" />
+    <Compile Include="Complemento\PersonaFisicaIntegranteCoordinado10.cs" />
+    <Compile Include="Complemento\PrestadorServiciosGeneracionCfdSistemaProducto10.cs" />
+    <Compile Include="Complemento\ReciboPago10.cs" />
+    <Compile Include="Complemento\ReciboPago20.cs" />
+    <Compile Include="Complemento\RegistroFiscal10.cs" />
+    <Compile Include="Complemento\RenovacionSustitucionVehiculos10.cs" />
+    <Compile Include="Complemento\SectorDeVentasAlDetalle131.cs" />
+    <Compile Include="Complemento\ServicioParcialConstruccion10.cs" />
+    <Compile Include="Complemento\SpeiTercero10.cs" />
+    <Compile Include="Complemento\TuristaPasajeroExtranjero10.cs" />
+    <Compile Include="Complemento\ValesDespensa10.cs" />
+    <Compile Include="Complemento\VehiculoUsado10.cs" />
+    <Compile Include="Complemento\VentaVehiculos10.cs" />
+    <Compile Include="Complemento\VentaVehiculos11.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\ArrendamientoEnFideicomiso.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Base.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Dividendos.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\EnajenacionAcciones.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\FideicomisoNoEmpresarial.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Intereses.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\InteresesHipotecarios.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\OperacionesConDerivados.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PagosAExtranjeros.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlanesRetiro.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlataformasTecnologicas.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Premios.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\SectorFinanciero.cs" />
+    <Compile Include="Constancia de retenciones\ConstanciaRetenciones10.cs" />
+    <Compile Include="Cfdi33.cs" />
+    <Compile Include="Cfdi40.cs" />
+    <Compile Include="Constancia de retenciones\ConstanciaRetenciones20.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

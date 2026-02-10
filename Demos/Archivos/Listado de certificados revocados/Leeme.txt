@@ -1,0 +1,29 @@
+NOTAS
+
+El archivo CSD.txt es emitido por el SAT y contiene los datos de todos los 
+certificados de sellos que han sido emitidos por la autoridad. 
+
+Es usado para verificar que el certificado de sello no estuviera revocado 
+cuando fue emitido el documento, esta validación se hace automáticamente 
+al generar o validar un CFD.
+
+Para evitar dicha validación (y ahorrarte unas milésimas de segundo), 
+se puede realizar agregar el siguiente código:
+
+Generación de un CFD/CFDI:
+
+  * Delphi
+   manage.Save.Options := manage. Save.Options – [soValidateCertificateWithCA];
+
+Validación de un CFD/CFDI:
+  * Delphi
+    manage.Load.Options := manage.Load.Options - [loValidateCertificateWithCA];
+
+Mi recomendación es que no elimines esta validación, ya que te da mayor grado
+de certidumbre del proceso de generación y recepción.
+
+Este archivo es actualizando con bastante regularidad, por eso mi recomendación
+es que realicen la descarga de dicho archivo diariamente. 
+
+Este archivo puede ser descargado del sitio FTP del SAT:
+ftp://200.33.74.102/agti_servicio_ftp/verifica_comprobante_ftp/

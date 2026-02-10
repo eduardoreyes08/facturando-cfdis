@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Comprobante version="1.0" folio="2000" fecha="2012-11-28T14:35:27" sello="guhxE3JDMkDRbQ0ZFNR4qWOWwtSFY5y9nP+RrK6mAlErZNPA4+L03Tkodk8argvz0NtXDLTdD02WSK4m0FWzKTaCst2+ARbrLaQIGly6rV6A5a1v6uvhMzMd+V3hSj9LGPAfsPF9xEa0LAef4JVLOEiJIveHEhJR+clHZwRCVCU=" noAprobacion="55899" formaDePago="Pago de contado" noCertificado="20001000000100005867">
+  <Emisor nombre="Emisor de prueba" rfc="AAA010101AAA">
+    <DomicilioFiscal calle="Tamaulipas" noExterior="125" noInterior="1" colonia="Roma" localidad="México" referencia="Entre León y Manzanillo" municipio="Cuauhtémoc" estado="Distrito Federal" pais="México" codigoPostal="35143" />
+    <ExpedidoEn calle="Acapulco" noExterior="651" noInterior="1" colonia="Roma" localidad="México" municipio="Cuauhtémoc" estado="Distrito Federal" pais="México" codigoPostal="35135" />
+  </Emisor>
+  <Receptor nombre="Receptor de prueba" rfc="XXXX010101XX1">
+    <Domicilio calle="Heriberto Frias" noExterior="513" colonia="Narvarte" localidad="MEXICO" referencia="Entre Morena y Esperanza" municipio="Benito Juárez" estado="DISTRITO FEDERAL" pais="MEXICO" codigoPostal="03100" />
+  </Receptor>
+  <Conceptos>
+    <Concepto cantidad="10.00" unidad="Pares" descripcion="Zapato ortopedico" valorUnitario="95.60" importe="956.00">
+      <InformacionAduanera numero="AABBCC" fecha="2012-11-28" aduana="Tijuana" />
+    </Concepto>
+    <Concepto cantidad="10.00" unidad="Unidades" descripcion="Plantillas para zapatos deportivos" valorUnitario="12.00" importe="120.00">
+      <CuentaPredial numero="123456789" />
+    </Concepto>
+  </Conceptos>
+  <Impuestos>
+    <Traslados>
+      <Traslado importe="172.16" impuesto="IVA" />
+    </Traslados>
+  </Impuestos>
+</Comprobante>

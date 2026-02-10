@@ -1,0 +1,82 @@
+                ELECTRONIC DOCUMENT LIBRARY
+-------------------------------------------------------------------------------
+
+http://www.facturando.mx
+
+
+Tabla de contenido
+========================
+  Introducción
+  Notas de la liberación
+  Compatibilidad
+  Incluye
+  Como iniciar
+  Cambios realizados
+  Derechos de autor
+
+
+INTRODUCCIÓN
+=============================
+ELECTRONIC DOCUMENT LIBRARY es una biblioteca de clases que está relacionada 
+directamente con el comprobante fiscal digital en sus diferentes versiones y 
+la contabilidad electrónicas, entre sus características tenemos:
+
+Características Generales
+• Generación de CFD versión 1.0, 2.0, 2.2, 3.2, 3.3 y 4.0
+• Generación de recibos de nómina electrónicos
+• Generación de recibos de pago
+• Generación de los archivos de la contabilidad electrónica
+  . Cuentas, 
+  . Balanza
+  . Polizas
+• Conexión con uno o mas Proveedores Autorizados de Certificación
+• Generación de todo tipo de complementos
+• Generación de diferentes tipos de adendas y en diferentes 
+  formatos (XML, EDI, Texto, etc.).
+• Diferentes tipos de pruebas para asegurar la validez del documento.
+• Validación de comprobantes generados por terceros, no importando la versión.
+• Generación del código de barras bidimensional para la impresión del CFDI.
+
+
+Si deseas conocer todas las características, te invitamos a ver esto
+http://www.facturando.mx/productos/edl/presentacion.html
+
+
+INCLUYE
+=============================
+1. El Assembly
+2. Se ha incluido más de 15 ejemplos mostrando cada una de las funcionales que 
+   ofrece la biblioteca.
+3. Documentación de la librería.
+4. Archivos usados en la ejecución de la librería.
+
+
+COMPATIBLIDAD
+=============================
+Se encuentra desarrollado en C# versión 2.0
+
+
+COMO INICIAR
+============================
+1. Seguir los demos en el orden que han sido especificados, iniciando desde 
+   el número 1,  que han sido diseñados para ir incrementado el nivel de 
+   conocimiento de la librería.
+
+Cada ejemplo incluye información en pantalla y todo su código se encuentra 
+documentado; además se ha incluido de información específica de la librería 
+en la carpeta Documentación.
+
+
+CAMBIOS REALIZADOS
+=============================
+Para ver a detalle las mejoras, cambios y correcciones realizadas en esta 
+versión por favor lea el archivo Historial de cambios.txt que se entrega 
+con esta liberación.
+
+
+Derechos de autor
+=============================
+ELECTRONIC DOCUMENT LIBRARY es un software cuyos derechos de autor pertenecen 
+a Darío Álvarez Aranda, quien se reserva todos los derechos sobre el software. 
+Por favor leer la licencia de uso (Licencia.rtf) antes de hacer cualquier 
+uso de la misma.

@@ -1,0 +1,3580 @@
+                           ELECTRONIC DOCUMENT LIBRARY
+-------------------------------------------------------------------------------
+
+
+Cambios realizados:
+
+                              [           Leyenda:          ]
+                              [ + Nueva característica      ]
+                              [ * Mejora o cambio realizado ]
+                              [ - Correcciones              ]
+
+
+
+=============================
+| Versión 2024.07.10        |
+=============================
+
+- Se corrigió el error que se presentaba al timbrar un CFDI con complemento 
+  CARTA PORTE v3.1
+
+
+
+=============================
+| Versión 2024.06.28        |
+=============================
+
++ Se agregó soporte al complemento CARTA PORTE v3.1 para el CFDI
+    . Generación y timbrado
+    . Validar y extraer la información
+
+
+
+=============================
+| Versión 2024.05.27        |
+=============================
+
++ Se agregó soporte al complemento HIDROCARBUROS - GASTOS v1.0 para el CFDI
+    . Generación y timbrado
+    . Validar y extraer la información
+
++ Se agregó soporte al complemento HIDROCARBUROS - INGRESOS v1.0 para el CFDI
+    . Generación y timbrado
+    . Validar y extraer la información
+
++ Se agregó soporte al complemento OBRAS DE ARTE Y ANTIGUEDADES v1.0 para CFDI
+    . Generación y timbrado
+    . Validar y extraer la información
+
+* Se agregó soporte a los nuevos certificados de los siguientes PACs
+    . SAT - MegaPAC (00001000000705250068)
+    . Quadrum (00001000000707310321)
+
+
+
+=============================
+| Versión 2024.04.29        |
+=============================
+
++ Se agregó soporte a los siguientes complementos al momento de leer y validar 
+  un archivo XML:
+    . Instituciones Educativas
+    . Emisión por cuenta de terceros
+    . Venta de vehículos
+    . Acreditamiento IEPS
+
+* Se agregó soporte al cambio realizado por el SAT, para mayor información:
+    . https://www.facturando.mx/blog/index.php/2024/04/26/conoces-los-cambios-realizados-por-el-sat-al-cfdi-4-0/
+
+
+
+=============================
+| Versión 2024.01.22        |
+=============================
+
+* Se actualizaron los ejemplos para el complemento COMERCION EXTERIOR v2.0
+
+
+
+=============================
+| Versión 2024.01.15        |
+=============================
+
++ Se agregó soporte al complemento COMERCION EXTERIOR v2.0 para el CFDI
+    . Generación y timbrado
+    . Validar y extraer la información
+
+
+
+=============================
+| Versión 2023.12.17        |
+=============================
+
+* Se agregó soporte a los XML con complemento CONSUMO DE COMBUSTIBLE que 
+  tienen un namespace que no está de acuerdo al estándar del SAT, pero es válido
+
+
+
+=============================
+| Versión 2023.12.16        |
+=============================
+
++ Se agregó soporte al complemento PLANES DE RETIRO v1.1 en la constancia de 
+  retenciones
+    . Generación y timbrado
+    . Validar y extraer la información
+
+* Se modificaron los proyectos de VB y C# para mostrar el funcionamiento del 
+  complemento PLANES DE RETIRO v1.1
+    . Constancia de retenciones 2.0
+    . Validacion
+
+* Se agregó soporte a los RFCs que tienen el caracter ampersa (&) en la 
+  consulta del estatus del CFDI.
+
+
+
+=============================
+| Versión 2023.11.27        |
+=============================
+
+* Se actualizaron los ejemplos para la generación de la CARTA PORTE v3.0
+
+
+
+=============================
+| Versión 2023.11.21        |
+=============================
+
++ Se agregó soporte al complemento CARTA PORTE v3.0
+    . Se actualizó el ejemplo carta porte
+  
+
+
+=============================
+| Versión 2023.06.23        |
+=============================
+
+* Se mejoró el proceso de leer y extraer la información de un XML
+
+
+
+=============================
+| Versión 2023.06.12        |
+=============================
+
+* A la integración con ECODEX, se le agregó la posibilidad de cancelación un 
+  UUID emitido por otro PAC.
+
+* Se modificaron los ejemplos (C# y VB.Net) para ver reflejado este cambio.
+
+
+
+=============================
+| Versión 2023.06.06        |
+=============================
+
+* Se agregó soporte a los nuevos certificados generados por el SAT
+
+* Se actualizaron los recursos de la librería
+    . HyperSoft.Resource.dll
+
+
+
+=============================
+| Versión 2023.05.31        |
+=============================
+
+* Se actualizaron cada uno de los ejemplos para hacer uso de los certificados 
+  de prueba liberados por el SAT
+    . https://www.facturando.mx/blog/index.php/2023/05/25/nuevos-certificados-de-pruebas-para-la-emision-del-cfdi-4-0/
+
+* Se actualizaron los recursos de la librería
+    . HyperSoft.Resource.dll
+
+- Se corrigió el error que se presentaba al obtener la fecha y hora de ECODEX
+
+
+
+=============================
+| Versión 2023.05.24        |
+=============================
+
+* Al leer un XML se eliminaron algunas validaciones:
+    . La verificación de la estructura de la serie
+    . La verificación de la estructura del RFC del emisor
+    . La verificación del folio original
+
+* Se agregó una sección de configuración general de la librería:
+    . HyperSoft.ElectronicDocumentLibrary.Configuration.Config.Cfdi.FixTipoCambio
+      - Su valor por defecto es TRUE
+      - El valor recomendado es FALSE
+      - En caso de usar FALSE, es necesario modificar el atributo tipo de 
+        cambio (TipoCambioMx) de acuerdo con lo requiere el SAT cuando la 
+        moneda es MXN
+          TipoCambioMx.Decimals = 0;
+          TipoCambioMx.Dot = false;
+
+* Se mejoró la integración con PAX Facturación para 
+    . CFDI 4.0
+    . Constancia de retenciones 2.0
+
+
+
+=============================
+| Versión 2023.05.19        |
+=============================
+
+* Se actualizaron todos los ejemplos para hacer uso del emisor EKU9003173C9
+
+* Se modificó el ejemplo ECODEX para que se pudiera cancelar un CFDI en el 
+   ambiente de pruebas.
+
+* Se mejoró el proceso de cancelación para evitar el mensaje de error AP102
+
+* Se agregó soporte a los nuevos certificados generados por el SAT
+
+* En la lectura de un CFDI, se agregó soporte a los XML:
+    . Con complemento recibo de pago que no tiene name space
+    . Con cierto tipo de adendas
+
+
+
+=============================
+| Versión 2023.03.29        |
+=============================
+
+* Se mejoró la integración con ECODEX, ahora cuando se timbra el mismo XML dos 
+  veces, la librería intenta descargarlos usando el HASH del mismo. 
+
+* Se actualizaron todos los ejemplos para usar el Dot Net Framework 4.5.2
+
+
+
+=============================
+| Versión 2023.03.14        |
+=============================
+
+* Ahora se permite generar un CFDI en donde el salto de linea es: 
+    . Mac OS (\r)
+    . Linux (\n)
+    . Windows (\r\n)
+
+
+
+=============================
+| Versión 2023.02.24        |
+=============================
+
+* En la lectura de un CFDI, se agregó soporte a los XML con complemento 
+  donativos cuyo namespace es N1
+
+
+
+=============================
+| Versión 2023.02.17        |
+=============================
+
+* En la lectura de un CFDI, se agregó soporte a los XML cuyos nodos 
+  complementos son comentarios
+
+
+
+=============================
+| Versión 2023.02.10        |
+=============================
+
+* Se agregó soporte a los cambios realizado por el SAT al CFDI 3.3 y 4.0
+    . https://www.facturando.mx/blog/index.php/2023/01/19/sat-cambios-a-los-catalogos-para-el-cfdi-3-3-y-4-0/
+
+* Se actualizaron los siguientes ejemplos:
+    . Descargar el acuse de cancelación
+    . Cancelar CFDI
+
+
+
+=============================
+| Versión 2023.02.08        |
+=============================
+
+* Se agregó soporte al cambio realizado por el SAT al recibo de pago 2.0
+    . https://www.facturando.mx/blog/index.php/2023/01/10/cambios-realizados-por-el-sat-complemento-de-pago-2-0/
+
+
+
+=============================
+| Versión 2023.02.07        |
+=============================
+
+* Se actualizó el schema para el recibo de pago 2.0
+
+* Se agregó soporte a los nuevos certificados de los PACs
+
+
+
+=============================
+| Versión 2023.01.16        |
+=============================
+
+* Ahora es posible cargar los recibos de pago cuyo namespace es Pagos20
+    . Este namespace no es el oficial, el estandar es pago20
+    . Muchos CFDIs que estan en el servidor del SAT usan el namespace Pagos20
+
+
+
+=============================
+| Versión 2022.12.21        |
+=============================
+
+* Se mejoró la integracion con ECODEX:
+    . Cuando el XML tenía un dato incorrecto, por ejemplo la sumatoria de 
+      impuestos, el PAC reportaba el error y aun así intentaba descargar el 
+      XML usando el ID Transacción, esto no era correcto, porque el XML nunca 
+      se timbro.
+
+
+
+=============================
+| Versión 2022.12.17        |
+=============================
+
+* Para la integración con ECODEX se actualizo la librería Newtonsoft.Json.dll 
+  a la versión 13
+
+
+
+=============================
+| Versión 2022.11.24        |
+=============================
+
+* Se mejoró la integración con ECODEX, ahora cuando se timbra el mismo XML dos 
+  veces, la librería intenta descargarlos usando el HASH del mismo. 
+  Para saber si el CFDI había sido timbrado previamente se debe verificar la 
+  propiedad Informacion.DownloadedByHash
+
+
+
+=============================
+| Versión 2022.11.04        |
+=============================
+
+* Se modifico el ejemplo para generar y timbrar un CFDI 4.0 con recibo de
+  pago 2.0
+
+* Se agregó soporte al cambio realizado a los catálogos para el CFDI 4.0
+    . Objeto impuesto: Clave 04
+
+
+
+=============================
+| Versión 2022.10.27        |
+=============================
+
+* Se modifico la librería para que se pudiera leer un XML que tenía caracteres 
+  extraños, parecían espacios en blanco
+
+
+
+=============================
+| Versión 2022.10.07        |
+=============================
+
+* Se optimizó la validación de los archivos de la contabilidad, estaba 
+  descargando los schema del SAT.
+
+
+
+=============================
+| Versión 2022.09.13        |
+=============================
+
+* Se modificó la librería para que pudiera leer un CFDI 3.3 con múltiples 
+  nodos complemento.
+
+
+
+=============================
+| Versión 2022.09.12        |
+=============================
+
+* Se modificó la librería para que pudiera leer un CFDI con complemento
+  consumo de combustibles que no maneja el namespace como lo propone el SAT.
+
+
+
+=============================
+| Versión 2022.05.26        |
+=============================
+
+* Se agregó soporte al cambio realizado a los catálogos para el CFDI 4.0
+    . Exportación: Clave 04
+
+* Se optimizó el timbrado de una constancia de retenciones en ECODEX.
+
+* Se actualizaron los ejemplos de Visual Basic .Net
+
+- Se corrigió el error que se presentaba al leer una constancia de retenciones 
+  con complemento plataformas tecnológicas
+
+- Se corrigió la generación de una constancia con complemento plataformas 
+  tecnológicas
+
+
+
+=============================
+| Versión 2022.05.19        |
+=============================
+
+- Se corrigió la generación de la adenda de CALSONIC
+
+
+
+=============================
+| Versión 2022.05.09        |
+=============================
+
++ Se agregó el soporte a la generación y timbrado de la constancia de 
+  retenciones 2.0
+
+* Se actualizaron todos los ejemplos para mostrar el uso de la constancia de 
+  retenciones 2.0
+
+
+
+=============================
+| Versión 2022.04.24        |
+=============================
+
++ Se agregó soporte al nuevo método de cancelación, donde podrás indicar:
+    . Motivo de la cancelación
+    . Folio de sustituacion, cuando el motivo es 01
+
++ Se agregó una nueva forma de descargar el acuse de cancelación.
+
+* Se actualizaron los diferentes ejemplos donde se muestra:
+    . La cancelación con motivo
+    . Descarga del acuse de cancelación
+
+* Se actualizaron los diferentes ejemplos de la librería.
+
+* Se actualizo el archivo PUERTOS.PDF agregando las siguientes direcciones:
+    . https://wsdevapicancelaciones.ecodex.com.mx/
+    . https://wsdexapicancelaciones.ecodex.com.mx/
+
+
+
+=============================
+| Versión 2022.03.11        |
+=============================
+
++ Se creó un ejemplo independiente para la carta porte 2.0
+
+* Se modificaron todos los ejemplos
+
+* Se hicieron mejoras internas al proceso de integración con ECODEX
+
+
+
+=============================
+| Versión 2022.02.25        |
+=============================
+
+* Se mejoro el proceso de validar el timbre de un CFDI
+
+
+
+=============================
+| Versión 2022.02.16        |
+=============================
+
+- Se corrigió el consumo excesivo de procesador que se presentaba al iniciar 
+  el programa.
+
+
+
+=============================
+| Versión 2022.02.11        |
+=============================
+
+- Al ejecutar el método Clean no se estaba limpiando el campo EXPORTANCION
+
+
+
+=============================
+| Versión 2022.02.10        |
+=============================
+
+- Se corrigió el error que se presentaba al generar el Recibo de Pago 2.0
+
+* Se actualizaron los ejemplos para timbrar el recibo de nómina 4.0
+
+* Se actualizó la librería Resource.
+
+
+
+=============================
+| Versión 2022.02.07        |
+=============================
+
++ Se agregó el soporte al timbrado del CFDI 4.0 y Recibo de pago 2.0
+
++ Se agregó el soporte al nuevo proceso de cancelación, donde se podrá indicar 
+  el motivo de la cancelación.
+
+* Se actualizaron todos los ejemplos para mostrar el uso del CFDI 4.0
+
+
+
+=============================
+| Versión 2021.12.16        |
+=============================
+
+* Se actualizaron los ejemplos para el CFDI 4.0 y Recibo de pago 2.0
+
+- Se corrigio el error que se generaba al leer un CFDI 4.0
+
+
+
+=============================
+| Versión 2021.12.13        |
+=============================
+
++ Se agregaron 4 ejemplos para la generación de la carta porte 2.0:
+    . Autotransporte
+    . Aéreo
+    . Ferroviario
+    . Marítimo
+
+* Se agregó soporte al cambio realizado en el schema del CFDI 4.0
+
+* Se agregó soporte al cambio realizado en el schema del recibo de pago 2.0
+
+
+
+=============================
+| Versión 2021.12.04        |
+=============================
+
+* Se actualizo el ejemplo RECIBO DE NOMINA 1.2 para mostrar el uso del CFDI 4.0
+
+- Se corrigió el cálculo de  la cadena original para la carta porte 2.0
+
+- Se corrigió el error que se presentaba al generar la adenda de:
+    . Aba seguros
+    . Aluprint
+    . Bexel
+    . Corportive Travel Service
+    . Disney
+    . Emerson
+    . Emsur
+    . Femsa
+    . Inbursa
+    . Landsteiner
+    . Multipack
+    . Prolec
+    . Sanmina
+    . Sector primario
+    . Transportes Castores
+
+
+
+=============================
+| Versión 2021.11.30        |
+=============================
+
+* Se agregó soporte al cambio realizado en el schema a la carta porte 2.0
+
+
+
+=============================
+| Versión 2021.11.24        |
+=============================
+
++ Se agregó soporte al CFDI 4.0
+
++ Se agregó soporte al complemento RECIBO DE PAGO 2.0
+
++ Se desarrolló un ejemplo de como crear un CFDI 4.0
+
+* Se actulizó el ejemplo que muestra la generación del RECIBO DE PAGO
+
+- Se corrigió un error (SSL) que se presentaba al timbrar con PAX
+
+
+
+=============================
+| Versión 2021.11.12        |
+=============================
+
+* En la generación de la carta porte se dejó por defecto 2 decimales en todos 
+  los campos
+
+
+
+=============================
+| Versión 2021.11.06        |
+=============================
+
++ Se agregó soporte al complemento CARTA PORTE v2.0
+
+* Se actualizó la librería Resource.
+
+
+
+=============================
+| Versión 2021.09.01        |
+=============================
+
+* Se actualizó el ejemplo para timbrar un CFDI con carta porte con ECODEX
+
+* Se actualizó la librería Resource.
+
+
+
+=============================
+| Versión 2021.08.31        |
+=============================
+
+- Se corrigió el error que se presentaba al timbrar un CFDI con carta porte 
+  con PAX Facturación.
+
+
+
+=============================
+| Versión 2021.08.23        |
+=============================
+
+* Se actualizó la generación de las siguientes adendas:
+    . Altos Hornos de México
+    . Amazon
+    . Amece
+    . Asofarma
+    . Axxa
+    . Chrysler
+    . Coppel
+    . Elektra
+    . Envases Universales de México
+    . Fuller
+    . Gayosso
+    . General Motors
+    . Gomsa
+    . Heb
+    . Iusacell
+    . Lamosa
+    . Lowes
+    . Mabe
+    . Pepsico
+    . Pilgrims
+    . Santander
+    . Seven Eleven
+    . Soriana
+    . Tiendas Neto
+    . TV Azteca
+    . Volkswagen
+    . ZF México
+
+
+
+=============================
+| Versión 2021.07.19        |
+=============================
+
+* Se actualizó el ejemplo para timbrar un CFDI con complemento Carta Porte.
+    . PAX FACTURACION:
+       - Se implemento el ejemplo de timbrar un CFDI con Carta Porte.
+       - Este ejemplo no muestra el uso de todas las clases y propiedades.
+    . COMPLEMENTOS:
+       - En este ejemplo se muestra el uso de todas las clases y propiedades.
+       - Este ejemplo no funciona para timbrar.
+
+* Se actualizó la librería Resource.
+
+
+
+=============================
+| Versión 2021.06.12        |
+=============================
+
+* Se hicieron mejoras a los ejemplos de VB.Net y C#
+
+
+
+=============================
+| Versión 2021.06.04        |
+=============================
+
++ Se agregó soporte al complemento CARTA PORTE v1.0
+
+- Se corrigió la validación contra el schema en un CFDI con el complemento IEDU
+
+
+
+=============================
+| Versión 2021.05.06        |
+=============================
+
++ Se agregó soporte a la adenda de WALMART
+
+
+
+=============================
+| Versión 2021.04.22        |
+=============================
+
++ Se agregó soporte a la adenda de VISCOFAN
+
+
+
+=============================
+| Versión 2021.02.05        |
+=============================
+
++ Se agregó soporte a la adenda de COPPEL - Muebles
+
+
+
+=============================
+| Versión 2020.11.10        |
+=============================
+
+* Se mejoró el ejemplo para generar un CFDI de prueba
+
+
+
+=============================
+| Versión 2020.11.04        |
+=============================
+
+* Se agregó soporte a los nuevos certificados de prueba del SAT.
+
+* Se eliminó la integración con el PAC FACTURAXION
+
+
+
+=============================
+| Versión 2020.10.15        |
+=============================
+
+- Se corrigió la lectura de un CFDI con complemento plataformas tecnológicas.
+
+
+
+=============================
+| Versión 2020.10.13        |
+=============================
+
++ Se agregó soporte a los siguientes complementos:
+  - Plataformas tecnológicas 1.0
+
+
+
+=============================
+| Versión 2020.09.25        |
+=============================
+
++ Se agregó soporte a la adenda de GOMSA.
+
++ Se agregó el ejemplo para la adenda de GOMSA.
+
+
+
+=============================
+| Versión 2020.09.24        |
+=============================
+
+* Se mejoró la lectura del archivo de las autoridades certificadoras, se lee, 
+  aunque el archivo este bloqueado.
+
+
+
+=============================
+| Versión 2020.07.30        |
+=============================
+
++ Se agregó soporte a la adenda de BBVA.
+
++ Se agregó el ejemplo para la adenda de BBVA.
+
+
+
+=============================
+| Versión 2020.07.15        |
+=============================
+
+* En la generación de constancia de retenciones, se mejoró el manejo de los 
+  schemas, se utilizan los locales.
+
+
+
+=============================
+| Versión 2020.07.07        |
+=============================
+
+PAC ECODEX
+***************************
+* En algunos casos, no retornaba el número de error, solo la descripción.
+
+
+
+=============================
+| Versión 2020.07.06        |
+=============================
+
+- Se corrigió el error que se presentaba al leer un XML que tenga en los 
+  atributos de tipo Date la letra z
+
+
+
+=============================
+| Versión 2020.06.01        |
+=============================
+
+* Se modificó la validación de la licencia en los servidores de Facturando.
+
+
+
+=============================
+| Versión 2020.04.23        |
+=============================
+
+* Se agregó un método que permite obtener el complemento de pago de un CFDI.
+
+* Se agregó soporte a los cambios realizados por el SAT para la generación de 
+  un recibo de nómina.
+
+      https://www.facturando.mx/blog/index.php/2020/04/20/sat-actualizacion-al-catalogo-de-nomina-otro-pago/
+
+
+
+=============================
+| Versión 2020.03.26        |
+=============================
+
+* En la generación del código de barras de una constancia de retenciones se 
+  agregó un parámetro para indicar que es extranjero.
+
+
+
+=============================
+| Versión 2020.03.15        |
+=============================
+
+PAC ECODEX
+***************************
+* Al cancelar un CFDI se puede especificar que no se validen los datos, esto 
+  es útil para cancelar un CFDI 3.2 que tenga un RFC no válido.
+
+
+
+=============================
+| Versión 2020.03.07        |
+=============================
+
+- Se corrigió el error que se presentaba la cargar la licencia.
+
+
+
+=============================
+| Versión 2020.01.13        |
+=============================
+
+* Se agregó soporte a los cambios realizados por el SAT para la generación de 
+  un recibo de nómina.
+    
+      https://www.facturando.mx/blog/index.php/2019/12/10/actualizacion-a-los-catalogos-de-nomina/
+
+* Se actualizaron los ejemplos para generar un recibo de nómina:
+    . Recibo de nomina
+ 
+
+
+=============================
+| Versión 2019.10.16        |
+=============================
+
+* Se agregó soporte a los nuevos certificados de prueba del SAT para ECODEX
+
+
+
+=============================
+| Versión 2019.10.15        |
+=============================
+
+* Se agregó soporte a los nuevos certificados de prueba del SAT
+
+
+
+=============================
+| Versión 2019.08.28        |
+=============================
+
++ Se agregó soporte a la adenda de REPSOL
+
+* Se modificó la generación de la adenda de MABE, actualización del namespace
+
+
+
+=============================
+| Versión 2019.08.27        |
+=============================
+
+* Se modificó la generación de la adenda de MABE.
+
+
+
+=============================
+| Versión 2019.07.18        |
+=============================
+
++ Se agregó soporte a la adenda de YANFENG
+
+
+
+=============================
+| Versión 2019.06.07        |
+=============================
+
+* Se actualizó la validación contra las autoridades certificadoras, dando 
+  sorpote al nuevo certificado generado por el SAT.
+
+
+
+=============================
+| Versión 2019.05.25        |
+=============================
+
+- Se corrigió el error que se presentaba al leer un CFDI que tiene en el 
+  subtotal .01
+
+
+
+=============================
+| Versión 2019.04.16        |
+=============================
+
+* Se modificó la generación de la adenda de Capa de ozono.
+
+
+
+=============================
+| Versión 2019.03.26        |
+=============================
+
+* Se modificó la generación de la adenda de MABE, agregando un namespace
+
+
+
+=============================
+| Versión 2019.03.10        |
+=============================
+
++ Se agregó el método GetNomina() la librería, el cual permite obtener todos   
+  los complementos de nómina que tiene un CFDI
+
+
+
+=============================
+| Versión 2019.03.22        |
+=============================
+
+- Al obtener los datos del timbre, usando el método GetTimbre(), no estaba 
+  retornando el RFC del PAC.
+
+
+
+=============================
+| Versión 2019.02.21        |
+=============================
+
++ Se agregó soporte al mes 13 para la generación de los archivos de la 
+  contabilidad electrónica.
+
+* Se hicieron mejoras a la adenda de MABE
+
+
+
+=============================
+| Versión 2018.12.18        |
+=============================
+
+PAC PAX Facturación
+***************************
++ Se implementó la cancelación de CFDIs.
+
+
+
+=============================
+| Versión 2018.11.26        |
+=============================
+
++ Se agregó una nueva clase que permite consultar el STATUS de un CFDI en el 
+  SAT
+
++ Se desarrolló un ejemplo donde se muestra como consultar el STATUS de un 
+  CFDI en el SAT
+
++ Se agregó un documento donde se muestran los códigos de estatus que trae el 
+  acuse de cancelación y su significado, este documento se encuentra en:
+  
+   Documentos\Códigos del acuse de cancelación.pdf
+
+* Se modificó la clase que lee y extrae la información del acuse de 
+  cancelación adaptándola al cambio realizado por el SAT.
+
+* Se agregaron dos nuevos códigos de status para el acuse de cancelación:
+    . 206 - UUID no corresponde a un CFDI del Sector Primario.
+    . 310 - Uso de certificado de FIEL inválido.
+
+* Se actualizó la descripción de algunos códigos de status que trae el acuse 
+  de cancelación:
+    . 201 - Solicitud recibida
+    . 202 - Solicitud recibida anteriormente
+
+- Se corrigió el error que se presentaba al leer un CFDI 3.3 en el cual la 
+  serie tuviera un punto.
+
+
+
+=============================
+| Versión 2018.10.23        |
+=============================
+
+* Se actualizaron los siguientes schemas
+    . Catálogos de nómina
+
+
+
+=============================
+| Versión 2018.08.29        |
+=============================
+
+- Se corrigió la generación de la adenda de ASOFARMA
+
+
+
+=============================
+| Versión 2018.08.22        |
+=============================
+
++ Se agregó soporte a la adenda de ASOFARMA
+
+
+
+=============================
+| Versión 2018.07.18        |
+=============================
+
+* Se modificó la generación de la adenda de KUEHNE + NAGEL
+
+
+
+=============================
+| Versión 2018.07.12        |
+=============================
+
++ Se agregó soporte a los siguientes complementos:
+  - Consumo de combustible 1.1
+  - Estado de cuenta de combustible 1.2
+
+
+
+=============================
+| Versión 2018.07.09        |
+=============================
+
++ Se agregó soporte a la adenda de KUEHNE + NAGEL
+
+
+
+=============================
+| Versión 2018.07.05        |
+=============================
+
+* Se modificó la generación de la adenda de SORIANA, el nodo Descuentos cambió 
+  por Descuento
+
+
+
+=============================
+| Versión 2018.03.12        |
+=============================
+
+PAC ECODEX
+***************************
+* Se modificó el procedimiento para cancelar uno o más  CFDIs:
+    . Se permiten hasta 400 UUIDs en una sola petición.
+    . Se agrega el STATUS reportado por el PAC, para esto se creó una 
+      propiedad llamada "Mensaje"
+    . Al momento de cancelar, si se está procesando el UUID, se reporta como 
+      EnviadoACancelar = True
+
+
+
+=============================
+| Versión 2018.03.03        |
+=============================
+
+* Se actualizaron los siguientes schemas
+    . Comercio Exterior 1.1
+    . INE
+
+
+
+=============================
+| Versión 2018.02.24        |
+=============================
+* Se mejoró la forma de obtener la fecha y hora del PAC
+
+
+
+=============================
+| Versión 2018.02.23        |
+=============================
+
+* Se modificó la generación del complemento Comercio Exterior 1.1, 
+  agregándoles varios destinarios y varios domicilios
+
+* Se actualizó el ejemplo Complementos, para reflejar el cambio a Comercio 
+  Exterior 1.1
+
+* Se modificó la generación del CFDI, cuando la Moneda MXN y el tipo de cambio 
+  es 1.00, se cambia el mismo a 1, ya que así lo requiere el SAT.
+
+
+ECODEX
+***************************
++ Se agrego la propiedad TimeOut, para que puedas determinar el tiempo que 
+  espera por una respuesta la petición.
+
+- Se corrigió la forma de obtener la Fecha y Hora del PAC
+
+- Se corrigió el error que se presentaba al timbrar en ambiente de nómina.
+
+
+
+=============================
+| Versión 2018.02.06        |
+=============================
+
+- Se corrigió el error que se presentaba al cargar la licencia cuando no 
+  existía conexión a Internet.
+
+
+
+=============================
+| Versión 2018.01.30        |
+=============================
+
+* Se modificó la generación de la adenda de MABE, moviendo el namespace.
+
+
+
+=============================
+| Versión 2017.12.18        |
+=============================
+
+* Se actualizaron los schemas de los catálogos para el CFDI 3.3
+
+PAC FACTURAXION
+***************************
++ Se integró el nuevo web service, con el cual podrás:
+    . Timbrar un CFDI
+    . Cancelar un CFDI
+    . Recuperar un CFDI previamente timbrado   
+
+* Se actualizo el ejemplo de Facturaxion.
+
+
+
+=============================
+| Versión 2017.11.29        |
+=============================
+
+* Se eliminó la validación del nombre del emisor contra la información el 
+  certificado.
+
+
+
+=============================
+| Versión 2017.11.28        |
+=============================
+
+* Se mejoró la validación del nombre del emisor contra la información del 
+  certificado
+
+* Se desarrollo una adenda para almacenar los CFDIs relacionados
+
+
+
+=============================
+| Versión 2017.11.25        |
+=============================
+
+- Se corrigió el problema que daba al leer un CFDI 3.3 y validarlo contra el 
+  schema
+
+
+
+=============================
+| Versión 2017.11.19        |
+=============================
+
+* Se hizó publica la expresión regular del CURP y RFC
+
+
+
+=============================
+| Versión 2017.11.16        |
+=============================
+
++ A la clase Electrinic Certificate se le agrego un nuevo método (LoadLite) 
+  para cargar el certificado.
+
+
+
+=============================
+| Versión 2017.11.12        |
+=============================
+
++ Se desarrollo un nuevo método para validar digito verificador de la CURP
+
+
+
+=============================
+| Versión 2017.11.08        |
+=============================
+
+* Se actualizaron los schemas de los catálogos para el CFDI 3.3
+
+
+
+=============================
+| Versión 2017.10.15        |
+=============================
+
+ECODEX
+***************************
+- Se corrigió el error que se presentaba al generar una constancia de 
+  retenciones en ECODEX
+
+PAC PAX FACTURACION
+***************************
+- Se corrigió el error que se presentaba al timbrar un CFDI 3.3 en PAX y este 
+  retornaba un error.
+
+
+
+=============================
+| Versión 2017.10.07        |
+=============================
+
++ Se agregó soporte a la generación y lectura de los archivos de la 
+  Contabilidad 1.3
+
+* Se modificó el ejemplo de recibo de pago.
+
+* Se modificó la validación de la serie para el CFDI 3.3
+
+* Se actualizó el archivo PUERTOS.PDF
+
+* Se modificaron los ejemplos para presentar las nuevas características.
+
+
+ECODEX
+***************************
+* Se unificó el timbrado del CFD 3.2 y 3.3
+
+
+PAX FACTURACION
+***************************
+* Se modificó el timbrado para el CFDI 3.3
+
+
+
+=============================
+| Versión 2017.08.08        |
+=============================
+
+* Se actulizó el schema de los catálogos de nómina 1.2
+    . RiesgoPuesto: 99 - No aplica
+    . Tipo Regimen: 12 - Jubilados o Pensionados
+
+
+
+=============================
+| Versión 2017.07.26        |
+=============================
+
+- Se eliminó la validación del digito verificador para el RFC.
+
+
+
+=============================
+| Versión 2017.07.20        |
+=============================
+
+* Se actualizaron los schemas del SAT 
+    . CFDI 3.3
+    . Recibo de nómina 1.2
+
+
+
+=============================
+| Versión 2017.07.11        |
+=============================
+
++ Se agregó la validación del digito verificador para el RFC.
+
+
+
+=============================
+| Versión 2017.07.01        |
+=============================
+
+- Se corrigió el error que se presentaba al generar un CFDI 3.2 cuya fecha del 
+  documento igual o superior al 1 de julio de 2017.
+
+
+
+=============================
+| Versión 2017.06.09        |
+=============================
+
+* Se modifico la generación del Pre-CFDI 3.3, ahora ya no aparece el nodo 
+  COMPLEMENTO.
+
+
+
+=============================
+| Versión 2017.06.08        |
+=============================
+
+PAX
+***************************
+- Se corrigió el erro que se presentaba al cargar la fecha de cancelación de 
+  un CFDI.
+
+
+
+=============================
+| Versión 2017.06.07        |
+=============================
+
+- Se modificó la generación del recibo de pago, para que no se cree el nodo de 
+  impuestos.
+
+
+
+=============================
+| Versión 2017.06.02        |
+=============================
+
++ Se implementó una validación LITE al momento de generar:
+    . CFDI 3.3
+    . Recibo de nómina 1.2
+    . Recibo de pago 1.0
+    . Complemento comercio exterior 1.1
+
+  NOTA:
+    . Esta es la validación por defecto, si desea una validación completa 
+      contra el schema, deberá activarla manualmente.
+    . Solo aplica para el proceso de generación del XML.
+    . En los ejemplos encontrarás más información al respecto.
+    . www.facturando.mx/blog/index.php/2017/06/01/edl-validacion-de-un-cfdi-3-3/
+
+* Se modificó el cálculo de la cadena original para el CFDI 3.3, de acuerdo a 
+  los últimos cambios realizados por el SAT.
+
+* Se modificó el cálculo de la cadena original para el recibo de pago 1.0, de 
+  acuerdo a los últimos cambios realizados por el SAT.
+
+* Se actualizaron los schemas para el CFDI 3.3
+    . CFDI 3.3
+    . Catálogos
+    . Tipos de datos
+
+* Se cambió de string a decimal la propiedad 
+    . Recepcion de pago - Impuestos - TasaCuota
+
+
+
+=============================
+| Versión 2017.05.31        |
+=============================
+
+- Se corrigió el error que se presentaba al leer un acuse de cancelación.
+
+
+
+=============================
+| Versión 2017.05.24        |
+=============================
+
+* Se modificó la generación de la adenda de AMAZON
+
+
+
+=============================
+| Versión 2017.05.10        |
+=============================
+
++ Se agregó una nueva validación para verificar que el nombre del emisor sea 
+  igual al que se encuentra registrado en el certificado.
+
++ Se implementó un ejemplo para mostrar como generar un recibo de pago.
+
++ Se dió soporte a los nuevos certificados de pruebas del SAT.
+
+* Se modificaron todos los ejemplos que trae la librería para que usaran los 
+  nuevos certificados d prueba.
+
+- Se modificó la generación del CFDI 3.3 para que no se incluyera el nodo 
+  impuesto cuando se incluía el complemento recibo de pago.
+
+- Se corrigió el cálculo de la cadena original para el CFDI 3.3.
+
+ECODEX
+***************************
++ Se implementó el timbrado del CFDI 3.3
+
++ Se agregó una propiedad a la clase Parameters para saber si se está 
+  trabajando con un documento versión 3.3 o 3.2, esto debido a que el PAC 
+  actualizo cambió su web servicie de prueba para el CFDI 3.3, es importante 
+  mencionar:
+    . Solamente aplica para el ambiente de pruebas
+    . Es temporal, ya que cuando la versión 3.2 deje de estar vigente, será 
+      marcada como obsoleta
+    . Su valor por defecto es 3.2
+
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+PAX
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+COMERCIO DIGITAL
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+DIVERZA
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+EDICOM
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+FACTURAXION
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+SOLUCION FACTIBLE
+***************************
+* Se agregó soporte a los nuevos certificados de prueba.
+
+* Se mejoró el ejemplo de timbrado para mostrar los nuevos datos del 
+  complemento timbre.
+
+
+
+=============================
+| Versión 2017.04.17        |
+=============================
+
++ Se agregó soporte a la nueva versión del comprobante: CFDI 3.3
+
++ Se agregó soporte a la nueva versión del código de barras bidimensioanal.
+
++ Se agregó la funcionalidad para generar un CFDI con los siguientes 
+  complementos:
+    . Timbre 1.1
+
+
+
+=============================
+| Versión 2017.03.16        |
+=============================
+
++ Se agregó la funcionalidad para generar un CFDI con los siguientes 
+  complementos:
+    . Complemento de pagos 1.0
+
+* Se modificó la librería para que pueda ser usada a través de múltiples 
+  hilos, permitiendo crear varios CFDI al mismo tiempo.
+    . Se agregó una nueva forma de instanciar objetos y es necesario 
+      inicializarlo.
+    . Muchos métodos fueron marcados como obsoletos y se recomienda cambiarlos.
+    . No todas las clases soportan esta característica.
+    . Ponte en contacto con nosotros para conocer más acerca del tema.
+
+
+
+=============================
+| Versión 2017.03.10        |
+=============================
+
+* Se modificó la generación de la adenda de Maerks
+
+
+
+=============================
+| Versión 2017.02.03        |
+=============================
+
++ Se agregó la funcionalidad para generar un CFDI con los siguientes 
+  complementos:
+    . Comercio Exterior 1.1
+
+* Se modificó el ejemplo Complementos para mostrar como generar un CFDI con el 
+  complemento Comercio Exterior 1.1
+
+* Se hicieron mejoras internas a la librería que permiten:
+     - Menor consumo de memoria
+     - Mayor velocidad al inicializarla
+     - Disminuir el tamaño final del archivo
+
+* Se adicionó un nuevo archivo HyperSoft.Resource.dll el cual debe ser 
+  agregado al proyecto para el correcto funcionamiento de la librería.
+
+* Se actualizó la librería para dar soporte a los cambios realizados por el 
+   SAT liberados para el recibo de nómina 1.2, puedes leer al respecto aquí
+    . http://www.facturando.mx/blog/index.php/2017/01/23/nomina-1-2-cambios-hechos-por-el-sat/
+
+
+=============================
+| Versión 2017.02.01        |
+=============================
+
++ Se agregó soporte a la adenda de Maerks
+
+
+
+=============================
+| Versión 2017.01.31        |
+=============================
+
+* Se mejoró la generación de un recibo de nómina 1.2, cuando este no tiene 
+  percepciones.
+
+
+
+=============================
+| Versión 2017.01.12        |
+=============================
+
+* Se redujo el tiempo de generación de un recibo de nómina 1.2 en un 90 %.
+
+- Se corrigió el error que se presentaba al generar un CFDI con complemento 
+  Comercio Exterior 1.0
+
+
+
+=============================
+| Versión 2016.12.08        |
+=============================
+
+* Se modificó la funcionalidad para leer un CFDI con el siguiente complemento
+     . Nómina 1.1
+     . Nómina 1.2
+
+- Se corrigió un error que se presentaba al generar un recibo de nómina 1.1, 
+  y 1.2 este error se inyecto en una versión anterior (2016.11.17).
+
+
+	 
+=============================
+| Versión 2016.11.23        |
+=============================
+
++ Se agregó soporte a generación de CFDI con el siguiente complemento
+     . INE 1.1
+
++ Se implementó la funcionalidad para leer un CFDI con el siguiente complemento
+     . INE 1.1
+
+* Se hicieron mejoras a la adenda de IT Smart Business
+
+
+
+=============================
+| Versión 2016.11.22        |
+=============================
+
++ Se implementó la adenda de IT Samrt Business
+
++ Se agregó compatibilidad con la adenda de Volkswagen PMT
+
+
+
+=============================
+| Versión 2016.11.17        |
+=============================
+
+- Se corrigió un error que se presentaba al generar un recibo de nómina 1.1, 
+  este error se inyecto en una versión anterior (2016.10.18).
+
+
+
+=============================
+| Versión 2016.11.11        |
+=============================
+
+* Se modificó la generación de la adenda de Tiendas Super Neto / Super Precio, 
+  cambiando el atributo código de barras de Integer a Integer64.
+
+
+
+=============================
+| Versión 2016.11.09        |
+=============================
+
+* Se modificó la generación de la adenda de CHYSLER, eliminando el atributo 
+  namespace de la misma.
+
+
+
+=============================
+| Versión 2016.10.18        |
+=============================
++ Se implementó la generación de un CFDI con el complemento RECIBO DE NÓMINA 
+  versión 1.2
+
+* Se actualizó el ejemplo “Recibo de nomina” (C# y VB.Net) para mostrar cómo 
+  generar un recibo de nómina versión 1.2
+
+* Se redujo, en un 25 %, el tamaño del assembly 
+  HyperSoft.ElectronicDocumentLibrary.dll, pasando de 8.4 MB a tan solo 6.6 MB
+
+* Se redujo, en un 60 %, el tiempo en que tarda en inicializar el assembly 
+  HyperSoft.ElectronicDocumentLibrary.dll
+
+ECODEX
+***************************
+- Se corrigió el error que se presentaba al obtener la fecha y hora del 
+  servidor del PAC.
+
+PAX FACTURACION
+***************************
+- Se corrigió el error que se presentaba al obtener la fecha y hora del 
+  servidor del PAC.
+
+
+
+=============================
+| Versión 2016.09.21        |
+=============================
+
+DIVERZA
+*************************************
++ Se implementó la integración con el proveedor DIVERZA.
+
+
+
+=============================
+| Versión 2016.09.15        |
+=============================
+- Se corrigió un error que se presentaba al firmar la balanza de la 
+  contabilidad electrónica.
+
+
+
+=============================
+| Versión 2016.08.23        |
+=============================
+* En la adenda de PEPSICO se cambió el tipo de dato del campo IdPedido,
+  pasa de ser un entero a un string.
+
+
+
+=============================
+| Versión 2016.08.19        |
+=============================
++ Se implementó la adenda de Lowes
+
+* Se actualizó adenda de Chrysler, para cumplir con los requerimientos 
+  solicitados por esta empresa.
+
+
+
+=============================
+| Versión 2016.08.16        |
+=============================
+ECODEX
+===============
+* Se hicieron optimizaciones a la instanciación de los objetos internos.
+
+
+
+=============================
+| Versión 2016.07.27        |
+=============================
+* Se modificó la librería para dar soporte a los nuevos certificados de 
+  pruebas del SAT.
+
+* Se modificaron los diferentes ejemplos para hacer uso de los nuevos   
+  certificados de prueba.
+
+
+
+=============================
+| Versión 2016.07.20        |
+=============================
++ Se desarrolló el ejemplo para generar un CFDI con el complemento 
+     . Renovación y sustitución de vehículos
+
+* Se actualizaron los diferentes ejemplos para generar un CFDI con complementos
+
+
+
+=============================
+| Versión 2016.07.13        |
+=============================
++ Se agregó soporte a generación de CFDI con el siguiente complemento
+     . Renovación y sustitución de vehículos
+
++ Se implementó la funcionalidad para leer un CFDI con el siguiente complemento
+     . Renovación y sustitución de vehículos
+
+
+
+=============================
+| Versión 2016.07.08        |
+=============================
+* Se actualizó la rutina que sirve para obtener la fecha y hora del PAC.
+
+* Se actualizaron los ejemplos haciendo uso del catálogo del SAT para el 
+  método de pago.
+
+
+
+=============================
+| Versión 2016.05.16        |
+=============================
++ Se implementó la adenda de Emerson
+
++ Se desarrolló el ejemplo para generar un CFDI con la adenda de 
+  Emerson.
+
+
+
+=============================
+| Versión 2016.04.21        |
+=============================
++ Se agregó soporte a los siguientes complementos
+     . Comercio exterior
+     . INE
+
++ Se desarrolló el ejemplo para generar un CFDI con el complemento 
+     . Comercio exterior
+     . INE
+
+
+
+=============================
+| Versión 2016.03.20        |
+=============================
++ Se agregó soporte al complemento Estado de cuenta de combustible versión 1.1
+
++ Se desarrolló el ejemplo para generar un CFDI con el complemento Estado de 
+  cuenta de combustible versión 1.1.
+
+COMERCION DIGITAL
+***************************
++ Se implementó el ejemplo en Visual Basic.Net para:
+     . Generar un CFDI
+     . Cancelar un documento
+
+
+
+=============================
+| Versión 2016.02.24        |
+=============================
+- Se corrigió la generación de la adenda de 7-Eleven, 
+
+
+
+=============================
+| Versión 2016.01.22        |
+=============================
++ Agregó la capacidad de generar un CFDI usando el complemento Acreditamiento 
+  del IEPS
+
++ Se desarrolló el ejemplo para generar un CFDI con el complemento 
+  Acreditamiento del IEPS.
+
+
+
+=============================
+| Versión 2015.11.30        |
+=============================
+- Se corrigió la generación de la adenda de 7-Eleven, la propiedad 
+  "folio autorizado" se cambió a string
+
+
+
+=============================
+| Versión 2015.11.12        |
+=============================
++ Se implementó la adenda de 7-Eleven
+
+
+
+=============================
+| Versión 2015.10.29        |
+=============================
++ Se implementó la adenda de Volkswagen PSV
+
++ Se desarrolló el ejemplo para generar un CFDI con la adenda de 
+  Volkswagen PSV.
+
+
+
+=============================
+| Versión 2015.10.27        |
+=============================
+
+ECODEX
+***************************
++ Se implementó la propiedad DateTimeServer, para cuando se usa OwnToken y la 
+  fecha de servidor es superior a la del PAC.
+
++ Se implementó la capacidad de timbrar en el ambiente de nómina.
+
+
+
+=============================
+| Versión 2015.10.05        |
+=============================
++ Se implementó la adenda de Funerarias Gayosso
+
++ Se desarrolló el ejemplo para generar un CFDI con la adenda de Funerarias   
+  Gayosso.
+
+
+
+=============================
+| Versión 2015.09.09        |
+=============================
+
+ECODEX
+***************************
++ Se implementó la funcionalidad para cancelar múltiples CFDI en una sola 
+  petición, se permiten hasta 400 CFDI en una sola petición.
+
++ Se agregó la propiedad OwnToken, con la cual se disminuye en 500 ms el 
+  tiempo del proceso de timbrado, para el correcto funcionamiento de esta 
+  propiedad se requiere que la hora del servidor o computadora sea menor a la
+  del PAC.
+
++ Se agregó la propiedad "Numero" en la clase de error, la cual permite 
+  conocer el número de error retornado por el PAC cuando existe un problema en 
+  el proceso ejecutado, se recomienda revisar los ejemplos para ver su 
+  funcionamiento.
+
+
+
+=============================
+| Versión 2015.09.08        |
+=============================
++ Se modificó la generación de CFDI, ahora se permite agregar dos complementos 
+  de nómina.
+
+
+
+=============================
+| Versión 2015.08.27        |
+=============================
++ Se implementó la adenda de General Motors
+
++ Se desarrolló el ejemplo para generar un CFDI con la adenda de General 
+  Motors.
+
+
+
+=============================
+| Versión 2015.08.18        |
+=============================
+
+COMERCION DIGITAL
+***************************
+ - Se corrigió el error que se presentaba al cancelar un CFDI en producción
+
+
+
+=============================
+| Versión 2015.08.14        |
+=============================
+- Se corrigió el error que se presentaba en la generación del CBB para 
+  constancia de retenciones y pagos.
+
+COMERCION DIGITAL
+***************************
++ Se implementó el proceso de cancelación con este PAC
+
++ Se desarrolló el ejemplo para cancelar CFDI a través de este PAC.
+
+
+
+=============================
+| Versión 2015.08.07        |
+=============================
+
+COMERCION DIGITAL
+***************************
+* Se implementó la integración con este PAC.
+  
+
+
+=============================
+| Versión 2015.08.04        |
+=============================
+
+GENERAL
+***************************
++ Se adicionó la facilidad para llevar a cabo la generación de comprobantes 
+  con los complementos
+     . Servicios parciales de construcción
+     . Certificado de destrucción
+
++ Se implementó la funcionalidad para llevar a cabo la validación de un CFDI
+  que contenga los complementos
+     . Servicios parciales de construcción
+     . Certificado de destrucción
+
++ Se agregó compatibilidad con los certificados que son generados por el SAT a 
+  partir del 25/05/2015.
+
+
+ECODEX
+***************************
+* Se optimizó el proceso de timbrado para que ya no se presente el mensaje   
+  'DUPLICIDAD EN HASH DE LA CADENA ORIGINAL'
+
+
+PAX Facturación
+***************************
+- Se corrigió el error que se presentaba al cancelar una constancia de 
+  retenciones en Windows 10
+
+
+
+=============================
+| Versión 2015.07.20        |
+=============================
+
+GENERAL
+***************************
++ Se adicionó la facilidad para llevar a cabo la generación de comprobantes 
+  con los complementos
+     . VentaVehicular 1.1
+
+
+ECODEX
+***************************
++ Se implementó la funcionalidad que permite cancelar, a través de los 
+  servicios de ECODEX, comprobantes certificados por otros PACs
+
+
+
+=============================
+| Versión 2015.06.26        |
+=============================
+
+GENERAL
+***************************
+- Se corrigió el error que se presentaba al leer un CFDI que contenía el 
+  complemento por cuenta de terceros
+
+
+
+=============================
+| Versión 2015.06.10        |
+=============================
+
+GENERAL
+***************************
++ Se implementó la funcionalidad para llevar a cabo la validación de un CFDI
+  generado en el sitio web del SAT
+
+
+
+=============================
+| Versión 2015.06.05        |
+=============================
+
+GENERAL
+***************************
++ Se implementó la funcionalidad para generar el código de barras 
+  bidimensional para constancias de retenciones.
+ 
++ Se implementó la adenda de Bexel
+
++ Se implementó la adenda de Ferro Mexicana.
+
++ Se implementó la adenda de Pepsico
+
++ Se implementó la adenda de ZF México
+
++ Se agregó el método GetTimbre a la clase Constancia de Retenciones
+
+* Se mejoró la validación de una Constancia de Retenciones, ahora se válida el 
+  timbre de la misma.
+
+* Las siguientes librerías se hicieron compatibles con aplicaciones multi-hilo
+     . Hypersoft.Shared
+     . HyperSoft.BarCodeLibrary
+
+* Se mejoró la generación del QR Code cuando se manejan 6 decimales en el total
+
+- Se corrigió la generación de la adenda de Altos Hornos de México.
+
+
+PAX Facturación
+***************************
+* Se corrigió un error que se presentaba al cancelar una factura.
+
+
+
+==============================
+| Versión 2015.02.27         |
+==============================
+
+CONTABILIDAD ELECTRÓNICA
+************************
++ Se modificó la funcionalidad para soportar la versión 1.2 del auxiliar de 
+  folios.
+
+* Se modificó la generación de los archivos de la contabilidad electrónica 
+  para permitir que los atributos Sello, noCertificado y Certificado, cuando 
+  no son requeridos, éstos no aparezcan vacíos dentro del XML, simplemente no 
+  aparecerán.
+	
+- Se modificó la referencia a la ubicación del schemalocation.
+  
+
+  
+==============================
+| Versión 2015.02.24         |
+==============================
+
+GENERAL
+************************
++ Se implementó la generación de constancias de retenciones con sus respectivos
+  complementos:  
+     . Arrendamiento en fideicomiso
+     . Dividendos
+     . Enajenación de acciones
+     . Fideicomiso no empresarial
+     . Intereses hipotecarios
+     . Operaciones con derivados
+     . Pagos a extranjeros
+     . Planes de retiro
+     . Premios
+     . Sector Financiero
+
++ Se implementó la generación de la adenda de Corporate Travel Services.
+
++ Se implementó la funcionalidad para llevar a cabo la validación de un CFDI
+  que contenga el complemento Vehículo usado.
+
+* Se hicieron mejoras a la adenda de Soriana.
+     . En el nodo artículos, la cantidad se cambió de entero a decimal
+     . El número de pedimento y el código del artículo se cambió a Int64.
+
+* Se modificó la validación de los archivos de la contabilidad para que no 
+  pida como obligatorio el certificado.
+
+* Se hicieron mejoras al proceso de instalación.
+
+- Se corrigió el error que se presentaba al leer el auxiliar de cuentas, no se 
+  estaban leyendo los detalles.
+
+
+ECODEX
+*************************************
++ Se implementó el timbrado y cancelación de constancia de retenciones y pagos.
+
+
+PAX Facturación
+*************************************
++ Se implementó el timbrado y cancelación de constancia de retenciones y pagos.
+
+
+
+==============================
+| Versión 2014.12.12         |
+==============================
+
+GENERAL
+************************
++ Se implementó la generación y validación de los archivos de la contabilidad 
+  electrónica versión 1.1
+     . Catálogo de cuentas
+     . Balanza de comprobación
+     . Pólizas contables
+     . Auxiliar de cuentas
+     . Auxiliar de folios
+     . Sello digital del SAT
+
++ Se implementó la generación de la constancia de retenciones con los 
+  siguientes complementos:
+     . Intereses
+
++ Se implementó la adenda de Banorte.
+
++ Se implementó el complemento Vehículos usados
+
+* Se mejoró el manejo de los schemas usados en la validación de los XML; ya no 
+  se copian al disco duro.
+
+* Se permite incluir dentro de las cadenas de texto los caracteres:
+     . Tabulador
+     . Salto de línea
+
+- Se hicieron correcciones a la Adenda de Pilgrims.
+
+
+ECODEX
+*************************************
+* Se hicieron mejoras al ejemplo de cancelación
+
+
+
+==============================
+| Versión 2014.07.07         |
+==============================
+
+GENERAL
+************************
++ Se implementaron las clases necesarias para generar los archivos de la 
+  Contabilidad electrónica solicitados por el SAT:
+     . Catálogo de cuentas contables
+     . Balanza
+     . Pólizas contables
+
++ Se generó un ejemplo llamado "Contabilidad electrónica" el cual permite ver 
+  la generación de los archivos solicitados por el SAT.
+
++ Se agregó la funcionalidad que permite hacer la conexión a internet cuando 
+  se tiene configurado un PROXY.
+
++ Se implementó la generación de la Adenda Pilgrims.
+
++ Se implementó la generación de la adenda solicitada por Solución Factible para
+  el Sector Primario.
+
+* Se modificó el ejemplo de adendas para mostrar la generación de las adendas
+  correspondientes a:
+     . Pilgrims
+     . Sector primario
+
+- Se corrigió la generación de la adenda de IUSACELL
+
+- Se corrigió la generación de la adenda de Altos Hornos de México
+
+- Se corrigió la generación de la adenda de Axxa Autos
+
+- Se corrigió la generación de la adenda de TV Azteca
+
+
+ECODEX
+*************************************
++ Se agregó la funcionalidad que permite obtener el mensaje SOAP enviado y 
+  recibido del PAC cuando se ejecuta cualquier operación con el mismo
+
+
+PAX FACTURACION
+*************************************
++ Se agregó la funcionalidad que permite obtener el mensaje SOAP enviado y 
+  recibido del PAC cuando se ejecuta cualquier operación con el mismo
+
+
+ANY PAC
+*************************************
++ Se agregó la funcionalidad que permite obtener el mensaje SOAP enviado y 
+  recibido a cualquiera de los proveedores.
+
+
+
+==============================
+| Versión 2014.05.05         |
+==============================
+
+GENERAL
+************************************* 
++ Se adicionó la facilidad para llevar a cabo la generación de comprobantes 
+  con los complementos
+     . Aerolíneas 
+     . CFDI registro fiscal
+     . Consumo de combustible
+     . Notarios públicos (Enajenación de bienes inmuebles)
+     . Pago en especie
+     . SPEI de tercero a tercero 
+     . Vales de despensa
+
++ Se habilitó dentro del módulo de validación la funcionalidad para
+  soportar la validación de los comprobantes generados con los complementos:
+     . Aerolineas 
+     . CFDI registro fiscal
+     . Consumo de combustible
+     . Notarios públicos (Enajenación de bienes inmuebles)
+     . Pago en especie
+     . SPEI de tercero a tercero 
+     . Vales de despensa
+
+
+ECODEX
+*************************************
++ Se habilito la funcionalidad para poder obtener el acuse de cancelación de 
+  una factura generada.
+
+
+ANY PAC
+*************************************
+* Se hizo más detallado la obtención del status del PAC, esto permite conocer 
+  con mayor exactitud el motivo por el cual el PAC está caído
+     . DownByInternet: Este caso se presenta cuando se detecta que no se tiene 
+                       conexión a internet o si existe, pero no se puede 
+                       conectar con un sitio público.
+        
+     . DownByPac: En este caso, se tiene conexión con internet, pero no se 
+                  puede conectar con los servidores del PAC o estos no 
+                  responden.
+
+  Para poder activar esta funcionalidad, es necesario en los parámetros 
+  agregar la opción fullstatus; se recomienda activar esta opción.
+
+  Para ver el funcionamiento de este cambio revisar el método obtener status 
+  del ejemplo de Timbrado.
+
+- Se corrigió el funcionamiento de la propiedad autocheking; ya que si estaba 
+  desactivada y se generaba un error en la conexión con el PAC, 
+  automáticamente se activaba.
+
+
+
+==============================
+| Versión 2014.03.24         |
+==============================
+
+* Se modificó la biblioteca para permitir la generación de documentos con el 
+  valor del atributo serie en minúscula.
+
+* Se mejoró el algoritmo que extrae el RFC del certificado para que sea 
+  compatible con el certificado de la FIEL.
+
+
+
+==============================
+| Versión 2014.01.22         |
+==============================
+
++ Se implementó la funcionalidad que permite generar un CFDI haciendo uso de la
+  FIEL del contribuyente para el firmado del mismo.
+
++ Se adicionó a la funcionalidad que permite realizar la validación de un CFDI
+  el poder validar un comprobante que fue firmado con la FIEL del   
+  contribuyente.
+
++ Se implementó la generación de la Adenda para ABA seguros.
+
+* Se modificó la generación de la Adenda de Mapfre la cual permite la asignación
+  del namespace usado por esta.
+
+- Se corrigió la adenda de Mapfre para que los nodos  ‘OtrMnda’  ‘Local’ 
+  ‘AreaItem’ no se escriban cuando no traen valor.
+  
+- Se cambió la adenda de Mapfre para que los atributos número y año de 
+  aprobación se convirtieran de enteros a string.
+  
+- Se corrigió la validación de un XML para que se calculará y se mostrará
+  correctamente la cadena original.
+  
+- Se agregó soporte en la validación, para soportar todos certificados de los
+  PACs publicados hasta el momento por el SAT.
+
+- Se corrigió la adenda de AMIS para permitir más de una ocurrencia en el 
+  detalle se estaban escribiendo sobre el mismo nodo.
+
+
+
+==============================
+| Versión 2014.02.13         |
+==============================
+
+- En PAX se validaba que el password no tuviera más de 100 caracteres
+
+
+
+==============================
+| Versión 2014.01.16         |
+==============================
+
+GENERAL
+*************************************
+* Se mejoró la funcionalidad para poder descargar un CFDI timbrado con el PAC
+  Ecodex, haciendo uso del Id Transacción con el cual se mandó a timbrar el 
+  CFDI este caso aplica cuando por algún motivo no se tiene el UUID.
+    
+     . Los métodos que fueron modificados son PAC Ecodex y Timbrado (AnyPAC).
+
+
+
+==============================
+| Versión 2014.01.14         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó la funcionalidad para poder definir por parte del usuario la 
+  carpeta donde se crearán los archivos requeridos por la biblioteca, la 
+  instrucción a usar es:
+  
+  HyperSoft.ElectronicDocumentLibrary.Manage.ElectronicManage.TemporaryDirectory = @"C:\\TempNew\\";
+  
+* Se actualizó el ejemplo utilizado en la generación del recibo de nómina, en 
+  el cual se incluyó el manejo de la retención del impuesto sobre la renta 
+  (ISR).
+  
+* Se actualizó el método para la validación de los XML correspondientes a un
+  recibo de nómina, de acuerdo al ajuste realizado al ejemplo de estos mismos.
+  
+
+
+==============================
+| Versión 2013.12.13         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó el método setinteger que sirve para asignar el número te enteros a
+  usar al generar el xml.
+
++ Se agregó la capacidad de leer y validar un CFDI con complemento de nómina.
+
+* Se implementaron los nuevos cambios realizados al complemento de nómina por
+  parte del SAT para poder cumplir con la emisión de los recibos de nómina.
+
+
+ECODEX
+*************************************
+* Se hicieron optimizaciones menores a los procesos internos.
+
+PAX-FACTURACION
+*************************************
+* Se hicieron optimizaciones menores a los procesos internos.
+
+  
+
+==============================
+| Versión 2013.11.22         |
+==============================
+
+GENERAL
+*************************************
+* Se actualizó la generación de Recibos de Nómina Electrónicos a la versión 
+  1.1, de acuerdo a los cambios requeridos por la autoridad (SAT).
+
+
+
+==============================
+| Versión 2013.11.12         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó la capacidad para generar recibos de nómina electrónicos
+
++ Se desarrolló un ejemplo llamado Recibo de nómina, donde se muestra cómo 
+  generar los recibos de nómina y como timbrarlo; ver los métodos:
+  
+    · GenerarXmlReciboNomina (generación del XML)
+    · GenerarReciboNomina (generación del XML y timbrado del mismo)
+
+
+ANYPAC
+*************************************
+* Se adicionó el método OnAction que permite para: 
+    
+	1) ECODEX : Asignar el IdTransaccion al momento de timbrar un XML o 
+                    recuperar un XML previamente timbrado.
+        2) PAX : Asignar el tipo de documento al momento de timbrar un CFDI.
+
+
+
+==============================
+| Versión 2013.11.08         |
+==============================
+
+GENERAL
+*************************************
+* Se adicionaron los servicios de 2 servidores más para agilizar y mantener
+  disponible en todo momento el proceso de validación de las licencias.
+
+* Se modificaron los ejemplos en Visual Basic .Net y C#, para efecto de
+  estandarizar los nombres de los métodos.
+
+* Se concentraron los métodos FillData y FillData22 dentro del proyecto
+  BaseForms, evitando con ello la duplicidad de los mismos dentro de cada
+  método requerido.
+
+* Se cambió la imagen dentro del instalador de las distintas soluciones 
+  disponibles en Facturando.
+
+- Se actualizaron las ligas que apuntan a las diferentes presentaciones.
+
+  
+ANYPAC
+*************************************
++ Se incorporó el manejo de la funcionalidad denominada AnyPAC la cual permite
+  el uso de los siguientes métodos con diferentes PAC's:
+    · TimbradoCfdi (timbrado de un comprobante)
+	· CancelarCfdi (cancelación de un comprobante)
+    · DescargarCfdi (recuperación de un CFDI Timbrado)
+    · EstadoCuenta (obtención del estado de cuenta de los timbres de un cliente)
+    · FechaHoraPac (obtención y cambio con respecto a la fecha del PAC)
+    · InicializarPac (prepara el ambiente previo al timbrado, verificando la
+	                  conexión y determinando con anticipación el status del PAC)
+	· ObtenerStatusPac (obtención del status que guardan los servicios del PAC)
+	· VerificarStatusPac (verifica si el PAC está activo o si ya no tiene
+                          relación comercial con Facturando)
+    · ObtenerNombrePac (devuelve el nombre del PAC consultado)
+
+
+ECODEX
+*************************************
++ Se implementó la obtención de la hora del servidor del PAC, para determinar
+  si existe diferencia entre la hora del PAC y la hora de la Pc del usuario,
+  permitiendo la sincronización de fechas.
+
+- Se corrigió un error en ECODEX al consultar el estado de cuenta, cuando no
+  existe el RFC en el PAC.
+  
+
+PAX-FACTURACIÓN
+*************************************
++ Se implementó la integración con el proveedor PAX-Facturación.
+
++ Se implementó la obtención de la hora del servidor del PAC, para determinar
+  si existe diferencia entre la hora del PAC y la hora de la Pc del usuario,
+  permitiendo la sincronización de fechas.
+
+
+FACTURAXION
+*************************************
++ Se implementó la obtención de la hora del servidor del PAC, para determinar
+  si existe diferencia entre la hora del PAC y la hora de la Pc del usuario,
+  permitiendo la sincronización de fechas.
+
+
+SOLUCIÓN FACTIBLE
+*************************************
++ Se implementó la integración con el proveedor Solución Factible.
+
+
+ADENDAS
+*************************************
+- Se corrigió un error con el complemento detallista 
+  nodo ALTERNATETRADEITEMIDENTIFICATION
+
+
+
+==============================
+| Versión 2013.05.03         |
+==============================
+
+GENERAL
+*************************************
+* Se agregó soporte al nuevo certificado raíz del SAT, por lo tanto, se 
+  soportan los certificados de sellos generados a partir del 01/05/2013.
+
+
+ADENDAS
+*************************************
+* Se agregó el nodo datosAdicionales a la adenda de FEMSA
+
+
+
+==============================
+| Versión 2013.04.26         |
+==============================
+
+GENERAL
+*************************************
+* Se hicieron mejoras a los métodos que validan la activación de la biblioteca.
+
+* En la validación de comprobantes se agregó soporte para los nuevos PACs.
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Santander - Factura financiera
+
++ Se agregó la adenda de Santander - Factura logística
+
++ Se agregó la adenda de Santander - Factura de arrendamiento
+
+* Se agregó el nodo retención a la adenda de FEMSA
+
+
+
+==============================
+| Versión 2013.04.12         |
+==============================
+
+GENERAL
+*************************************
++ Se crearon cada uno de los ejemplos en Visual Basic .Net
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Soriana - Remisión
+
++ Se agregó la adenda de Soriana - Servicios
+
+* Se eliminó el atributo Renglon en la adenda de HEB
+
+- Se corrigió el manejo del NameSpace en la adenda de FEMSA
+
+- Se corrigió el nombre del nodo customs en la adenda de Aluprint
+
+
+
+==============================
+| Versión 2013.03.07         |
+==============================
+
+GENERAL
+*************************************
++ Se desarrolló una nueva clase cuyo objetivo es manejar todos los aspectos 
+  relacionados con la activación de la biblioteca.
+   . Clase : HyperSoft.ElectronicDocumentLibrary.Activaction
+
++ Se agregó un método a la clase Activación que permite verificar el status 
+  de la conexión a internet.
+
+*  Se cambiaron los mensajes que presenta la biblioteca cuando se trata de 
+   usarla sin que se haya activado la misma o cuando se ha activado y no es 
+   válida por algún motivo.
+
+* Se marcaron como obsoletos los siguientes métodos y propiedades, estos no 
+  serán eliminados, pero se recomienda usar la clase Activation
+   . ElectronicDocumentLibrary.Document.ElectronicDocument.GetLicenseData()
+   . ElectronicDocumentLibrary.Document.ElectronicDocument.LoadLicense()
+   . ElectronicDocumentLibrary.Document.ElectronicDocument.LicenceStatus
+
+- Se corrigió un error que se presentaba al validar si un certificado era de 
+  sello, este error solamente se presentaba con ciertos certificados y bajo 
+  circunstancias muy especiales.
+
+- Se hizo compatible con aplicaciones que usan RDLC.
+
+- Se hizo compatible con aplicaciones que se distribuyen con ClickOne o que 
+  crean los instaladores a través de Visual Studio.
+
+
+
+==============================
+| Versión 2013.03.01         |
+==============================
+
+GENERAL
+*************************************
++ Se sobrecargaron los diferentes métodos que permite generar el código de
+  barras bidimensional (BarCode.GenerateFile) y se agregó un parámetro de tipo 
+  MemoryStream, esto con la finalidad de que los QRCodes en memoria.
+
+* Se modificó el ejemplo de la generación del código de barras, para hacer uso 
+  de los nuevos métodos.
+
+* Se modificó el ejemplo de la generación de adendas, para mostrar como 
+  agregar una adenda a un XML previamente generado.
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Aluprint
+
++ Se agregó la adenda de Comex
+
++ Se agregó la adenda de Emsur
+
++ Se agregó la adenda de Loreal
+
++ Se agregó la adenda de Tv Azteca
+
+
+
+==============================
+| Versión 2013.02.15         |
+==============================
+
+GENERAL
+*************************************
++ A la clase certificado se le agregó dos métodos que permiten guardar un 
+  certificado previamente cargado.
+
++ Se hace compatibilidad la biblioteca con aplicaciones compiladas 
+  específicamente para 64 bits.
+
+* En la validación de comprobantes se agregó soporte para los nuevos PACs.
+
+* Se cambió la forma de generar el código de barras bidimensional, 
+  anteriormente se usaba una DLL de Win32; se reemplazó la misma por un 
+  assembly construida en C#.
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Elektra
+
++ Se agregó la adenda de Fuller
+
++ Se agregó la adenda de Heb
+
++ Se agregó la adenda de Iusacell
+
++ Se agregó la adenda de Lamosa
+
+
+
+==============================
+| Versión 2013.01.04         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó compatibilidad con Windows 8, esta se agrega en forma BETA.
+
++ Se agrega compatibilidad parcial con aplicaciones compiladas específicamente 
+  para 64 bits, actualmente no se puede el código de barras en este tipo de 
+  aplicaciones; esto será solucionado en una siguiente versión.
+
++ Se sobre cargo el método SaveToPfx de la clase ElectronicCertificate para 
+  que al guardar el certificado sea convertido a base 64.
+
++ A la clase ElectronicCertificate se agregó la capacidad de leer un 
+  certificado en formato PFX codificado en base 64.
+
++ A la clase Subject del certificado se agregó el método GetRfc, el cual 
+  permite obtener el RFC del certificado.
+
+* Se eliminaron los ejemplos que ya no están vigentes con respecto al estándar 
+  que está manejando actualmente el SAT
+
+- Se corrigió la excepción que se presentaba cuando se cargaba el archivo de 
+  la licencia y el mismo no existía, ahora no arroja ninguna excepción y 
+  continúa la ejecución del programa.
+
+- Se corrigió un mensaje que aparecía indicando que la librería licencia había 
+  expirado; aun cuando la misma estaba vigente.
+
+
+
+ECODEX
+*************************************
++ Se corrigió la integración con el PAC, al pedir el estado de cuenta de un 
+  cliente, bajo ciertas condiciones generaba error.
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Inbursa
+
+* Se cambió el tipo de dato de Int a string en el atributo PlantaEntrega de la 
+  adenda de Mabe
+
+
+
+==============================
+| Versión 2012.11.28         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó compatibilidad con los nuevos certificados de prueba del SAT.
+
+* Se hicieron cambios a los ejemplos para manejar los nuevos certificados de 
+  pruebas del SAT.
+
+
+ADENDAS
+*************************************
+- Se hicieron correcciones a la adenda de Capa de Ozono
+
+
+
+==============================
+| Versión 2012.11.09         |
+==============================
+
+GENERAL
+*************************************
+* Se hizo compatible con Dot Net Framework 4.0
+ 
+
+
+==============================
+| Versión 2012.10.29         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó la capacidad de generar la adenda de Coppel ROPA.
+
++ Se agregó la capacidad de generar la adenda de Capa de Ozono.
+
++ Se agregó la capacidad de generar la adenda de Grupo Modelo.
+
+* Se modificaron los tipos de datos de algunos de los campos de la adenda 
+  de PEMEX
+
+* Se modificó la generación de la adenda de FEMSA, ahora se crean todos los 
+  nodos aunque estos o contengan datos.
+
+* Se modificó la asignación del namespace para las siguientes adendas
+   . ADO
+   . AXXA
+   . Disney
+   . Femsa
+   . Landsteiner
+   . Prolec
+   . Sanmina
+
+* Se modificaron los directorios de instalación por defecto.
+
+- Se corrigió un error en la integración con ECODEX, en algunos casos se 
+  enviaba a timbrar el comprobante con la adenda.
+
+- Se modificó la validación contra las autoridades certificadoras, ya que 
+  llegaba a dar errores en algunos casos.
+
+
+
+==============================
+| Versión 2012.08.11         |
+==============================
+
+GENERAL
+*************************************
+* Se actualizaron algunos ejemplos.
+
+- Se corrigió la generación del código de barras bidimensional, ya que 
+  presentaba un mensaje de error a tratar degenerarlo.
+
+
+
+==============================
+| Versión 2012.07.10         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó la opción para que un Xml se guarde identado, por default esta 
+  opción esta activa.
+    . Ejemplo para desactivarla:
+          manage.Save.Options -= SaveOption.AutoIndent;
+    . Ejemplo para ctivarla:
+          manage.Save.Options += SaveOption.AutoIndent;
+
+- Se corrigió la validación de un comprobante en donde su fecha contiene 
+  milésimas de segundo.
+
+
+ECODEX
+*************************************
+- Se corrigió un error que se presentaba cuando algún dato de conexión era 
+  incorrecto, se disparaba una excepción.
+
+
+FACTURAXION
+*************************************
+- Se corrigió un error al generar un CFDI; el error se presentaba porque 
+  existía una ruta fija dentro del código.
+
+
+EDICOM
+*************************************
+- Se corrigió el nombre del namespace
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de Axxa Gastos médicos
+
++ Se agregó la adenda de Axxa Autos
+
++ Se agregó la adenda de BrudiFarma
+
+
+
+==============================
+| Versión 2012.06.18         |
+==============================
+GENERAL
+*************************************
++ Se agregó a la clase BarCode la capacidad de generar el QRCode a partir de 
+  un archivo o un objeto Electric Document.
+* Se marcó el metódo GetLastData() como obsoleto, este es usado en los 
+  complementos.
+- Se corrigió la validación de un comprobante que tiene el complemento 
+  Prestador de Servicio Generación y Envío de CFD (PSGECFD).
+- Se corrigió la validación de un comprobante en donde sus datos decimales no 
+  contienen parte entera.
+- Se renombro el complemento 
+    . PersonaFsicaIntegranteCoordinado -> PersonaFisicaIntegranteCoordinado
+
+ECODEX
+*************************************
++ Se desarrolló la integración con este PAC y se implementaron las siguientes 
+  operaciones:
+    . Generación del timbre
+    . Cancelación de un CFDI
+    . Descarga de un comprobante
+    . Obtención del estado de un CFDI
+    . Obtención de los avisos emitidos por el PAC
+    . Obtención del estado de cuenta de un cliente
+ 
+ADENDA
+*************************************
+- Se corrigió la generación de la adenda de Chrysler, se estaba generando el 
+  nodo origen aun cuando se no se definían datos para el mismo.
+
+
+
+==============================
+| Versión 2012.05.05         |
+==============================
+
+GENERAL
+*************************************
+* Se agregó el soporte para validar el timbre de los 47 que existen hasta la
+  fecha.
+
+* El número de cuenta bancario en el complemento estado de cuenta bancario, se 
+  cambio a tipo entero.
+
+- Se corrigió la generación de un comprobante con el complemento estado de 
+  cuenta de combustible, ya que no se guardaba no guardaba la tasa del 
+  complemento.
+
+- Se corrió la lectura de un comprobante cuando trae algunos de los siguiente 
+  complementos: EmisionPorCuentaDeTerceros, LeyendasFiscales, 
+  TuristaPasajeroExtranjero y Venta Vehicular; ya que no se leía toda la 
+  información del complemento.
+
+- Se corrigió la validación de un CFDI cuando este tiene más de un complemento.
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de AlSuper
+
++ Se agregó la adenda de Altos Hornos de México
+
++ Se agregó la adenda de ChrysLer PUA
+
++ Se agregó la adenda de MultiPack
+
++ Se agregó la adenda de Oxxo
+
++ Se agregó la adenda de Soler & Palau
+
+
+
+==============================
+| Versión 2012.04.07         |
+==============================
+
+GENERAL
+*************************************
++ Se agregó la capacidad de generar y validar documentos (CFD y CFDI) con el 
+  complemento Prestador de servicios de generación de CFD del sistema producto.
+
++ Se agregó la validación del timbre en la recepción de un CFDI; esta opción se 
+  encuentra activa por defecto y se dispara cuando se lee un CFDI.
+
+* Se cambió el complemento Vehicular, inicialmente se había implementado como 
+  un complemento del comprobante, pero en la especificación del SAT está 
+  definido como un complemento de concepto. 
+
+- Se renombró algunas clases con la finalidad de estandarizar los nombres de 
+  las mismas:
+    .   -> PersonafisicaIntegranteCoordinado
+
+
+FACTURAXION
+*************************************
+- Se renombró algunas clases con la finalidad de estandarizar los nombres de 
+  las mismas:
+    . RegistroSucursalParameters -> RegistrarSucursalParameters
+    . AsignacionCodigoUsuarioParameters –> AsignarCodigoUsuarioParameters
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de SANMINA.
+
++ Se agregó la adenda de Asociación Mexicana de Instituciones de Seguros - AMIS
+  que es la usada por:
+    . Mapfre
+    . Qualitas
+    . Etc
+
++ Se agregó la adenda de AMECE 7.1 que es usadas por estas empresas:
+    . Bimbo
+    . Bachoco
+    . Banorte
+    . Calimax
+    . Chedraui
+    . Colgate
+    . Comex
+    . Comercial Mexicana
+    . Coppel
+    . DelSol
+    . Farmacias Guadalajara
+    . Depot
+    . Lala
+    . Nissan
+    . Procter & Gamble
+    . Sears
+    . Soriana
+    . Tiendas Garcés
+    . Vitro
+    . Woolworth 
+
+- Se corrigió la generación de la adenda Mabe, ya que el namespace aparecía  
+  en otro nodo.
+
+
+
+==============================
+| Versión 2012.03.26         |
+==============================
+- Cuando se generaba un CFDI y luego un CFD, el CFD aparecía con el namespace 
+  CFDI, se corrigió este problema.
+
+
+
+==============================
+| Versión 2012.03.23         |
+==============================
+
+GENERAL
+*************************************
++ Se modificó la generación del CFDI para que se soporte de forma natica la 
+  generación de adendas. 
+
++ Al método SetConfiguration, que es usado para configurar la generación del 
+  código de barras bidimensional, se agregó un parámetro indicando si en la 
+  generación del mismo, el total es representado con 15 caracteres; por 
+  default se dejó esta opción activa.
+
++ A la clase BarCode se agregó el metodo CalculateText, el cual permite obtener 
+  el texto que se representa en el código.
+
++ Se agregó la validación del timbre al momento de leer un CFDI.
+
+* La propiedad Folio se cambió a string para que se pudieran soportar los 20 
+  caracteres numéricos exigidos por la autoridad.
+
+* Se modificaron los ejemplos para reflejar los cambios y mostrar la nueva 
+  funcionalidad.
+
+* Se mejoró la validación contra la autoridad certificadora.
+
+* Se cambió la ruta de instalación, esto con la finalidad de que evitar que 
+  abrir Visual Studio con privilegios de Administrador cuando se abre el Demo.
+
+- Se corrigió la declaración del namespace cuando se agregaban 2 veces el 
+  mismo complemento.
+
+
+FACTUTAXION
+*************************************
++ Se agregó el método RegistrarEmpresa, el cual permite registrar un usuario en 
+  su totalidad:
+    . Empresa
+    . Sucursal
+    . Certificado
+    . Generación del código de usuario
+    . Asignación del código de usuario
+  La importancia de este método radica en que con este se elimina la necesidad 
+  de que él usuario se registre manualmente en la página del PAC.
+
++ Se agregó el método RegistrarSucursal, el cual permite registrar una nueva 
+  sucursal a una empresa que ya se encuentra registrada.
+
++ Se agregó el método AsignarCodigoUsuario, el cual permite asignarle el código 
+  a un usuario que ya se registró con el PAC, pero que no está asociado con el 
+  PAC.
+
+* Se modificaron los ejemplos para mostrar el uso de los nuevos métodos.
+
+* Debido al incremento en el número y variedad de parámetros necesarios para 
+  cada método, se decidió crear una clase que permite pasar todos los 
+  parámetros al método.
+
+* Se modificaron los ejemplos para reflejar los cambios y mostrar la nueva 
+  funcionalidad.
+
+- Se corrigió un error que se presentaba al pedir los datos de las sucursales.
+
+
+EDICOM
+*************************************
++ Se agregó la integración con este PAC, implementando toda la funcionalidad 
+  expuesta por el mismo.
+    . GetCfdi
+    . GetTimbreCfdi
+    . CancelarCfdi
+    . ChangePassword 
+
+
+ADENDAS
+*************************************
++ Se agregó la adenda de ADO (BETA).
+
++ Se agregó la adenda de Chrysler.
+
++ Se agregó la adenda de Disney (BETA).
+
++ Se agregó la adenda de Envases universales de México (BETA).
+
++ Se agregó la adenda de FEMSA.
+
++ Se agregó la adenda de MABE.
+
++ Se agregó la adenda de PEMEX Exploración y refinación.
+
++ Se agregó la adenda de PROLEC (BETA).
+
++ Se agregó la adenda de Tiendas neto (BETA).
+
++ Se agregó la adenda de Transportes Castores (BETA).
+
+
+
+==============================
+| Versión 2012.01.22         |
+==============================
+* Se mejoró el instalador de la biblioteca
+    . Se integraron los Assembly en una carpeta
+    . Se modificó el directorio de instalación para que se puedan tener 2 o 
+      más versiones instaladas en la misma computadora.
+    . Se redujo el tamaño del instalador un 50 %
+
+* Se hicieron diversas mejoras a los ejemplos.
+
+- Se modificó la generación del CFDI para que se agregue el NameSpace.
+
+- Se corrigió el error que se generaba al generar un CFD y CFDI y en el cual 
+  se mostraba el mensaje C:\Softwre\a.xml
+
+
+
+==============================
+| Versión 2012.01.10         |
+==============================
++. A la clase complementos se agregó el método GetLastData() que permite 
+   obtener el último complemento agregado al comprobante
+
++ Se agregó un ejemplo de cómo validar un comprobante de la versión 3.2 y 2.2.
+
+* Se hicieron cambios al ejemplo de complementos para hacerlo más legible.
+
+- Se mejoraron y corrigieron los ejemplos.
+
+- Se corrigió el error que se presentaba leer los datos de la sucursal en la 
+  integración con el PAC Facturaxion.
+
+
+
+==============================
+| Versión 2012.01.07         |
+==============================
+
++ Se agregó la capacidad de generar y validar documentos (CFD y CFDI) con los 
+  ocho nuevos complementos.
+    . Emisión por cuenta de terceros versión 1.1
+    . Instituciones educativas privadas
+    . Leyenda Fiscal
+    . Donatarias versión 1.1
+    . PF Integrante coordinado
+    . Turista pasajero extranjero
+    . Venta vehicular
+
++ Se agregaron nuevos ejemplos que demuestren la capacidad de generar un CFD y 
+  CFDI con los nuevos complementos.
+
++  Al listado de complementos en el objeto DAT se agregó el método GetLastData 
+   con la finalidad de obtener el último complemento agregado.
+
++ Se creó un instalador de la biblioteca el cual será usado en todas las 
+  liberaciones.
+
+* El parámetro que se pasa en el método ElectronicDocument.SaveToString se dejó 
+  de solo salida (out).
+
+* En la generación del código de barras bidimensional se dejó como valores por 
+  defecto los siguientes valores:
+    . Tamaño: 4 
+    . Formato: PNG
+  Estos valores son los más adecuados de acuerdo con los lineamientos dados por 
+  el SAT.
+
+- Se corrigió la validación del folio autorizado en la generación y 
+  validación de un CFD
+
+- El domicilio fiscal no se escribe al xml si esta vacío
+
+- Se corrigió el guardado del domicilio fiscal, esto nodo no es agregado al 
+  xml si ninguna de sus propiedades es asignada.
+
+
+
+==============================
+| Versión 2011.12.08         |
+==============================
++ Se ha dividido la biblioteca en diferentes assemblys esto con la finalidad de 
+  soportar las nuevas características que se van a agregar a un futuro.
+
++ Se agregó compatibilidad a la biblioteca con los cambios del CFD y CFDI
+  para el 2012.
+
++ Se han agregado dos nuevos ejemplos en donde se muestran como generar
+  CFD 2.2 y CFDI 3.2
+
+* El cambio el campo Folio se cambió de Integer por Integer64.
+
+* Nuevo método ElectronicCertificate.IsValidCertificateToSign el cual permite 
+  verifica si el certificado puede ser usado para firmar un documento.
+
+* Se cambió el nombre de los espacios de nombre (NameSpace) anteponiendo la 
+  palabra HyperSoft
+
+* Se estandarizo el nombre de todos los atributos, métodos y propiedades, 
+  usando como estándar la primera letra de la palabra en mayúscula y el esto 
+  en minúscula, aquí algunos ejemplos
+    RFC ->  Rfc
+    SavetoFile -> SaveToFile
+    ValidateCertificateWithCA -> ValidateCertificateWithCa 
+    ValidateCertificateWithCRL -> ValidateCertificateWithCrl
+    AddCertificateToCEL -> AddCertificateToCel
+    UUID -> Uuid
+    CFD -> Cfd
+    PAC -> Pac
+    CFDI -> Cfdi
+    SAT -> Sat
+    ISO -> Iso
+    GTIN -> Gtin
+    GLN -> Gln
+    IVA -> Iva
+* El parámetro errorText del método FolioAutorizadoList.Extract ahora es solo 
+  de salida.
+
+* El espacio de nombres ElectronicDocumentLibrary.Complementos cambio de nombre
+  ElectronicDocumentLibrary.Complementos -> HyperSoft.ElectronicDocumentLibrary.Complemento
+
+* El parámetro errorText del métodoElectronicCertificate.IsValidToSign ahora es solo 
+  de salida.
+  
+
+
+==============================
+| Versión 2011.10.04         |
+==============================
++ Se optimizaron el proceso de generación y validación del CFDI, disminuyendo 
+  los tiempos hasta en un 30 %.
+
+- Se corrigió un error al ejecutar el método de cancelación de un CFDI.
+
+
+
+==============================
+| Versión 2011.09.06         |
+==============================
++ Se agregaron las clases necesarias para el manejo de la lista de 
+  contribuyentes obligados (LCO).
+
++ En la clase Facturaxion.Proveedor se implementó la Interface IDisposable, 
+  por lo tanto ahora dicha clase ahora cuenta con el método Dispose()
+
++ Al validar la información se agregó la opción de validar que el CFDI tenga 
+  uno o más conceptos.
+
++ A la clase Facturaxion.Proveedor se agregó el método SolicitarCodigoUsuario 
+  el cual permite generar los códigos de usuario necesarios para la generación 
+  y cancelación de CFDI.
+
++ A la clase Facturaxion.Proveedor se agregó el método CancelarCFDI el cual 
+  permite cancelar un CFDI previamente generado.
+
++ A la clase Facturaxion.Proveedor se agregó el método ObtenerAcuse mediante 
+  el cual se pueden obtener los acuses de cancelación de CFDI y recepción 
+  expedidos por el SAT.
+
++ Se hizo uso de la nueva URL que dispuso el PAC para mayor seguridad, esta 
+  URL es implementada por HTTPS
+
++ A la clase Facturaxion.Proveedor se agregó el método ObtenerIdSucursal 
+  mediante el cual se pueden obtener el identificador de la sucursal, la 
+  cual es necesaria para ciertas operaciones con el PAC.
+
++ Se agregó el soporte a los métodos de prueba expuestos por Facturaxion, el 
+  uso de los mismos e hace a través de la especificación en cada método.
+
++ Se agregó el método ElectronicDocument.GetTimbre para obtener los datos del 
+  timbre.
+
+* Se hicieron más descriptivos algunos mensajes de error.
+
+* Se hicieron cambios al nombre de los NameSapce relacionados con la 
+  funcionalidad del PAC, esto con la finalidad de dar mayor claridad.
+
+* Al ejemplo de generación de un CFDI se agregó el código que muestra como 
+  agregar impuestos retenidos al comprobante
+
+- Se corrigieron 2 bugs de memoria importantes que se presentaban al generar el 
+  CFDI.
+
+
+
+==============================
+| Versión 2011.07.04         |
+==============================
+
++ El tamaño por default para la generación de código de barras bidimenacional 
+  es de 4, ya que cumple con las dimensiones mínimas requeridas por el SAT.
+
++ Se agregó una validación al tamaño del código de barras bidimensional, 
+  el valor posible para este dato es 4, 5 o 6.
+
+* Se cambió el resultado del método generar timbre de la clase 
+  Facturaxion.Proveedor, esto con la finalidad de dar mayor información en caso 
+  de presentarse un error, ahora los posibles valores retornados son:
+
+  . Ok : No se presentaron errores durante el proceso de timbrado
+  . ErrorInDocument : Existe un error en el documento y no es posible enviarlo a timbrar.
+  . ErrorWithProvider : Existe un error en la conexión con el PAC o este retorno un error en la operación.
+
+* Se eliminó la necesidad de asignar los siguientes archivos
+    . Schemas
+    . Listado de autoridades certificadoras
+  
+  Este cambio implica que ya no es necesario distribuir dichos archivos ni 
+  asignarlos a la clase manage.
+
+* Se mejoró la rutina que valida la estructura del UUID, permitiendo que este 
+  pueda estar en mayúscula o minúscula.
+
++ Se modificó el ejemplo del reporte mensual, para indicar el año de 
+  aprobación.
+
+- Se corrigió la generación del reporte mensual usando el método 
+  FillInformation, ya que se estaba tomando mal el RFC del receptor.
+
+- Se corrigió el cálculo de la cadena original cuando el campo Código
+  postal de Expedido en y del domicilio del receptor se indicaba como 
+  vació.
+
+- Se corrigió la generación del código de barras bidimensional, ya que el dato 
+  UUID se estaba repitiendo en el campo Total.
+
+- Se hicieron cambios menores a la licencia de uso y descripción de Electronic 
+  Document Library para dar mayor claridad.
+
+
+
+==============================
+| Versión 2011.04.23         |
+==============================
+
++ Se agregó el timbrado de forma directa con un PAC, en este caso la biblioteca
+  realiza todos los pasos necesarios para obtener el timbre del CFDI generado 
+  sin que se tenga que incurrir en ningún tipo de programación.
+
+  Para obtener información acerca del PAC que se implementó puedes revisar el 
+  siguiente enlace.
+  
+  http://www.sat.gob.mx/sitio_internet/asistencia_contribuyente/principiantes/comprobantes_fiscales/66_20435.html
+
+
++ Se agregó el manejo del complemento detallista, ofreciendo la posibilidad de 
+  generar y validar un CFD o CFDI con dicho complemento.
+
++ Se agregó el método SaveToPFXFile a la clase TElectronicCertificate mediante
+  el cual se puede crear un archivo pfx (PKCS12).
+
++ Se agregó la validación de que el certificado con el que se va a sellar sea 
+  un certificado de sello.
+
++ Se agregó la opción para validar que el RFC del emisor coincida con los datos
+  
+* Al momento de leer el certificado y la llave privada se validó que la llave 
+  privada corresponda con el certificado.
+
+* Se modificó la lectura del certificado y su llave privada para evitar 
+  problemas con procesos concurrentes.
+
+* Se modificó el método IsValidToSign de la clase ElectronicCertificate 
+  agregándole la validación de que el certificado no esté revocado.
+
+* Se modificaron los siguientes ejemplos para mostrar las nuevas funcionalidades
+    . Generación de CFD con complementos
+    . Características del certificado
+    . Envió de un CFDI al PAC para ser timbrado
+
+* Se modificó la lectura del archivo key (llave privada), ahora se muestra un 
+  mensaje más adecuado cuando no se ha indicado le password correcto.
+
+* En la validación de un CFD (recepción) se agregaron las siguientes 
+  validaciones
+    . Se verifico que el certificado con que se sello el CFD sea un certificado 
+      de sello.
+    . Se verifico que el RFC del certificado corresponda con el certificado del 
+      emisor.
+    . Se verifico que el número de certificado del XML no es igual al número de
+      serie del certificado.
+
+* Al validar un RFC se verifico que la fecha contenida en el mismo sea válida.
+
+- Se modificó la generación del código de barras bidimensional, ya que la cadena 
+  que representaba se calculaba de forma errónea.
+
+- Se modificó la generación del CFD para que el carácter apostrofe sea 
+  codificado como lo especifica el SAT en el anexo 20. Para conocer más del 
+  tema leer esto:
+  
+  http://www.facturando.mx/blog/index.php/2011/03/19/caracteres-especiales/
+
+
+
+==============================
+| Versión 2011.03.15         |
+==============================
+
++ Se agregó la funcionalidad de generar el código de barras bidimensional (CBB)
+  exigido por el SAT para la impresión del CFDI.
+  . El CBB puede ser generado en diferentes formatos: PNG, JPG, BMP y en diferentes tamaños.
+  . Se valida la información contenida en el CBB:
+    * Se valida que el RFC del emisor contenga una estructura válida.
+    * Se valida que el RFC del receptor contenga una estructura válida.
+    * Se valida que el UUID contenga una estructura válida
+  . El CBB es generado a disco duro como un archivo.
+
+  Para su funcionamiento es necesario distribuir el archivo BarCodeLibrary.dll
+
++ Se agregó el método SaveToString, el cual permite generar el CFD/CFDI y 
+  guardarlo en una cadena de texto.
+
++ Se agregaron las siguientes validaciones a los datos contenidos en el XML:
+  . Se validó que el RFC del emisor contenga una estructura válida.
+  . Se validó que el RFC del receptor contenga una estructura válida.
+  . Se validó que el folio del documento sea mayor a cero.
+  . Se validó que la serie solo tuviera caracteres válidos (A-Z, Ñ).
+  . Se validó que la fecha del documento este dentro de la vigencia del CFD.
+
+- Se modificó la generación del CFDI para que la definición del name space del 
+  complemento timbre estuviera a nivel de nodo y no de encabezado.
+
+
+
+==============================
+| Versión 2011.03.04 BETA    |
+==============================
+* Se agregaron saltos de línea a los mensajes de error cuando se ejecuta el 
+  proceso de validación contra el schema, esto para dar una mejor presentación
+  del mensaje.
+
+- Se corrigió el proceso de lectura de una CFD, ya que al ejecutarlo se 
+  generaba el siguiente error: "No se puede tener acceso a un archivo 
+  cerrado", esto error se inyecto en la última liberación.
+
+- Se corrigió la lectura de la hora de vigencia del certificado ya que estaba 
+  siendo leída de forma errónea.
+
+
+
+==============================
+| Versión 2011.03.03 BETA    |
+==============================
++ Se agregó el método SaveToString a la clase ElectronicDocument que permite 
+  obtener el CFD/CFDI como una cadena de texto.
+
+* Se validó la estructura del RFC del emisor cuando ejecuta el método 
+  IsValidToSign de la clase ElectronicCertificate.
+
+- Se modificó la validación del certificado contra las autoridades 
+  certificadoras, ya que en algunos casos no se ejecutaba correctamente esta 
+  validación.
+
+- Se modificó la validación contra el schema ya que no se estaba ejecutando 
+  correctamente.
+
+- Se cambió el tipo de dato del property Fecha del complemento estado de cuenta
+  bancario de Date a DateTime.
+
+
+
+==============================
+| Versión 2011.02.25 BETA    |
+==============================
++ Se agregó la funcionalidad para poder validar un CFD o CFDI
+
++ Se agregó la funcionalidad para generar un CFDI
+
++ Se agregó la funcionalidad para generar un CFD o CFDI con los siguientes 
+  complementos:
+    . Divisas
+    . Donatarias
+    . Estado de cuenta bancario
+    . Estado de cuenta combustible
+    . Impuestos locales
+    . Prestadores de servicios de CFD
+    . Timbre Fiscal Digital
+
++ Se agregó el método IsValidToSign a la clase ElectronicCertificate, se usa 
+  cuando se desea verificar si un certificado se puede usar para firmar un 
+  CFD/CFDI. Es un método de clase que puede ser usado cuando se guarda el 
+  certificado en la base de datos, antes de subirlo se ejecuta y con esto se 
+  puede eliminar ciertas validaciones en el proceso de generación de un 
+  documento. Las validaciones que realiza este método son:
+
+    . Si el certificado es válido contra una autoridad certificadora
+    . Si el certificado es un certificado de sello
+    . EL RFC del emisor es igual al RFC registrado en el certificado. 
+
+  Al momento de generar el CFD/CFDI se pueden eliminar estas validaciones.
+  
+
++ Se agregó la propiedad FingerPrintSAT a la clase ElectronicDocument, esta 
+  permite obtener la cadena original que uso el PAC para generar el sello del 
+  SAT. Esta cadena es usada en la impresión de un CFDI. Para obtener esta 
+  cadena es necesario:
+
+    . Que la versión del documento sea 3.0 
+    . Que el documento sea leído con el método LoadFromFile y que este 
+      contenga el complemento Timbre Fiscal. 
+    . Que durante la generación le sea asignado al documento el complemento 
+      Timbre Fiscal.
+
++ Se agregó el método Diggest a la clase ElectronicDocument, este permite 
+  obtener la digestión de las cadenas originales; para esto es necesario pasar
+  un parámetro indicando cual digestión es la que se desea obtener.
+
++ Se agregó el método Extract a la clase FolioAutorizadoList; este método 
+  rellena una lista con objetos de la clase FolioDescription que contienen la 
+  información detallada de los folios que han sido autorizados por el SAT. 
+  Ha sido creado para que la información del archivo FoliosCFD.txt sea subido 
+  a una base de datos y no se use dicho archivo en el proceso de validación. 
+  Este método podría ser útil en los siguientes casos:
+
+    . Aplicaciones Web, ya que no se cargaría el archivo de folios a memoria.
+    . Aplicaciones de escritorio en las que no se quiera depender de un archivo
+      externo.
+
+  Su uso está ligado al evento FolioAutorizadoList.OnValidating
+
++ Se agregó el método Extract a la clase CertificateRevocationList; este método
+  rellena una lista con objetos de la clase CertificateDescriptionque contienen 
+  la información detallada de los certificados de sello que han sido 
+  autorizados 
+  por el SAT. Ha sido creado para que la información del archivo CSD.txt sea 
+  subido a una base de datos y no se use dicho archivo en el proceso de 
+  validación. Este método podría ser útil en los siguientes casos:
+
+    . Aplicaciones Web, ya que no se cargaría el archivo de certificados de 
+      sello a memoria
+    . Aplicaciones de escritorio en las que no se quiera depender de un archivo
+      externo.
+
++ Se agregó un ejemplo (06. Archivos SAT) para demostrar el manejo de los 
+  archivos del SAT en una base de datos.
+  
++ Se modificaron el ejemplo de generación de CFDI para demostrar las formas de 
+  agregar el timbre al CFDI.
+
+- Se corrigió el formato de presentación de la fecha de emisión en el reporte 
+  mensual.
+
+
+
+=========================
+| Versión 2011.01.10    |
+=========================
+- Se corrigió el error que se presentaba al generar el reporte mensual y 
+  el cual decía: Could not load MetaClass.
+
+- Se corrigió la generación del reporte mensual en los datos asignados 
+  al tipo de comprobante y al estatus.
+
+
+
+=========================
+| Versión 2011.01.03    |
+=========================
+- Se corrigió un error que se presentaba al generar el CFD versión 2.0 con 
+  cualquier fecha del 2011.
+
+
+
+=========================
+| Versión 2010.12.22    |
+=========================
++ Se agregó una clase que permite la generación del reporte mensual.
+
++ Se agregó el método SaveToStream a la clase ElectronicDocument.
+
++ Se agregó el manejo de autoridades certificadoras.
+
++ Se agregó el manejo del archivo emitido por el SAT de folios autorizados
+
++ Se agregó el manejo del archivo emitido por el SAT de certificados revocados
+
+
+
+=========================
+| Versión 2010.12.09    |
+=========================
++ Se eliminó el estatus de BETA y se toma como versión final.
+
++ Se agregó el código necesario para la generación del CFD con el sello 
+  correcto.
+
++ Se agregó compatibilidad para la generación de CFD en su versión 
+  1.0 y 2.0
+
++ Se agregaron las siguientes validaciones:
+    . Se validó que el folio hubiera sido autorizado por el SAT
+    . Se validó que el certificado no estuviera revocado al momento de generar 
+      el CFD
+    . Se validó que la fecha del documento estuviera dentro del rango de 
+      vigencia del certificado.
+    . Se validó que no se firme con la FIEL sino con el certificado de sello.
+
++ Se implementó el firmado con diferentes formatos de certificado 
+  (PEM, DER, PKCS12)
+
++ Se hicieron cambios al nombre de los NAMESPACE con la finalidad de hacerlos 
+  homogéneos y compatibles con la versión de Delphi.
+
++ Se cambió el nombre de la clase Manage por ElectronicManage.
+
++ Se agregó documentación para el archivo de certificados de sellos (CSD.TXT),
+  se recomienda leer el archivo:
+    .  Archivos\Listado de certificados revocados\leeme.txt
+
++ Se agregó documentación para el archivo de folios autorizados (FoliosCFD.txt),
+  se recomienda leer el archivo:
+    .  Archivos\Listado de folios autorizados\leeme.txt
+
+* Se realizaron pequeños cambios a la licencia de uso.
+
+* Se actualizaron los archivos del SAT (CSD.txt y FoliosCFD.txt).
+
+
+
+=========================
+| Versión 2010.11.30    |
+=========================
++ Generación de CFD

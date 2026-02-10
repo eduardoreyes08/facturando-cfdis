@@ -1,0 +1,34 @@
+NOTAS
+
+El archivo FoliosCFD.txt es emitido por el SAT y contiene todos los datos de 
+los folios que han sido autorizados. 
+
+Es usado para verificar que el Folio del documento ha sido autorizado, esta 
+validación se hace automáticamente al generar o validar un CFD.
+
+Para evitar dicha validación (y ahorrarte unas milésimas de segundo), se puede 
+realizar agregar el siguiente código:
+
+Generación de un CFD:
+  * Delphi
+    manage.Save.Options := manage.Save.Options - [loValidateWithFoliosAutorizados];
+
+  * C#
+
+
+Validación de un CFD:
+  * Delphi
+    manage.Load.Options := manage.Load.Options - [loValidateWithFoliosAutorizados];
+
+  * C#
+  
+
+Mi recomendación es que no elimines esta validación, ya que te da mayor grado
+de certidumbre del proceso de generación y recepción.
+
+Este archivo es actualizando con bastante regularidad, por eso mi recomendación
+es que realicen la descarga de dicho archivo diariamente. Esto no es 
+necesario si sólo estas generando CFD y no estás pidiendo folios constantemente.
+
+Este archivo puede ser descargado del sitio FTP del SAT:
+ftp://200.33.74.102/agti_servicio_ftp/verifica_comprobante_ftp/

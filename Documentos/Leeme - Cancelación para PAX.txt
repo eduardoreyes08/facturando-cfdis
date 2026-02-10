@@ -1,0 +1,22 @@
+CANCELACIÓN DE UN CFDI
+
+Para poder llevar a cabo la cancelación de un Comprobante Fiscal Digital a través de Internet (CFDI)
+usando Electronic Document Library (EDL) es necesario enviar los siguientes parámetros:
+
+Autentificación
+- Usuario
+- Password
+- Identificador
+
+UUIDs a cancelar
+- RFC del emisor
+- RFC del receptor
+- UUID (folio fiscal)
+- Total del comprobante
+
+URL de pruebas
+- https://test.paxfacturacion.com.mx:476/webservices/wcfCancelaASMX.asmx
+
+URL de producción
+- https://www.paxfacturacion.com.mx:476/webservices/wcfCancelaASMX.asmx
+

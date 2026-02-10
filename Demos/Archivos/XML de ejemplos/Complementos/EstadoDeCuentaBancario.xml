@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/2 http://www.sat.gob.mx/sitio_internet/cfd/2/cfdv22.xsd http://www.sat.gob.mx/ecb http://www.sat.gob.mx/sitio_internet/cfd/ecb/ecb.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2" serie="C" folio="2000" fecha="2012-11-28T14:37:27" sello="mhl9GDlrv+fZwEMPMdep12y0xRnRecjZWEJ3ClY7TUQl48kkQuAYw/EcwtC8IjLtw0Efvys4FBVsB62ogstHMoLq2n17yeRMZYyVEi9KUSP85+jL8z9WHse7DG7ii4DIbbor+6Fq7jXCM8YhLrzZTZDVsxN8Pvk9611fCnnGkdA=" noAprobacion="55898" anoAprobacion="2010" formaDePago="Pago en una sola exhibicion" noCertificado="20001000000100005867" certificado="MIIEdDCCA1ygAwIBAgIUMjAwMDEwMDAwMDAxMDAwMDU4NjcwDQYJKoZIhvcNAQEFBQAwggFvMRgwFgYDVQQDDA9BLkMuIGRlIHBydWViYXMxLzAtBgNVBAoMJlNlcnZpY2lvIGRlIEFkbWluaXN0cmFjacOzbiBUcmlidXRhcmlhMTgwNgYDVQQLDC9BZG1pbmlzdHJhY2nDs24gZGUgU2VndXJpZGFkIGRlIGxhIEluZm9ybWFjacOzbjEpMCcGCSqGSIb3DQEJARYaYXNpc25ldEBwcnVlYmFzLnNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxEjAQBgNVBAcMCUNveW9hY8OhbjEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTIwMAYJKoZIhvcNAQkCDCNSZXNwb25zYWJsZTogSMOpY3RvciBPcm5lbGFzIEFyY2lnYTAeFw0xMjA3MjcxNzAyMDBaFw0xNjA3MjcxNzAyMDBaMIHbMSkwJwYDVQQDEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEKRMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxKTAnBgNVBAoTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSUwIwYDVQQtExxBQUEwMTAxMDFBQUEgLyBIRUdUNzYxMDAzNFMyMR4wHAYDVQQFExUgLyBIRUdUNzYxMDAzTURGUk5OMDkxETAPBgNVBAsTCFVuaWRhZCAxMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2TTQSPONBOVxpXv9wLYo8jezBrb34i/tLx8jGdtyy27BcesOav2c1NS/Gdv10u9SkWtwdy34uRAVe7H0a3VMRLHAkvp2qMCHaZc4T8k47Jtb9wrOEh/XFS8LgT4y5OQYo6civfXXdlvxWU/gdM/e6I2lg6FGorP8H4GPAJ/qCNwIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQUFAAOCAQEATxMecTpMbdhSHo6KVUg4QVF4Op2IBhiMaOrtrXBdJgzGotUFcJgdBCMjtTZXSlq1S4DG1jr8p4NzQlzxsdTxaB8nSKJ4KEMgIT7E62xRUj15jI49qFz7f2uMttZLNThipunsN/NF1XtvESMTDwQFvas/Ugig6qwEfSZc0MDxMpKLEkEePmQwtZD+zXFSMVa6hmOu4M+FzGiRXbj4YJXn9Myjd8xbL/c+9UIcrYoZskxDvMxc6/6M3rNNDY3OFhBK+V/sPMzWWGt8S1yjmtPfXgFs1t65AZ2hcTwTAuHrKwDatJ1ZPfa482ZBROAAX1waz7WwXp0gso7sDCm2/yUVww==" condicionesDePago="Parcialidades" subTotal="7200.00" descuento="360.00" motivoDescuento="5% de descuento por pago en efectivo" total="7934.40" metodoDePago="Efectivo" tipoDeComprobante="ingreso" TipoCambio="13.5" Moneda="Dolares" LugarExpedicion="Mexico, Distrito Federal" NumCtaPago="1234" FolioFiscalOrig="12" SerieFolioFiscalOrig="A" FechaFolioFiscalOrig="2011-11-10T00:00:00" MontoFolioFiscalOrig="1000.00" xmlns:ecb="http://www.sat.gob.mx/ecb" xmlns="http://www.sat.gob.mx/cfd/2">
+  <Emisor nombre="Emisor de prueba" rfc="AAA010101AAA">
+    <DomicilioFiscal calle="Tamaulipas" noExterior="125" noInterior="1" colonia="Roma" localidad="México" referencia="Entre León y Manzanillo" municipio="Cuauhtémoc" estado="Distrito Federal" pais="México" codigoPostal="35143" />
+    <ExpedidoEn calle="Acapulco" noExterior="651" noInterior="1" colonia="Roma" localidad="México" municipio="Cuauhtémoc" estado="Distrito Federal" pais="México" codigoPostal="35135" />
+    <RegimenFiscal Regimen="Por honorarios" />
+  </Emisor>
+  <Receptor nombre="Receptor de prueba" rfc="XXXX010101XX1">
+    <Domicilio calle="Heriberto Frias" noExterior="513" colonia="Narvarte" localidad="MEXICO" referencia="Entre Morena y Esperanza" municipio="Benito Juárez" estado="DISTRITO FEDERAL" pais="MEXICO" codigoPostal="03100" />
+  </Receptor>
+  <Conceptos>
+    <Concepto cantidad="10.00" unidad="Caja" descripcion="Caja de DVD" valorUnitario="120.00" importe="1200.00">
+      <InformacionAduanera numero="AABBCC" fecha="2012-11-28" aduana="Tijuana" />
+      <InformacionAduanera numero="ZZZYYYWWW" fecha="2012-11-28" aduana="Baja California" />
+    </Concepto>
+    <Concepto cantidad="1.00" unidad="Pieza" descripcion="Computadora armada" valorUnitario="3000.00" importe="3000.00">
+      <Parte cantidad="1.00" noIdentificacion="SAD665874DCSD6CX" descripcion="Disco duro de 500 GB" importe="1000.00">
+        <InformacionAduanera numero="ASDRFSF345FDF" fecha="2012-11-28" aduana="Baja California" />
+      </Parte>
+      <Parte cantidad="1.00" noIdentificacion="SDFSDFC321641ERW2E3R315XV" descripcion="Procesador AMD" importe="2000.00" />
+    </Concepto>
+    <Concepto cantidad="1.00" unidad="Pieza" noIdentificacion="AX546461XASASD" descripcion="Monitor de 19 &quot; marca AOC" valorUnitario="3000.00" importe="3000.00" />
+  </Conceptos>
+  <Impuestos totalImpuestosTrasladados="1094.40">
+    <Traslados>
+      <Traslado importe="1094.40" impuesto="IVA" tasa="16.00" />
+    </Traslados>
+  </Impuestos>
+  <Complemento>
+    <ecb:EstadoDeCuentaBancario version="1.0" numeroCuenta="123456789" nombreCliente="Emisor Prueba" periodo="Segundo" sucursal="138">
+      <ecb:Movimientos>
+        <ecb:MovimientoECB fecha="2012-11-28T14:37:27" referencia="1032" descripcion="Disco duro de 500 GB" importe="1000.00" moneda="Pesos" saldoInicial="28000.00" saldoAlCorte="27000.00" />
+        <ecb:MovimientoECBFiscal fecha="2012-11-28T14:37:27" referencia="552" descripcion="Procesador AMD" RFCenajenante="XXXX010101XX1" Importe="2000.00" moneda="Pesos" saldoInicial="55000.00" saldoAlCorte="54000.00" />
+      </ecb:Movimientos>
+    </ecb:EstadoDeCuentaBancario>
+  </Complemento>
+</Comprobante>

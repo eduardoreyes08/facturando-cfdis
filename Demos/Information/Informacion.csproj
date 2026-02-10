@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1020599-5C4C-4D5F-8FDD-D54A89448754}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HyperSoft.Ejemplo.Informacion</RootNamespace>
+    <AssemblyName>Informacion</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HyperSoft.Base">
+      <HintPath>..\..\Assembly\HyperSoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary">
+      <HintPath>..\..\Assembly\HyperSoft.ElectronicDocumentLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cfdi\Cfdi.cs" />
+    <Compile Include="Cfdi\Complemento\Acreditamiento Ieps.cs" />
+    <Compile Include="Cfdi\Complemento\Aerolineas.cs" />
+    <Compile Include="Cfdi\Complemento\CartaPorte31.cs" />
+    <Compile Include="Cfdi\Complemento\ComercioExterior.cs" />
+    <Compile Include="Cfdi\Complemento\CartaPorte.cs" />
+    <Compile Include="Cfdi\Complemento\CartaPorte10.cs" />
+    <Compile Include="Cfdi\Complemento\CartaPorte30.cs" />
+    <Compile Include="Cfdi\Complemento\CartaPorte20.cs" />
+    <Compile Include="Cfdi\Complemento\ComercioExterior10.cs" />
+    <Compile Include="Cfdi\Complemento\ComercioExterior11.cs" />
+    <Compile Include="Cfdi\Complemento\Consumo Combustibles.cs" />
+    <Compile Include="Cfdi\Complemento\Detallista.cs" />
+    <Compile Include="Cfdi\Complemento\Divisas.cs" />
+    <Compile Include="Cfdi\Complemento\Donatarias.cs" />
+    <Compile Include="Cfdi\Complemento\Emision por cuenta de terceros.cs" />
+    <Compile Include="Cfdi\Complemento\Estado de cuenta bancario.cs" />
+    <Compile Include="Cfdi\Complemento\Estado de Cuenta de Combustible.cs" />
+    <Compile Include="Cfdi\Complemento\Obras arte y antiguedades.cs" />
+    <Compile Include="Cfdi\Complemento\Hidrocarburos Ingresos.cs" />
+    <Compile Include="Cfdi\Complemento\Impuestos Locales.cs" />
+    <Compile Include="Cfdi\Complemento\Instituciones educativas.cs" />
+    <Compile Include="Cfdi\Complemento\Nomina.cs" />
+    <Compile Include="Cfdi\Complemento\Notarios Publicos.cs" />
+    <Compile Include="Cfdi\Complemento\Pago en especie.cs" />
+    <Compile Include="Cfdi\Complemento\Prestadores de Servicios de CFD.cs" />
+    <Compile Include="Cfdi\Complemento\Recepcion de Pago.cs" />
+    <Compile Include="Cfdi\Complemento\Registro Fiscal.cs" />
+    <Compile Include="Cfdi\Complemento\Spei Tercero.cs" />
+    <Compile Include="Cfdi\Complemento\Timbre Fiscal Digital.cs" />
+    <Compile Include="Cfdi\Complemento\ComercioExterior20.cs" />
+    <Compile Include="Cfdi\Complemento\Hidrocarburos Gastos.cs" />
+    <Compile Include="Cfdi\Complemento\Vales de despensa.cs" />
+    <Compile Include="Cfdi\Complemento\Venta de vehiculos.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\ArrendamientoEnFideicomiso.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Dividendos.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\EnajenacionAcciones.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\FideicomisoNoEmpresarial.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Intereses.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\InteresesHipotecarios.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\OperacionesConDerivados.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PagosAExtranjeros.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlanesRetiro.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlanesRetiro11.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlanesRetiro10.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\Premios.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\SectorFinanciero.cs" />
+    <Compile Include="Constancia de retenciones\Constancia de retenciones.cs" />
+    <Compile Include="Constancia de retenciones\Complemento\PlataformasTecnologicas.cs" />
+    <Compile Include="Contabilidad\Auxiliar de cuentas.cs" />
+    <Compile Include="Contabilidad\Auxiliar de folios.cs" />
+    <Compile Include="Contabilidad\Balanza.cs" />
+    <Compile Include="Contabilidad\Catalogo de cuentas.cs" />
+    <Compile Include="Contabilidad\Poliza.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

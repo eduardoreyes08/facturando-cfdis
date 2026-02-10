@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36116F8A-A3B5-4D0C-A363-42551759D4A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HyperSoft.Ejemplo.Adendas</RootNamespace>
+    <AssemblyName>Addendas</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HyperSoft.Base">
+      <HintPath>..\..\..\Assembly\HyperSoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary">
+      <HintPath>..\..\..\Assembly\HyperSoft.ElectronicDocumentLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Aba">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Aba.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Ado">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.AlSuper">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.AlSuper.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.AltosHornosMexico">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.AltosHornosMexico.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Aluprint">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Aluprint.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Amece">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Amece.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Amis">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Amis.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Asofarma">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Asofarma.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Axxa">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Axxa.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Banorte">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Banorte.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Bbva">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Bbva.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Bexel">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Bexel.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.BrudiFarma">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.BrudiFarma.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Calsonic">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Calsonic.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.CapaOzono">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.CapaOzono.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Chrysler">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Chrysler.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Comex">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Comex.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.ContinentalTire">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.ContinentalTire.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Coppel">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Coppel.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.CorporateTravelServices">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.CorporateTravelServices.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Disney">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Disney.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Elektra">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Elektra.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Emerson">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Emerson.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.EmSur">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.EmSur.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.EnvasesUniversalesMexico">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.EnvasesUniversalesMexico.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Femsa">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Femsa.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.FerroMexicana">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.FerroMexicana.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Fuller">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Fuller.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Gayosso">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Gayosso.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.GeneralMotors">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.GeneralMotors.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Gomsa">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Gomsa.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.GrupoModelo">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.GrupoModelo.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Heb">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Heb.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Inbursa">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Inbursa.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Itsb">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Itsb.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Iusacell">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Iusacell.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Kuehne">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Kuehne.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Lamosa">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Lamosa.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Landsteiner">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Landsteiner.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Loreal">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Loreal.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Lowes">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Lowes.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Mabe">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Mabe.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Maersk">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Maersk.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.MultiPack">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.MultiPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Oxxo">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Oxxo.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Pemex">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Pemex.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Pepsico">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Pepsico.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Pilgrims">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Pilgrims.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Prolec">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Prolec.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Sanmina">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Sanmina.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Santander, Version=2013.4.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Santander.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.SectorPrimario.Addenda">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.SectorPrimario.Addenda.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Servj">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Servj.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.SevenEleven">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.SevenEleven.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.SolerPalau">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.SolerPalau.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Soriana">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Soriana.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.TiendasNeto">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.TiendasNeto.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.TransportesCastores">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.TransportesCastores.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.TresM">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.TresM.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.TvAzteca">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.TvAzteca.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Viscofan">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Viscofan.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.Volkswagen">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.Volkswagen.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.WalMart">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.WalMart.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.ElectronicDocumentLibrary.ZFMexico">
+      <HintPath>..\..\..\Assembly\Adenda\HyperSoft.ElectronicDocumentLibrary.ZFMexico.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.Resource">
+      <HintPath>..\..\..\Assembly\HyperSoft.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="HyperSoft.Shared">
+      <HintPath>..\..\..\Assembly\HyperSoft.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adenda\Aba.cs" />
+    <Compile Include="Adenda\Adenda.cs" />
+    <Compile Include="Adenda\Ado.cs" />
+    <Compile Include="Adenda\AlSuper.cs" />
+    <Compile Include="Adenda\Altos Hornos Mexico.cs" />
+    <Compile Include="Adenda\Aluprint.cs" />
+    <Compile Include="Adenda\Amece.cs" />
+    <Compile Include="Adenda\Amis.cs" />
+    <Compile Include="Adenda\Asofarma Asonioscoc.cs" />
+    <Compile Include="Adenda\Axxa Autos.cs" />
+    <Compile Include="Adenda\Axxa Gastos Medicos.cs" />
+    <Compile Include="Adenda\Bbva.cs" />
+    <Compile Include="Adenda\Bexel.cs" />
+    <Compile Include="Adenda\BrudiFarma.cs" />
+    <Compile Include="Adenda\Capa Ozono.cs" />
+    <Compile Include="Adenda\Chrysler.cs" />
+    <Compile Include="Adenda\Comex.cs" />
+    <Compile Include="Adenda\Continental Tire.cs" />
+    <Compile Include="Adenda\Coppel Ropa.cs" />
+    <Compile Include="Adenda\Corporate Travel Services.cs" />
+    <Compile Include="Adenda\Disney.cs" />
+    <Compile Include="Adenda\Elektra.cs" />
+    <Compile Include="Adenda\Emerson.cs" />
+    <Compile Include="Adenda\Emsur.cs" />
+    <Compile Include="Adenda\Envases Universales de Mexico.cs" />
+    <Compile Include="Adenda\Femsa.cs" />
+    <Compile Include="Adenda\Ferro Mexicana.cs" />
+    <Compile Include="Adenda\Fuller.cs" />
+    <Compile Include="Adenda\Gayosso.cs" />
+    <Compile Include="Adenda\General Motors.cs" />
+    <Compile Include="Adenda\Gomsa.cs" />
+    <Compile Include="Adenda\Grupo Modelo.cs" />
+    <Compile Include="Adenda\Heb.cs" />
+    <Compile Include="Adenda\Inbursa.cs" />
+    <Compile Include="Adenda\It Smart Business.cs" />
+    <Compile Include="Adenda\Iusacell.cs" />
+    <Compile Include="Adenda\Kuehne.cs" />
+    <Compile Include="Adenda\Lamosa.cs" />
+    <Compile Include="Adenda\Landsteiner.cs" />
+    <Compile Include="Adenda\Loreal.cs" />
+    <Compile Include="Adenda\Lowes.cs" />
+    <Compile Include="Adenda\Mabe.cs" />
+    <Compile Include="Adenda\Maersk.cs" />
+    <Compile Include="Adenda\MultiPack.cs" />
+    <Compile Include="Adenda\Oxxo.cs" />
+    <Compile Include="Adenda\Pemex Exploracion.cs" />
+    <Compile Include="Adenda\Pemex Refinacion.cs" />
+    <Compile Include="Adenda\Pepsico.cs" />
+    <Compile Include="Adenda\Pilgrims.cs" />
+    <Compile Include="Adenda\Prolec.cs" />
+    <Compile Include="Adenda\Sanmina.cs" />
+    <Compile Include="Adenda\Santander.cs" />
+    <Compile Include="Adenda\Sector Primario.cs" />
+    <Compile Include="Adenda\Seven Eleven.cs" />
+    <Compile Include="Adenda\Soler Palau.cs" />
+    <Compile Include="Adenda\Soriana Remision.cs" />
+    <Compile Include="Adenda\Soriana Servicio.cs" />
+    <Compile Include="Adenda\Tiendas Neto.cs" />
+    <Compile Include="Adenda\Transportes Castores.cs" />
+    <Compile Include="Adenda\TresM.cs" />
+    <Compile Include="Adenda\TvAzteca.cs" />
+    <Compile Include="Adenda\Viscofan.cs" />
+    <Compile Include="Adenda\Volkswagen.cs" />
+    <Compile Include="Adenda\WalMart.cs" />
+    <Compile Include="Adenda\ZfMexico.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Data.csproj">
+      <Project>{3cc7bd78-cc9b-4259-9c7b-cbacbc27ec0d}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utils\Utils.csproj">
+      <Project>{C07064E0-1FDD-41E7-9757-0EB24E293B6F}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
