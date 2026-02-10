@@ -1,0 +1,644 @@
+openapi: 3.0.3
+info:
+  title: EDL Production API
+  version: 1.0.0
+  description: API para timbrado CFDI, retenciones, validación XML, addendas, complementos, status SAT y código de barras.
+servers:
+  - url: /api/v1
+paths:
+  /health:
+    get:
+      summary: Estado del servicio
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /license/load:
+    post:
+      summary: Cargar licencia EDL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [licenseBase64]
+              properties:
+                licenseBase64:
+                  type: string
+      responses:
+        '200':
+          description: Licencia cargada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+
+  /license/status:
+    get:
+      summary: Obtener estado de licencia
+      responses:
+        '200':
+          description: Estado de licencia
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  description:
+                    type: string
+
+  /license/data:
+    get:
+      summary: Obtener datos de licencia
+      responses:
+        '200':
+          description: Datos de licencia
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  /cfdi/stamp:
+    post:
+      summary: Generar y timbrar CFDI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StampCfdiRequest'
+      responses:
+        '200':
+          description: Timbrado exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StampCfdiResponse'
+        '400':
+          description: Error de validación
+
+  /cfdi/cancel:
+    post:
+      summary: Solicitar cancelación CFDI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelCfdiRequest'
+      responses:
+        '200':
+          description: Resultado cancelación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+
+  /cfdi/cancel-receipt:
+    get:
+      summary: Obtener acuse de cancelación
+      parameters:
+        - in: query
+          name: rfcEmisor
+          required: true
+          schema: { type: string }
+        - in: query
+          name: uuid
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Acuse
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  xmlBase64: { type: string }
+                  status: { type: string }
+
+  /cfdi/{uuid}/xml:
+    get:
+      summary: Descargar XML timbrado desde PAC
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema: { type: string }
+        - in: query
+          name: rfcEmisor
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: XML CFDI
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid: { type: string }
+                  xmlBase64: { type: string }
+
+  /retentions/stamp:
+    post:
+      summary: Generar y timbrar constancia de retenciones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StampRetentionsRequest'
+      responses:
+        '200':
+          description: Timbrado exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StampCfdiResponse'
+
+  /complements:
+    get:
+      summary: Listar complementos soportados
+      responses:
+        '200':
+          description: Lista
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { type: string }
+
+  /cfdi/complements/{complementType}:
+    post:
+      summary: Aplicar complemento a CFDI
+      parameters:
+        - in: path
+          name: complementType
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cfdi, complementData]
+              properties:
+                cfdi:
+                  type: object
+                  additionalProperties: true
+                complementData:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: CFDI con complemento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+
+  /addendas:
+    get:
+      summary: Listar addendas soportadas
+      responses:
+        '200':
+          description: Lista
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { type: string }
+
+  /cfdi/addendas/{addendaType}:
+    post:
+      summary: Aplicar addenda a CFDI
+      parameters:
+        - in: path
+          name: addendaType
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [xmlBase64, addendaData]
+              properties:
+                xmlBase64: { type: string }
+                addendaData:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: CFDI con addenda
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+
+  /xml/validate/cfdi:
+    post:
+      summary: Validar XML CFDI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [xmlBase64]
+              properties:
+                xmlBase64: { type: string }
+                validateStamp: { type: boolean, default: true }
+                validateSchemaMode: { type: string, enum: [lite, full], default: full }
+      responses:
+        '200':
+          description: Resultado validación
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isValid: { type: boolean }
+                  validations:
+                    type: array
+                    items: { type: string }
+
+  /xml/validate/retentions:
+    post:
+      summary: Validar XML de retenciones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [xmlBase64]
+              properties:
+                xmlBase64: { type: string }
+      responses:
+        '200':
+          description: Resultado validación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+
+  /xml/parse/cfdi:
+    post:
+      summary: Leer y extraer datos de CFDI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [xmlBase64]
+              properties:
+                xmlBase64: { type: string }
+      responses:
+        '200':
+          description: Datos extraídos
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  /sat/cfdi-status:
+    get:
+      summary: Consultar status SAT de CFDI
+      parameters:
+        - in: query
+          name: rfcEmisor
+          required: true
+          schema: { type: string }
+        - in: query
+          name: rfcReceptor
+          required: true
+          schema: { type: string }
+        - in: query
+          name: uuid
+          required: true
+          schema: { type: string }
+        - in: query
+          name: total
+          required: true
+          schema: { type: number, format: decimal }
+      responses:
+        '200':
+          description: Status SAT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string }
+                  cancelationType: { type: string }
+                  cancelationStatus: { type: string }
+
+  /barcode/cfdi:
+    post:
+      summary: Generar código de barras CFDI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [rfcEmisor, rfcReceptor, total, uuid]
+              properties:
+                rfcEmisor: { type: string }
+                rfcReceptor: { type: string }
+                total: { type: number, format: decimal }
+                uuid: { type: string }
+                sello: { type: string }
+                imageFormat: { type: string, enum: [png, jpg, bmp], default: png }
+      responses:
+        '200':
+          description: Código generado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageBase64: { type: string }
+                  qrText: { type: string }
+
+  /barcode/retentions:
+    post:
+      summary: Generar código de barras de retenciones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [rfcEmisor, rfcReceptor, total, uuid]
+              properties:
+                rfcEmisor: { type: string }
+                rfcReceptor: { type: string }
+                total: { type: number, format: decimal }
+                uuid: { type: string }
+                sello: { type: string }
+      responses:
+        '200':
+          description: Código generado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageBase64: { type: string }
+                  qrText: { type: string }
+
+  /barcode/carta-porte:
+    post:
+      summary: Generar código de barras Carta Porte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uuid, fechaOrigen, fechaTimbrado]
+              properties:
+                uuid: { type: string }
+                fechaOrigen: { type: string, format: date-time }
+                fechaTimbrado: { type: string, format: date-time }
+      responses:
+        '200':
+          description: Código generado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageBase64: { type: string }
+                  qrText: { type: string }
+
+
+  /pac/time:
+    get:
+      summary: Obtener fecha/hora del PAC
+      parameters:
+        - in: query
+          name: provider
+          required: false
+          schema: { type: string, example: ecodex }
+      responses:
+        '200':
+          description: Hora PAC
+
+  /pac/account-status:
+    get:
+      summary: Obtener estado de cuenta PAC
+      parameters:
+        - in: query
+          name: provider
+          required: true
+          schema: { type: string }
+        - in: query
+          name: rfc
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Estado de cuenta
+
+  /certificates/validate-csd:
+    post:
+      summary: Validar certificado CSD (.cer/.key)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cerBase64, keyBase64, keyPassword]
+              properties:
+                cerBase64: { type: string }
+                keyBase64: { type: string }
+                keyPassword: { type: string }
+      responses:
+        '200':
+          description: Información del CSD
+
+  /accounting/catalog:
+    post:
+      summary: Generar catálogo de cuentas XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/trial-balance:
+    post:
+      summary: Generar balanza XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/policy:
+    post:
+      summary: Generar póliza XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/aux-accounts:
+    post:
+      summary: Generar auxiliar de cuentas XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+  /accounting/aux-folios:
+    post:
+      summary: Generar auxiliar de folios XML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingRequest'
+      responses:
+        '200':
+          description: XML generado
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status: { type: string, example: healthy }
+        timestamp: { type: string, format: date-time }
+        version: { type: string }
+
+    OperationResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        message: { type: string }
+        transactionId: { type: string }
+        errors:
+          type: array
+          items: { type: string }
+
+    StampCfdiRequest:
+      type: object
+      required: [environment, useHttps, certificate, cfdi]
+      properties:
+        environment:
+          type: string
+          enum: [test, production]
+        useHttps:
+          type: boolean
+        pac:
+          type: object
+          additionalProperties: true
+        certificate:
+          type: object
+          required: [cerBase64, keyBase64, keyPassword]
+          properties:
+            cerBase64: { type: string }
+            keyBase64: { type: string }
+            keyPassword: { type: string }
+        cfdi:
+          type: object
+          additionalProperties: true
+
+    StampRetentionsRequest:
+      type: object
+      required: [environment, useHttps, certificate, retentions]
+      properties:
+        environment:
+          type: string
+          enum: [test, production]
+        useHttps:
+          type: boolean
+        certificate:
+          type: object
+          required: [cerBase64, keyBase64, keyPassword]
+          properties:
+            cerBase64: { type: string }
+            keyBase64: { type: string }
+            keyPassword: { type: string }
+        retentions:
+          type: object
+          additionalProperties: true
+
+    StampCfdiResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        uuid: { type: string }
+        stampedAt: { type: string, format: date-time }
+        xmlStampedBase64: { type: string }
+        pac:
+          type: object
+          additionalProperties: true
+        transactionId: { type: string }
+        errors:
+          type: array
+          items: { type: string }
+
+    AccountingRequest:
+      type: object
+      required: [rfc, year, month, data]
+      properties:
+        rfc: { type: string }
+        year: { type: integer }
+        month: { type: integer }
+        data:
+          type: object
+          additionalProperties: true
+
+    CancelCfdiRequest:
+      type: object
+      required: [rfcEmisor, uuid, motivo]
+      properties:
+        rfcEmisor: { type: string }
+        uuid: { type: string }
+        motivo: { type: string, example: '01' }
+        uuidSustitucion: { type: string }
+        otroPac: { type: boolean, default: false }
